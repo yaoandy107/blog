@@ -267,108 +267,6 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
       </tags>
   </entry>
   <entry>
-    <title>Android 學習問題紀錄</title>
-    <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
-    <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
-<h3 id="問題">問題</h3>
-<p>在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。<br>
-<a id="more"></a></p>
-<h3 id="原因">原因</h3>
-<p>OkHttp 不是執行在 UI Thread，但 Retrofit 是。</p>
-<h2 id="紀錄-2">紀錄 2</h2>
-<h3 id="問題-2">問題</h3>
-<p>在 OkHttp  的 onResponse 中使用 Toast 會噴錯。</p>
-<h3 id="原因-2">原因</h3>
-<p>OkHttp 不是執行在 UI Thread。</p>
-<h3 id="解法">解法</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解法1</span></span><br><span class="line">Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</span><br><span class="line">handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 解法2</span></span><br><span class="line">activity.runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Error：Fragment already added</title>
-    <url>/Error-Fragment-already-added/</url>
-    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
-<pre><code>java.lang.IllegalStateException: Fragment already added
-</code></pre>
-<a id="more"></a>
-<h2 id="原因">原因</h2>
-<p>Fragment 在一些狀況不會正常移除</p>
-<h2 id="原本程式碼">原本程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
-<h2 id="解決辦法">解決辦法</h2>
-<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="後來程式碼">後來程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Fragment</tag>
-        <tag>Error</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mac 下使用 Shadowsocks 翻牆</title>
-    <url>/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Shadowsocks%E7%BF%BB%E7%89%86/</url>
-    <content><![CDATA[<p>這邊教大家如何使用 ShadowsocksX-NG 來進行 Shadowsocks 代理，以達到 <strong>翻牆</strong> 效果。</p>
-<a id="more"></a>
-<h2 id="下載-ShadowsocksX-NG">下載 ShadowsocksX-NG</h2>
-<p>GitHub 載點：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvd3NvY2tzL1NoYWRvd3NvY2tzWC1ORy9yZWxlYXNlcy8=">https://github.com/shadowsocks/ShadowsocksX-NG/releases/<i class="fa fa-external-link-alt"></i></span></p>
-<p><img data-src="https://imgur.com/rputoJL.png" alt=""></p>
-<h2 id="編輯代理伺服器">編輯代理伺服器</h2>
-<p>點擊「紙飛機」選擇「Server」，然後點擊【Server Preferences…】選項：</p>
-<p><img data-src="https://i.imgur.com/PjwfSrC.png" alt=""></p>
-<p>新增 Shadowsocks 服務配置：</p>
-<p><img data-src="https://i.imgur.com/BQM68VU.png" alt=""></p>
-<h2 id="更改代理模式">更改代理模式</h2>
-<p>預設模式為 <code>Proxy Auto Configure Mode</code>，這邊我們將它改為 <code>Global Mode</code>，使所有對外連線都使用 <code>Shadowsocks</code>，且無需特別設定。</p>
-<p>如要使用 <code>Proxy Auto Configure Mode</code>，會需要額外設定，這邊就不多做敘述。</p>
-<p><img data-src="https://i.imgur.com/FnjA0Up.png" alt=""></p>
-<h2 id="測試是否成功">測試是否成功</h2>
-<p>訪問 <code>orange.tw</code> 來查看自己的 IP 是否有變更。</p>
-<p><img data-src="https://i.imgur.com/5q9MBsg.png" alt=""></p>
-<h2 id="關閉-Shadowsocks">關閉 Shadowsocks</h2>
-<p>點擊【Turn Shadowsocks Off】來關閉 Shadowsocks。</p>
-<p><img data-src="https://imgur.com/k4WvIRT.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>Shadowsocks</category>
-      </categories>
-      <tags>
-        <tag>MacOS</tag>
-        <tag>Shadowsocks</tag>
-        <tag>翻牆</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Flutter: const vs final</title>
-    <url>/Flutter-const-vs-final/</url>
-    <content><![CDATA[<h2 id="Const">Const</h2>
-<ul>
-<li>需要在創建時就給定值，且會再編譯時期決定好，因此如果是執行時期才知道的值是不能用 const 的。</li>
-<li>const 裡的值也得要是 const，不能是在執行階段才知道或是可改變的值，因此下面的範例會失敗：<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">arr[<span class="number">1</span>] = <span class="number">11</span> <span class="comment">// 執行失敗</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="Final">Final</h2>
-<ul>
-<li>給定值之後就不能再更改，但可以在建構子之中再給。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Flutter</category>
-      </categories>
-      <tags>
-        <tag>Flutter</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android Studio 技巧整理</title>
     <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
     <content><![CDATA[<p>最近開始研究 Android Studio，得知一些可以增加開發速度的小技巧，因此在這邊做一下記錄。</p>
@@ -452,23 +350,110 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
         <tag>Android Studio</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
-    <title>android:gravity 和 android:layout_gravity 的差別</title>
-    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
-    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
-<a id="more"></a>
-<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
-<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
-]]></content>
+    <title>Android 學習問題紀錄</title>
+    <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
+    <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
+<h3 id="問題">問題</h3>
+<p>在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。<br>
+<a id="more"></a></p>
+<h3 id="原因">原因</h3>
+<p>OkHttp 不是執行在 UI Thread，但 Retrofit 是。</p>
+<h2 id="紀錄-2">紀錄 2</h2>
+<h3 id="問題-2">問題</h3>
+<p>在 OkHttp  的 onResponse 中使用 Toast 會噴錯。</p>
+<h3 id="原因-2">原因</h3>
+<p>OkHttp 不是執行在 UI Thread。</p>
+<h3 id="解法">解法</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解法1</span></span><br><span class="line">Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</span><br><span class="line">handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 解法2</span></span><br><span class="line">activity.runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Android</category>
       </categories>
       <tags>
         <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Error：Fragment already added</title>
+    <url>/Error-Fragment-already-added/</url>
+    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
+<pre><code>java.lang.IllegalStateException: Fragment already added
+</code></pre>
+<a id="more"></a>
+<h2 id="原因">原因</h2>
+<p>Fragment 在一些狀況不會正常移除</p>
+<h2 id="原本程式碼">原本程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
+<h2 id="解決辦法">解決辦法</h2>
+<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後來程式碼">後來程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Fragment</tag>
+        <tag>Error</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flutter: const vs final</title>
+    <url>/Flutter-const-vs-final/</url>
+    <content><![CDATA[<h2 id="Const">Const</h2>
+<ul>
+<li>需要在創建時就給定值，且會再編譯時期決定好，因此如果是執行時期才知道的值是不能用 const 的。</li>
+<li>const 裡的值也得要是 const，不能是在執行階段才知道或是可改變的值，因此下面的範例會失敗：<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">arr[<span class="number">1</span>] = <span class="number">11</span> <span class="comment">// 執行失敗</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Final">Final</h2>
+<ul>
+<li>給定值之後就不能再更改，但可以在建構子之中再給。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Flutter</category>
+      </categories>
+      <tags>
+        <tag>Flutter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac 下使用 Shadowsocks 翻牆</title>
+    <url>/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Shadowsocks%E7%BF%BB%E7%89%86/</url>
+    <content><![CDATA[<p>這邊教大家如何使用 ShadowsocksX-NG 來進行 Shadowsocks 代理，以達到 <strong>翻牆</strong> 效果。</p>
+<a id="more"></a>
+<h2 id="下載-ShadowsocksX-NG">下載 ShadowsocksX-NG</h2>
+<p>GitHub 載點：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvd3NvY2tzL1NoYWRvd3NvY2tzWC1ORy9yZWxlYXNlcy8=">https://github.com/shadowsocks/ShadowsocksX-NG/releases/<i class="fa fa-external-link-alt"></i></span></p>
+<p><img data-src="https://imgur.com/rputoJL.png" alt=""></p>
+<h2 id="編輯代理伺服器">編輯代理伺服器</h2>
+<p>點擊「紙飛機」選擇「Server」，然後點擊【Server Preferences…】選項：</p>
+<p><img data-src="https://i.imgur.com/PjwfSrC.png" alt=""></p>
+<p>新增 Shadowsocks 服務配置：</p>
+<p><img data-src="https://i.imgur.com/BQM68VU.png" alt=""></p>
+<h2 id="更改代理模式">更改代理模式</h2>
+<p>預設模式為 <code>Proxy Auto Configure Mode</code>，這邊我們將它改為 <code>Global Mode</code>，使所有對外連線都使用 <code>Shadowsocks</code>，且無需特別設定。</p>
+<p>如要使用 <code>Proxy Auto Configure Mode</code>，會需要額外設定，這邊就不多做敘述。</p>
+<p><img data-src="https://i.imgur.com/FnjA0Up.png" alt=""></p>
+<h2 id="測試是否成功">測試是否成功</h2>
+<p>訪問 <code>orange.tw</code> 來查看自己的 IP 是否有變更。</p>
+<p><img data-src="https://i.imgur.com/5q9MBsg.png" alt=""></p>
+<h2 id="關閉-Shadowsocks">關閉 Shadowsocks</h2>
+<p>點擊【Turn Shadowsocks Off】來關閉 Shadowsocks。</p>
+<p><img data-src="https://imgur.com/k4WvIRT.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>Shadowsocks</category>
+      </categories>
+      <tags>
+        <tag>MacOS</tag>
+        <tag>Shadowsocks</tag>
+        <tag>翻牆</tag>
       </tags>
   </entry>
   <entry>
@@ -702,6 +687,21 @@ _ 代表任意字元<br>
       <tags>
         <tag>SQL</tag>
         <tag>筆記</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android:gravity 和 android:layout_gravity 的差別</title>
+    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
+    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
+<a id="more"></a>
+<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
+<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -947,129 +947,6 @@ Android 3.0 以下選擇 NotificationCompat
       </tags>
   </entry>
   <entry>
-    <title>在 static method  中取得 String Resource</title>
-    <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
-    <content><![CDATA[<h2 id="遇到問題">遇到問題</h2>
-<p>最近在寫一個 Singleton 的類別時，遇到需要透過 Resource id 取得 string 的需求，原本想用 context.getString(int resId) 的方式取得，但發現 Context 不適合被 static 成員或類別引用，會導致內存泄露。</p>
-<a id="more"></a>
-<pre><code>static 成員生命週期會隨著 app 開始到結束。
-如果引用到 Context、Activity，會導致 Context、Activity 也跟著無法被回收，導致內存泄露。
-</code></pre>
-<h2 id="解決辦法">解決辦法</h2>
-<p>使用 Resources.getSystem().getString(int resId) 來取得 String。</p>
-<h2 id="參考資料">參考資料</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAwODEzMTk3OQ==">https://segmentfault.com/q/1010000008131979<i class="fa fa-external-link-alt"></i></span><br>
-<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMzgyMjczMi9hbmRyb2lkLWdldHN0cmluZ3Itc3RyaW5nLWluLXN0YXRpYy1tZXRob2Q=">https://stackoverflow.com/questions/3822732/android-getstringr-string-in-static-method<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
-    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
-<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
-<a id="more"></a>
-<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
-<ol>
-<li>
-<p>開啟 Parallels Desktop Lite<br>
-<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝 Ubuntu<br>
-<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
-</li>
-<li>
-<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
-<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
-</li>
-<li>
-<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
-<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
-</li>
-<li>
-<p>勾選安裝前設定，可以社設定虛擬機配置<br>
-<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
-</li>
-<li>
-<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
-<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
-</li>
-<li>
-<p>選擇語言<br>
-<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
-</li>
-<li>
-<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
-<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
-</li>
-<li>
-<p>選擇安裝過程的語言<br>
-<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
-</li>
-<li>
-<p>建議全部勾選，也可以選擇自己想要的勾選<br>
-<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
-</li>
-<li>
-<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
-<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「繼續」開始安裝<br>
-<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇時區<br>
-<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
-<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
-</li>
-<li>
-<p>輸入使用者帳戶資訊<br>
-<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
-</li>
-<li>
-<p>等待安裝並重新開機</p>
-</li>
-</ol>
-<blockquote>
-<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
-<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
-</blockquote>
-<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
-<ol>
-<li>
-<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
-<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
-</li>
-<li>
-<p>確認螢幕設定為「縮放」<br>
-<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「系統設定值」的按鈕<br>
-<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「顯示器」<br>
-<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
-</li>
-<li>
-<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
-<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
-</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>LineBot+Python，輕鬆建立聊天機器人</title>
     <url>/line-bot-tutorial/</url>
     <content><![CDATA[<blockquote>
@@ -1295,6 +1172,129 @@ Android 3.0 以下選擇 NotificationCompat
         <tag>Bot</tag>
         <tag>Python</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>在 static method  中取得 String Resource</title>
+    <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
+    <content><![CDATA[<h2 id="遇到問題">遇到問題</h2>
+<p>最近在寫一個 Singleton 的類別時，遇到需要透過 Resource id 取得 string 的需求，原本想用 context.getString(int resId) 的方式取得，但發現 Context 不適合被 static 成員或類別引用，會導致內存泄露。</p>
+<a id="more"></a>
+<pre><code>static 成員生命週期會隨著 app 開始到結束。
+如果引用到 Context、Activity，會導致 Context、Activity 也跟著無法被回收，導致內存泄露。
+</code></pre>
+<h2 id="解決辦法">解決辦法</h2>
+<p>使用 Resources.getSystem().getString(int resId) 來取得 String。</p>
+<h2 id="參考資料">參考資料</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAwODEzMTk3OQ==">https://segmentfault.com/q/1010000008131979<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMzgyMjczMi9hbmRyb2lkLWdldHN0cmluZ3Itc3RyaW5nLWluLXN0YXRpYy1tZXRob2Q=">https://stackoverflow.com/questions/3822732/android-getstringr-string-in-static-method<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
+    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
+<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
+<a id="more"></a>
+<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
+<ol>
+<li>
+<p>開啟 Parallels Desktop Lite<br>
+<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝 Ubuntu<br>
+<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
+</li>
+<li>
+<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
+</li>
+<li>
+<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
+</li>
+<li>
+<p>勾選安裝前設定，可以社設定虛擬機配置<br>
+<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
+</li>
+<li>
+<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
+<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
+</li>
+<li>
+<p>選擇語言<br>
+<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
+</li>
+<li>
+<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
+<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
+</li>
+<li>
+<p>選擇安裝過程的語言<br>
+<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
+</li>
+<li>
+<p>建議全部勾選，也可以選擇自己想要的勾選<br>
+<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
+</li>
+<li>
+<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
+<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「繼續」開始安裝<br>
+<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇時區<br>
+<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
+<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
+</li>
+<li>
+<p>輸入使用者帳戶資訊<br>
+<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
+</li>
+<li>
+<p>等待安裝並重新開機</p>
+</li>
+</ol>
+<blockquote>
+<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
+<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
+</blockquote>
+<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
+<ol>
+<li>
+<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
+<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
+</li>
+<li>
+<p>確認螢幕設定為「縮放」<br>
+<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「系統設定值」的按鈕<br>
+<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「顯示器」<br>
+<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
+</li>
+<li>
+<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
+<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
+</li>
+</ol>
+]]></content>
   </entry>
   <entry>
     <title>在 Ubuntu 上安裝中文輸入法</title>
