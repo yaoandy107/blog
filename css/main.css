@@ -1240,7 +1240,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #bf59b9;
+  background: #6cf2fe;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2855,4 +2855,9 @@ body {
 }
 .posts-expand .post-title {
   margin-bottom: 5px;
+}
+@media only screen and (max-width: 567px) {
+  .post-block {
+    padding: 18px;
+  }
 }
