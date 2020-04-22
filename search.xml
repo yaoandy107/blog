@@ -152,94 +152,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Android Studio 技巧整理</title>
-    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
-    <content><![CDATA[<p>最近開始研究 Android Studio，得知一些可以增加開發速度的小技巧，因此在這邊做一下記錄。</p>
-<a id="more"></a>
-<h2 id="Live-Templates">Live Templates</h2>
-<p><code>Live Templates</code>：程式碼快速補全模板</p>
-<p>這邊列出一些比較常見的 Live Templates，有興趣的人可以自行深入了解。</p>
-<ul>
-<li><code>newInstance</code> - 在 Fragment 中生成 <code>newInstance</code> 方法</li>
-<li><code>Toast</code> - 生成 <code>Toast.makeText(context, &quot;&quot;, Toast.LENGTH_SHORT).show();</code></li>
-<li><code>fbc</code> - 生成 findViewById</li>
-<li><code>const</code> - 定義一個 android style int 常數</li>
-<li><code>logd</code> - 生成 <code>Log.d(TAG, &quot;&quot;);</code></li>
-<li><code>logm</code> - Log 當前方法名稱和參數</li>
-<li><code>logr</code> - Log 當前方法結果</li>
-<li><code>logt</code> - 當前類生成 log tag</li>
-<li><code>psf</code> - public static final</li>
-<li><code>sout</code> - 印出一個字串到 System.out</li>
-<li><code>soutm</code> - 印出當前類名和方法到 System.out</li>
-<li><code>soutp</code> - 印出方法參數和返回值到 System.out</li>
-<li><code>visible</code> - 設置 view VISIBLE</li>
-<li><code>gone</code> - 設置 view GONE</li>
-<li><code>noInstance</code> - private 構造方法</li>
-</ul>
-<h2 id="Android-Studio-的自動生成">Android Studio 的自動生成</h2>
-<p>可以使用 Android Studio 自動幫你生成一些程式碼</p>
-<ul>
-<li><code>&lt;expr&gt;.null</code> 轉換成 <code>if(&lt;expr&gt; == null)</code></li>
-<li><code>&lt;expr&gt;.notnull</code> 轉換成 <code>if(&lt;expr&gt; != null)</code></li>
-<li><code>&lt;expr&gt;.var</code> 轉換成 <code>T name = &lt;expr&gt;</code></li>
-<li><code>&lt;expr&gt;.field</code> 會自動生成一個全局變數 <code>field = &lt;expr&gt;</code></li>
-<li><code>&lt;ArrayExpr&gt;.for</code> 轉換成 <code>for(T item : &lt;Arrayexpr&gt;)</code></li>
-<li><code>&lt;ArrayExpr&gt;.fori</code> 轉換成 <code>for(int i = 0; i &lt; &lt;Arrayexpr&gt;.length; i++)</code></li>
-<li><code>&lt;ArrayExpr&gt;.forr</code> 轉換成 <code>for(int i = &lt;Arrayexpr&gt;.length - 1; i &gt; 0 ; i--)</code></li>
-</ul>
-<h2 id="插件">插件</h2>
-<p>下面列出一些我正在使用的插件</p>
-<ol>
-<li>
-<p><strong>Android Drawable Importer</strong><br>
-為了適應所有 Android 螢幕的大小和密度，每個 Android 項目都會包含 drawable 資料夾。任何具備 Android 開發經驗的開發人員都知道，為了支持所有的螢幕尺寸，你必須給每個螢幕類型導入不同的 Drawalbe。Android Drawable Importer 插件能讓這項工作變得更容易。它可以減少導入縮放圖像到 Android 項目所需的工作量。 Android Drawable Importer 添加了一個在不同分辨率導入 Drawble 或縮放指定圖像到定義分辨率的選項。這個插件加速了開發人員的 Drawable 工作。</p>
-</li>
-<li>
-<p><strong>Lifecycle Sorter</strong><br>
-可以根據 Activity 或者 fragment 的生命週期對其生命週期方法位置進行先後排序，快捷鍵 Ctrl + alt + K。</p>
-</li>
-<li>
-<p><strong>.ignore</strong><br>
-我們都知道在 Git 中想要過濾掉一些不想提交的文件，可以把相應的文件添加到 .gitignore 中，而 .gitignore 這個 Android Studio 插件根據不同的語言來選擇模板，就不用自己在費事添加一些文件了，而且還有自動補全功能，過濾文件再也不要復製檔名了。我們做項目的時候，並不是所有文件都是要提交的，比如構建的 build 資料夾，本地配置文件，每個 Module 生成的 iml 文件，但是我們每次 add，commit 都會不小心把它們添加上去，而 gitignore 就是解決這種痛點的，如果你不想提交的檔案，就可以在創建項目的時候將這個檔案中添加即可，將一些通用的東西屏蔽掉。</p>
-</li>
-<li>
-<p><strong>Android Methods Count</strong><br>
-統計 Android 依賴庫中方法的總個數。 (一個 dex 只能接受的 65K 並不是指方法數超過 65K 而報的錯,而是指引用計數超過 65K)</p>
-</li>
-<li>
-<p><strong>jetbrains-wakatime</strong><br>
-紀錄在 Android Studio 上的工作時間。</p>
-</li>
-<li>
-<p><strong>Genymotion</strong><br>
-好用的 Android 模擬器，原生模擬器不堪用。</p>
-</li>
-<li>
-<p><strong>GsonFormat</strong><br>
-快速將 json 字串轉換成一個 Java Bean，免去我們根據 json 字符串手寫對應 Java Bean 的過程。</p>
-</li>
-<li>
-<p><strong>LayoutFormatter</strong><br>
-一鍵幫你將你的 XML 文件排版，並調整順序。</p>
-</li>
-</ol>
-<h2 id="快捷鍵">快捷鍵</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9yZXNvdXJjZXMuamV0YnJhaW5zLmNvbS9zdG9yYWdlL3Byb2R1Y3RzL2ludGVsbGlqLWlkZWEvZG9jcy9JbnRlbGxpSklERUFfUmVmZXJlbmNlQ2FyZC5wZGY=">完整的快捷键指南<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="參考資料">參考資料</h3>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25pc3J1bHovYW5kcm9pZC10aXBzLXRyaWNrcw==">nisrulz/android-tips-tricks<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly95ZG1tb2Nvby5naXRodWIuaW8vMjAxNi8wNi8yOC9BbmRyb2lkLVN0dWRpbyVFNiU4RiU5MiVFNCVCQiVCNiVFNiU5NSVCNCVFNyU5MCU4Ni8=">Android Studio插件整理<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android Studio</tag>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android 學習問題紀錄</title>
     <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
     <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
@@ -400,6 +312,94 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
         <tag>Android</tag>
         <tag>Fragment</tag>
         <tag>Error</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android Studio 技巧整理</title>
+    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<p>最近開始研究 Android Studio，得知一些可以增加開發速度的小技巧，因此在這邊做一下記錄。</p>
+<a id="more"></a>
+<h2 id="Live-Templates">Live Templates</h2>
+<p><code>Live Templates</code>：程式碼快速補全模板</p>
+<p>這邊列出一些比較常見的 Live Templates，有興趣的人可以自行深入了解。</p>
+<ul>
+<li><code>newInstance</code> - 在 Fragment 中生成 <code>newInstance</code> 方法</li>
+<li><code>Toast</code> - 生成 <code>Toast.makeText(context, &quot;&quot;, Toast.LENGTH_SHORT).show();</code></li>
+<li><code>fbc</code> - 生成 findViewById</li>
+<li><code>const</code> - 定義一個 android style int 常數</li>
+<li><code>logd</code> - 生成 <code>Log.d(TAG, &quot;&quot;);</code></li>
+<li><code>logm</code> - Log 當前方法名稱和參數</li>
+<li><code>logr</code> - Log 當前方法結果</li>
+<li><code>logt</code> - 當前類生成 log tag</li>
+<li><code>psf</code> - public static final</li>
+<li><code>sout</code> - 印出一個字串到 System.out</li>
+<li><code>soutm</code> - 印出當前類名和方法到 System.out</li>
+<li><code>soutp</code> - 印出方法參數和返回值到 System.out</li>
+<li><code>visible</code> - 設置 view VISIBLE</li>
+<li><code>gone</code> - 設置 view GONE</li>
+<li><code>noInstance</code> - private 構造方法</li>
+</ul>
+<h2 id="Android-Studio-的自動生成">Android Studio 的自動生成</h2>
+<p>可以使用 Android Studio 自動幫你生成一些程式碼</p>
+<ul>
+<li><code>&lt;expr&gt;.null</code> 轉換成 <code>if(&lt;expr&gt; == null)</code></li>
+<li><code>&lt;expr&gt;.notnull</code> 轉換成 <code>if(&lt;expr&gt; != null)</code></li>
+<li><code>&lt;expr&gt;.var</code> 轉換成 <code>T name = &lt;expr&gt;</code></li>
+<li><code>&lt;expr&gt;.field</code> 會自動生成一個全局變數 <code>field = &lt;expr&gt;</code></li>
+<li><code>&lt;ArrayExpr&gt;.for</code> 轉換成 <code>for(T item : &lt;Arrayexpr&gt;)</code></li>
+<li><code>&lt;ArrayExpr&gt;.fori</code> 轉換成 <code>for(int i = 0; i &lt; &lt;Arrayexpr&gt;.length; i++)</code></li>
+<li><code>&lt;ArrayExpr&gt;.forr</code> 轉換成 <code>for(int i = &lt;Arrayexpr&gt;.length - 1; i &gt; 0 ; i--)</code></li>
+</ul>
+<h2 id="插件">插件</h2>
+<p>下面列出一些我正在使用的插件</p>
+<ol>
+<li>
+<p><strong>Android Drawable Importer</strong><br>
+為了適應所有 Android 螢幕的大小和密度，每個 Android 項目都會包含 drawable 資料夾。任何具備 Android 開發經驗的開發人員都知道，為了支持所有的螢幕尺寸，你必須給每個螢幕類型導入不同的 Drawalbe。Android Drawable Importer 插件能讓這項工作變得更容易。它可以減少導入縮放圖像到 Android 項目所需的工作量。 Android Drawable Importer 添加了一個在不同分辨率導入 Drawble 或縮放指定圖像到定義分辨率的選項。這個插件加速了開發人員的 Drawable 工作。</p>
+</li>
+<li>
+<p><strong>Lifecycle Sorter</strong><br>
+可以根據 Activity 或者 fragment 的生命週期對其生命週期方法位置進行先後排序，快捷鍵 Ctrl + alt + K。</p>
+</li>
+<li>
+<p><strong>.ignore</strong><br>
+我們都知道在 Git 中想要過濾掉一些不想提交的文件，可以把相應的文件添加到 .gitignore 中，而 .gitignore 這個 Android Studio 插件根據不同的語言來選擇模板，就不用自己在費事添加一些文件了，而且還有自動補全功能，過濾文件再也不要復製檔名了。我們做項目的時候，並不是所有文件都是要提交的，比如構建的 build 資料夾，本地配置文件，每個 Module 生成的 iml 文件，但是我們每次 add，commit 都會不小心把它們添加上去，而 gitignore 就是解決這種痛點的，如果你不想提交的檔案，就可以在創建項目的時候將這個檔案中添加即可，將一些通用的東西屏蔽掉。</p>
+</li>
+<li>
+<p><strong>Android Methods Count</strong><br>
+統計 Android 依賴庫中方法的總個數。 (一個 dex 只能接受的 65K 並不是指方法數超過 65K 而報的錯,而是指引用計數超過 65K)</p>
+</li>
+<li>
+<p><strong>jetbrains-wakatime</strong><br>
+紀錄在 Android Studio 上的工作時間。</p>
+</li>
+<li>
+<p><strong>Genymotion</strong><br>
+好用的 Android 模擬器，原生模擬器不堪用。</p>
+</li>
+<li>
+<p><strong>GsonFormat</strong><br>
+快速將 json 字串轉換成一個 Java Bean，免去我們根據 json 字符串手寫對應 Java Bean 的過程。</p>
+</li>
+<li>
+<p><strong>LayoutFormatter</strong><br>
+一鍵幫你將你的 XML 文件排版，並調整順序。</p>
+</li>
+</ol>
+<h2 id="快捷鍵">快捷鍵</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9yZXNvdXJjZXMuamV0YnJhaW5zLmNvbS9zdG9yYWdlL3Byb2R1Y3RzL2ludGVsbGlqLWlkZWEvZG9jcy9JbnRlbGxpSklERUFfUmVmZXJlbmNlQ2FyZC5wZGY=">完整的快捷键指南<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="參考資料">參考資料</h3>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25pc3J1bHovYW5kcm9pZC10aXBzLXRyaWNrcw==">nisrulz/android-tips-tricks<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly95ZG1tb2Nvby5naXRodWIuaW8vMjAxNi8wNi8yOC9BbmRyb2lkLVN0dWRpbyVFNiU4RiU5MiVFNCVCQiVCNiVFNiU5NSVCNCVFNyU5MCU4Ni8=">Android Studio插件整理<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Android Studio</tag>
       </tags>
   </entry>
   <entry>
@@ -925,107 +925,6 @@ Android 3.0 以下選擇 NotificationCompat
       </tags>
   </entry>
   <entry>
-    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
-    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
-<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
-<a id="more"></a>
-<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
-<ol>
-<li>
-<p>開啟 Parallels Desktop Lite<br>
-<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝 Ubuntu<br>
-<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
-</li>
-<li>
-<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
-<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
-</li>
-<li>
-<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
-<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
-</li>
-<li>
-<p>勾選安裝前設定，可以社設定虛擬機配置<br>
-<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
-</li>
-<li>
-<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
-<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
-</li>
-<li>
-<p>選擇語言<br>
-<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
-</li>
-<li>
-<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
-<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
-</li>
-<li>
-<p>選擇安裝過程的語言<br>
-<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
-</li>
-<li>
-<p>建議全部勾選，也可以選擇自己想要的勾選<br>
-<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
-</li>
-<li>
-<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
-<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「繼續」開始安裝<br>
-<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇時區<br>
-<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
-<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
-</li>
-<li>
-<p>輸入使用者帳戶資訊<br>
-<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
-</li>
-<li>
-<p>等待安裝並重新開機</p>
-</li>
-</ol>
-<blockquote>
-<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
-<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
-</blockquote>
-<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
-<ol>
-<li>
-<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
-<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
-</li>
-<li>
-<p>確認螢幕設定為「縮放」<br>
-<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「系統設定值」的按鈕<br>
-<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「顯示器」<br>
-<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
-</li>
-<li>
-<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
-<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
-</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>LineBot+Python，輕鬆建立聊天機器人</title>
     <url>/line-bot-tutorial/</url>
     <content><![CDATA[<blockquote>
@@ -1251,6 +1150,107 @@ Android 3.0 以下選擇 NotificationCompat
         <tag>Bot</tag>
         <tag>Python</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
+    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
+<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
+<a id="more"></a>
+<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
+<ol>
+<li>
+<p>開啟 Parallels Desktop Lite<br>
+<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝 Ubuntu<br>
+<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
+</li>
+<li>
+<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
+</li>
+<li>
+<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
+</li>
+<li>
+<p>勾選安裝前設定，可以社設定虛擬機配置<br>
+<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
+</li>
+<li>
+<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
+<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
+</li>
+<li>
+<p>選擇語言<br>
+<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
+</li>
+<li>
+<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
+<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
+</li>
+<li>
+<p>選擇安裝過程的語言<br>
+<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
+</li>
+<li>
+<p>建議全部勾選，也可以選擇自己想要的勾選<br>
+<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
+</li>
+<li>
+<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
+<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「繼續」開始安裝<br>
+<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇時區<br>
+<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
+<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
+</li>
+<li>
+<p>輸入使用者帳戶資訊<br>
+<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
+</li>
+<li>
+<p>等待安裝並重新開機</p>
+</li>
+</ol>
+<blockquote>
+<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
+<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
+</blockquote>
+<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
+<ol>
+<li>
+<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
+<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
+</li>
+<li>
+<p>確認螢幕設定為「縮放」<br>
+<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「系統設定值」的按鈕<br>
+<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「顯示器」<br>
+<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
+</li>
+<li>
+<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
+<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
+</li>
+</ol>
+]]></content>
   </entry>
   <entry>
     <title>在 static method  中取得 String Resource</title>

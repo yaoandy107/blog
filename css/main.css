@@ -1240,7 +1240,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff22e2;
+  background: #25381d;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2853,8 +2853,8 @@ body {
 .posts-expand .post-title-link {
   padding: 4px;
 }
-.posts-expand .post-title {
-  margin-bottom: 5px;
+.posts-expand .post-meta {
+  margin-top: 8px;
 }
 @media only screen and (max-width: 567px) {
   .post-block {
