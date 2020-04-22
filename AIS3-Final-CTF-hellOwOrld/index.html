@@ -16,13 +16,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
   <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yaoandy107.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yaoandy107.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="我們這隊都是第一次參加 AIS3 Final CTF，結果拿到第 18 名的成績，滿開心的ＸＤ 這邊整理了一些解題過程和思路，有興趣可以看一下～ 如果有任何其他思路也歡迎在下面提出！">
@@ -301,7 +300,7 @@
 這邊整理了一些解題過程和思路，有興趣可以看一下～<br>
 如果有任何其他思路也歡迎在下面提出！</p>
 <a id="more"></a>
-<p><img src="https://i.imgur.com/Q2Qi8Is.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/Q2Qi8Is.png" alt=""></p>
 <hr>
 <h2 id="misc">misc</h2>
 <h3 id="Painting-bot-100">Painting bot/100</h3>
@@ -313,9 +312,9 @@
 </blockquote>
 <p>這是我原本看到題目後做的事<br>
 查看檔案有沒有藏東西<br>
-<img src="https://i.imgur.com/7jnPoMd.png" alt=""></p>
+<img data-src="https://i.imgur.com/7jnPoMd.png" alt=""></p>
 <p>發現有HTML，因此用 dd 拆出來，打開後發現沒屁用<br>
-<img src="https://i.imgur.com/KLZ8v8m.png" alt=""></p>
+<img data-src="https://i.imgur.com/KLZ8v8m.png" alt=""></p>
 <blockquote>
 <p>沒頭緒</p>
 </blockquote>
@@ -334,12 +333,12 @@ and download RPG Maker XP RTP.</p>
 <pre><code>由於作者在開發時使用了有中文名稱的 bgm 檔案，如果跳出`沒有發現檔案 Audio/BGM/巨人`的錯誤訊息，~~恭喜你，作者排擠使用非 Big5 碼的族群~~，想辦法轉區吧 (´・ω・`)
 </code></pre>
 <p>首先，到網路上找到神奇的 rgss decrypter，把所有東西全部解出來</p>
-<p><img src="https://i.imgur.com/GKo6vmp.png" alt="rgss decrypter"></p>
+<p><img data-src="https://i.imgur.com/GKo6vmp.png" alt="rgss decrypter"></p>
 <p>接著到官網下載 RPG Maker XP 開發工具，它可以順便裝好 RTP<br>
 開一個新 project 把所有東西丟進去 (或是在 rgss decrypter 點 <code>Generate Game.rxproj</code>)，<br>
 在 end 的場景左上角會發現一個被框起來的格子 (event)<br>
 打開之後就會發現這一行：</p>
-<p><img src="https://i.imgur.com/MMgm444.png" alt="Flaaaaaag!!"></p>
+<p><img data-src="https://i.imgur.com/MMgm444.png" alt="Flaaaaaag!!"></p>
 <p>如果把它塞進初始化的 event 裡，遊戲一開始就會跳出 flag 給你看了 OωO</p>
 <hr>
 <h3 id="Hat-300">Hat/300</h3>
@@ -347,7 +346,7 @@ and download RPG Maker XP RTP.</p>
 <p>Every hacker has his/her own hat! Try to customize one for yourself!</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUDlkUkNYZzBFY2M5bmR5YU5JZWxZRl9td25iQ3pWeXc=">http://srv03.ctf.ais3.org:9001/<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<p><img src="https://i.imgur.com/kUsr8WU.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/kUsr8WU.png" alt=""></p>
 <p>聽說找到 <code>.git</code> 的資料夾可以還原兩個檔案</p>
 <hr>
 <h2 id="pwn">pwn</h2>
@@ -367,7 +366,7 @@ hint2: maybe try GOT Hijack and return to main</p>
 <p>One secret person embeds a secret message in the website. Could you find the message?</p>
 <p><span class="exturl" data-url="aHR0cDovL3NydjAyLmN0Zi5haXMzLm9yZzo4ODg3Lw==">http://srv02.ctf.ais3.org:8887/<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<p><img src="https://i.imgur.com/pThCerf.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/pThCerf.png" alt=""></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">potocol=GET</span><br><span class="line"></span><br><span class="line">i=0</span><br><span class="line">while [ $i -lt 100 ]; do</span><br><span class="line">	</span><br><span class="line">	curl http://srv02.ctf.ais3.org:8887/ -i -X $potocol &gt;&gt; flags.txt </span><br><span class="line">	potocol=$(curl http://srv02.ctf.ais3.org:8887/ -i -X $potocol | grep Next | cut -f 2 -d ' ' | tr -d "\r")</span><br><span class="line"></span><br><span class="line">	echo &gt;&gt; flags.txt </span><br><span class="line"></span><br><span class="line">	i=$[$i+1]</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 <p>然後我用手拼起來…</p>
 <h4 id="Flag">Flag</h4>
@@ -391,11 +390,11 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
 <p>Customize your own invitation letter!</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUGNPTFJVWXd3dTQtbFhDQVdBQ09xNGRMWTBGUm9pQy0=">http://srv03.ctf.ais3.org:9002/<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<p><img src="https://i.imgur.com/E51MKNP.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/E51MKNP.png" alt=""></p>
 <p>==還沒解完==</p>
 <p>robots.txt<br>
 <span class="exturl" data-url="aHR0cDovL3NydjAzLmN0Zi5haXMzLm9yZzo5MDAyL3JvYm90cy50eHQ=">http://srv03.ctf.ais3.org:9002/robots.txt<i class="fa fa-external-link-alt"></i></span></p>
-<p><img src="https://i.imgur.com/CBWqoJ4.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/CBWqoJ4.png" alt=""></p>
 <p>看起來是程式碼<br>
 <span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUHM5am1BNU9Tcjh4Q2cxalJKbklJbDJqeG54ZGU1NnM=">http://srv03.ctf.ais3.org:9002/files/app.py.old_20180531<i class="fa fa-external-link-alt"></i></span></p>
 <p>無法存取的 flag.txt<br>
@@ -572,6 +571,23 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lhb2FuZHkxMDc=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yaoandy107"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlhb2FuZHkxMDdAZ21haWwuY29t" title="E-Mail → mailto:yaoandy107@gmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS95YW9hbmQxMDc=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;yaoand107"><i class="fab fa-twitter fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3lhb2FuZHkxMDc=" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;yaoandy107"><i class="fab fa-facebook fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9pbnN0YWdyYW0uY29tL3lhb2FuZHkxMDA3" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;yaoandy1007"><i class="fab fa-instagram fa-fw"></i></span>
+      </span>
+  </div>
 
 
 
@@ -642,9 +658,8 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
   
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

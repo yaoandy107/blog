@@ -16,13 +16,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
   <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yaoandy107.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yaoandy107.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="今年第二次參加 AIS3 pre-exam 的感想  要用到程式解的地方滿多的 Web2 對網路環境不好的人會跑很久 Misc2 超多假 flag，要找到真的根本要通靈＝＝">
@@ -310,11 +309,11 @@
 <ol>
 <li>
 <p>打開 <code>開發者工具</code>，可以看到 <code>response headers</code> 裡面有奇怪的 <code>Partial-Flag</code><br>
-<img src="https://i.imgur.com/rcEXreL.png" alt=""></p>
+<img data-src="https://i.imgur.com/rcEXreL.png" alt=""></p>
 </li>
 <li>
 <p>再看看網址列上有奇怪的參數，嘗試去改改看它，會發現 <code>partial flag</code> 跟著變了<br>
-<img src="https://i.imgur.com/DQfYv70.png" alt=""></p>
+<img data-src="https://i.imgur.com/DQfYv70.png" alt=""></p>
 </li>
 <li>
 <p>再仔細觀察一下，發現前四個 <code>partial flag</code> 是 AIS3，所以可以知道 <code>partial flag</code> 組合起來就是這題的 <code>flag</code> 了。</p>
@@ -328,27 +327,27 @@
 <ol>
 <li>
 <p>打開網頁就看到這行字<br>
-<img src="https://i.imgur.com/5OJsVE0.png" alt=""></p>
+<img data-src="https://i.imgur.com/5OJsVE0.png" alt=""></p>
 </li>
 <li>
 <p>因為看到上面顯示的文字，所以想到 secret page 可能藏在 <code>robots.txt</code> 裡<br>
-<img src="https://i.imgur.com/uy25Pq8.png" alt=""></p>
+<img data-src="https://i.imgur.com/uy25Pq8.png" alt=""></p>
 </li>
 <li>
 <p>進到 <code>_hidden_flag_.php</code> 頁面之後，發現還是沒有看到 <code>flag</code>。<br>
-<img src="https://i.imgur.com/ZtBmkWv.png" alt=""></p>
+<img data-src="https://i.imgur.com/ZtBmkWv.png" alt=""></p>
 </li>
 <li>
 <p>打開 <code>開發者工具</code> 查看 HTML，發現按鈕會送出奇怪的 <code>form-data</code>。<br>
-<img src="https://i.imgur.com/zz829Vy.png" alt=""></p>
+<img data-src="https://i.imgur.com/zz829Vy.png" alt=""></p>
 </li>
 <li>
 <p>按了幾次按鈕後，會發現 <code>c</code> 不斷的再增加， <code>s</code> 也跟著變<br>
-<img src="https://i.imgur.com/dsAPbmV.png" alt=""></p>
+<img data-src="https://i.imgur.com/dsAPbmV.png" alt=""></p>
 </li>
 <li>
 <p>透過 <code>開發者工具</code> 的看看 <code>response</code>，發現了奇怪的假 <code>flag</code><br>
-<img src="https://i.imgur.com/MxqkyK1.png" alt=""></p>
+<img data-src="https://i.imgur.com/MxqkyK1.png" alt=""></p>
 </li>
 <li>
 <p>拿 Python 去跑跑看，跑到幾萬後會發現 <code>response</code> 的 <code>Flag</code> 變了，<code>flag</code> 就出來的</p>
@@ -361,7 +360,7 @@
 <li>
 <p>可以印出當前檔案目錄</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;104.199.235.135:31333&#x2F;?🍣&#x3D;$&#123;@system(ls)&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/rHdn9mO.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/rHdn9mO.png" alt=""></p>
 </li>
 <li>
 <p>因為這題 <code>.htaccess</code> 沒有限制，所以可以直接訪問 <code>flag</code></p>
@@ -377,7 +376,7 @@
 <p>這題只是將 <code>flag</code> 藏在檔案中，可以用記事本或是編輯器打開，用 <code>ctrl+f</code> 很快就能找到了。</p>
 <ol>
 <li>如果是用 linux 或 mac 有更快的解法<br>
-<img src="https://i.imgur.com/70zIglq.png" alt=""></li>
+<img data-src="https://i.imgur.com/70zIglq.png" alt=""></li>
 </ol>
 <h3 id="3-crackme">3. crackme</h3>
 <ol>
@@ -386,11 +385,11 @@
 </li>
 <li>
 <p>在 <code>MainWindow</code> 中看到疑似 <code>flag</code> 的東西<br>
-<img src="https://i.imgur.com/9eywW9l.png" alt=""></p>
+<img data-src="https://i.imgur.com/9eywW9l.png" alt=""></p>
 </li>
 <li>
 <p>發現 <code>secret</code> 是用 XOR 加密然後轉成 int<br>
-<img src="https://i.imgur.com/jy0YJuo.png" alt=""></p>
+<img data-src="https://i.imgur.com/jy0YJuo.png" alt=""></p>
 </li>
 <li>
 <p>用 Python 來解</p>
@@ -408,11 +407,11 @@
 </li>
 <li>
 <p>將檔名改成 jpg，會看到圖片上面顯示著假 <code>flag</code><br>
-<img src="https://i.imgur.com/kZBhDwS.jpg" alt=""></p>
+<img data-src="https://i.imgur.com/kZBhDwS.jpg" alt=""></p>
 </li>
 <li>
 <p>用 <code>binwalk</code> 去分析檔案，會發現其中藏著 zip<br>
-<img src="https://i.imgur.com/uIHBkQb.png" alt=""></p>
+<img data-src="https://i.imgur.com/uIHBkQb.png" alt=""></p>
 </li>
 <li>
 <p>用 dd 把其中的 zip 拆出來</p>
@@ -427,7 +426,7 @@
 </li>
 <li>
 <p>最後透過主辦方給出的提示，回到第二步那張圖，盯了老半天，發現那個框框藏有<strong>摩斯密碼</strong>…<br>
-<img src="https://i.imgur.com/kZBhDwS.jpg" alt=""></p>
+<img data-src="https://i.imgur.com/kZBhDwS.jpg" alt=""></p>
 </li>
 </ol>
 <h2 id="Crypto">Crypto</h2>
@@ -612,6 +611,23 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lhb2FuZHkxMDc=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yaoandy107"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlhb2FuZHkxMDdAZ21haWwuY29t" title="E-Mail → mailto:yaoandy107@gmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS95YW9hbmQxMDc=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;yaoand107"><i class="fab fa-twitter fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3lhb2FuZHkxMDc=" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;yaoandy107"><i class="fab fa-facebook fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9pbnN0YWdyYW0uY29tL3lhb2FuZHkxMDA3" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;yaoandy1007"><i class="fab fa-instagram fa-fw"></i></span>
+      </span>
+  </div>
 
 
 
@@ -682,9 +698,8 @@
   
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

@@ -15,11 +15,11 @@
 <ol>
 <li>
 <p>打開 <code>開發者工具</code>，可以看到 <code>response headers</code> 裡面有奇怪的 <code>Partial-Flag</code><br>
-<img src="https://i.imgur.com/rcEXreL.png" alt=""></p>
+<img data-src="https://i.imgur.com/rcEXreL.png" alt=""></p>
 </li>
 <li>
 <p>再看看網址列上有奇怪的參數，嘗試去改改看它，會發現 <code>partial flag</code> 跟著變了<br>
-<img src="https://i.imgur.com/DQfYv70.png" alt=""></p>
+<img data-src="https://i.imgur.com/DQfYv70.png" alt=""></p>
 </li>
 <li>
 <p>再仔細觀察一下，發現前四個 <code>partial flag</code> 是 AIS3，所以可以知道 <code>partial flag</code> 組合起來就是這題的 <code>flag</code> 了。</p>
@@ -33,27 +33,27 @@
 <ol>
 <li>
 <p>打開網頁就看到這行字<br>
-<img src="https://i.imgur.com/5OJsVE0.png" alt=""></p>
+<img data-src="https://i.imgur.com/5OJsVE0.png" alt=""></p>
 </li>
 <li>
 <p>因為看到上面顯示的文字，所以想到 secret page 可能藏在 <code>robots.txt</code> 裡<br>
-<img src="https://i.imgur.com/uy25Pq8.png" alt=""></p>
+<img data-src="https://i.imgur.com/uy25Pq8.png" alt=""></p>
 </li>
 <li>
 <p>進到 <code>_hidden_flag_.php</code> 頁面之後，發現還是沒有看到 <code>flag</code>。<br>
-<img src="https://i.imgur.com/ZtBmkWv.png" alt=""></p>
+<img data-src="https://i.imgur.com/ZtBmkWv.png" alt=""></p>
 </li>
 <li>
 <p>打開 <code>開發者工具</code> 查看 HTML，發現按鈕會送出奇怪的 <code>form-data</code>。<br>
-<img src="https://i.imgur.com/zz829Vy.png" alt=""></p>
+<img data-src="https://i.imgur.com/zz829Vy.png" alt=""></p>
 </li>
 <li>
 <p>按了幾次按鈕後，會發現 <code>c</code> 不斷的再增加， <code>s</code> 也跟著變<br>
-<img src="https://i.imgur.com/dsAPbmV.png" alt=""></p>
+<img data-src="https://i.imgur.com/dsAPbmV.png" alt=""></p>
 </li>
 <li>
 <p>透過 <code>開發者工具</code> 的看看 <code>response</code>，發現了奇怪的假 <code>flag</code><br>
-<img src="https://i.imgur.com/MxqkyK1.png" alt=""></p>
+<img data-src="https://i.imgur.com/MxqkyK1.png" alt=""></p>
 </li>
 <li>
 <p>拿 Python 去跑跑看，跑到幾萬後會發現 <code>response</code> 的 <code>Flag</code> 變了，<code>flag</code> 就出來的</p>
@@ -66,7 +66,7 @@
 <li>
 <p>可以印出當前檔案目錄</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;104.199.235.135:31333&#x2F;?🍣&#x3D;$&#123;@system(ls)&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/rHdn9mO.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/rHdn9mO.png" alt=""></p>
 </li>
 <li>
 <p>因為這題 <code>.htaccess</code> 沒有限制，所以可以直接訪問 <code>flag</code></p>
@@ -82,7 +82,7 @@
 <p>這題只是將 <code>flag</code> 藏在檔案中，可以用記事本或是編輯器打開，用 <code>ctrl+f</code> 很快就能找到了。</p>
 <ol>
 <li>如果是用 linux 或 mac 有更快的解法<br>
-<img src="https://i.imgur.com/70zIglq.png" alt=""></li>
+<img data-src="https://i.imgur.com/70zIglq.png" alt=""></li>
 </ol>
 <h3 id="3-crackme">3. crackme</h3>
 <ol>
@@ -91,11 +91,11 @@
 </li>
 <li>
 <p>在 <code>MainWindow</code> 中看到疑似 <code>flag</code> 的東西<br>
-<img src="https://i.imgur.com/9eywW9l.png" alt=""></p>
+<img data-src="https://i.imgur.com/9eywW9l.png" alt=""></p>
 </li>
 <li>
 <p>發現 <code>secret</code> 是用 XOR 加密然後轉成 int<br>
-<img src="https://i.imgur.com/jy0YJuo.png" alt=""></p>
+<img data-src="https://i.imgur.com/jy0YJuo.png" alt=""></p>
 </li>
 <li>
 <p>用 Python 來解</p>
@@ -113,11 +113,11 @@
 </li>
 <li>
 <p>將檔名改成 jpg，會看到圖片上面顯示著假 <code>flag</code><br>
-<img src="https://i.imgur.com/kZBhDwS.jpg" alt=""></p>
+<img data-src="https://i.imgur.com/kZBhDwS.jpg" alt=""></p>
 </li>
 <li>
 <p>用 <code>binwalk</code> 去分析檔案，會發現其中藏著 zip<br>
-<img src="https://i.imgur.com/uIHBkQb.png" alt=""></p>
+<img data-src="https://i.imgur.com/uIHBkQb.png" alt=""></p>
 </li>
 <li>
 <p>用 dd 把其中的 zip 拆出來</p>
@@ -132,7 +132,7 @@
 </li>
 <li>
 <p>最後透過主辦方給出的提示，回到第二步那張圖，盯了老半天，發現那個框框藏有<strong>摩斯密碼</strong>…<br>
-<img src="https://i.imgur.com/kZBhDwS.jpg" alt=""></p>
+<img data-src="https://i.imgur.com/kZBhDwS.jpg" alt=""></p>
 </li>
 </ol>
 <h2 id="Crypto">Crypto</h2>
@@ -158,7 +158,7 @@
 這邊整理了一些解題過程和思路，有興趣可以看一下～<br>
 如果有任何其他思路也歡迎在下面提出！</p>
 <a id="more"></a>
-<p><img src="https://i.imgur.com/Q2Qi8Is.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/Q2Qi8Is.png" alt=""></p>
 <hr>
 <h2 id="misc">misc</h2>
 <h3 id="Painting-bot-100">Painting bot/100</h3>
@@ -170,9 +170,9 @@
 </blockquote>
 <p>這是我原本看到題目後做的事<br>
 查看檔案有沒有藏東西<br>
-<img src="https://i.imgur.com/7jnPoMd.png" alt=""></p>
+<img data-src="https://i.imgur.com/7jnPoMd.png" alt=""></p>
 <p>發現有HTML，因此用 dd 拆出來，打開後發現沒屁用<br>
-<img src="https://i.imgur.com/KLZ8v8m.png" alt=""></p>
+<img data-src="https://i.imgur.com/KLZ8v8m.png" alt=""></p>
 <blockquote>
 <p>沒頭緒</p>
 </blockquote>
@@ -191,12 +191,12 @@ and download RPG Maker XP RTP.</p>
 <pre><code>由於作者在開發時使用了有中文名稱的 bgm 檔案，如果跳出`沒有發現檔案 Audio/BGM/巨人`的錯誤訊息，~~恭喜你，作者排擠使用非 Big5 碼的族群~~，想辦法轉區吧 (´・ω・`)
 </code></pre>
 <p>首先，到網路上找到神奇的 rgss decrypter，把所有東西全部解出來</p>
-<p><img src="https://i.imgur.com/GKo6vmp.png" alt="rgss decrypter"></p>
+<p><img data-src="https://i.imgur.com/GKo6vmp.png" alt="rgss decrypter"></p>
 <p>接著到官網下載 RPG Maker XP 開發工具，它可以順便裝好 RTP<br>
 開一個新 project 把所有東西丟進去 (或是在 rgss decrypter 點 <code>Generate Game.rxproj</code>)，<br>
 在 end 的場景左上角會發現一個被框起來的格子 (event)<br>
 打開之後就會發現這一行：</p>
-<p><img src="https://i.imgur.com/MMgm444.png" alt="Flaaaaaag!!"></p>
+<p><img data-src="https://i.imgur.com/MMgm444.png" alt="Flaaaaaag!!"></p>
 <p>如果把它塞進初始化的 event 裡，遊戲一開始就會跳出 flag 給你看了 OωO</p>
 <hr>
 <h3 id="Hat-300">Hat/300</h3>
@@ -204,7 +204,7 @@ and download RPG Maker XP RTP.</p>
 <p>Every hacker has his/her own hat! Try to customize one for yourself!</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUDlkUkNYZzBFY2M5bmR5YU5JZWxZRl9td25iQ3pWeXc=">http://srv03.ctf.ais3.org:9001/<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<p><img src="https://i.imgur.com/kUsr8WU.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/kUsr8WU.png" alt=""></p>
 <p>聽說找到 <code>.git</code> 的資料夾可以還原兩個檔案</p>
 <hr>
 <h2 id="pwn">pwn</h2>
@@ -224,7 +224,7 @@ hint2: maybe try GOT Hijack and return to main</p>
 <p>One secret person embeds a secret message in the website. Could you find the message?</p>
 <p><span class="exturl" data-url="aHR0cDovL3NydjAyLmN0Zi5haXMzLm9yZzo4ODg3Lw==">http://srv02.ctf.ais3.org:8887/<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<p><img src="https://i.imgur.com/pThCerf.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/pThCerf.png" alt=""></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">potocol=GET</span><br><span class="line"></span><br><span class="line">i=0</span><br><span class="line">while [ $i -lt 100 ]; do</span><br><span class="line">	</span><br><span class="line">	curl http://srv02.ctf.ais3.org:8887/ -i -X $potocol &gt;&gt; flags.txt </span><br><span class="line">	potocol=$(curl http://srv02.ctf.ais3.org:8887/ -i -X $potocol | grep Next | cut -f 2 -d ' ' | tr -d "\r")</span><br><span class="line"></span><br><span class="line">	echo &gt;&gt; flags.txt </span><br><span class="line"></span><br><span class="line">	i=$[$i+1]</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 <p>然後我用手拼起來…</p>
 <h4 id="Flag">Flag</h4>
@@ -248,11 +248,11 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
 <p>Customize your own invitation letter!</p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUGNPTFJVWXd3dTQtbFhDQVdBQ09xNGRMWTBGUm9pQy0=">http://srv03.ctf.ais3.org:9002/<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<p><img src="https://i.imgur.com/E51MKNP.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/E51MKNP.png" alt=""></p>
 <p>==還沒解完==</p>
 <p>robots.txt<br>
 <span class="exturl" data-url="aHR0cDovL3NydjAzLmN0Zi5haXMzLm9yZzo5MDAyL3JvYm90cy50eHQ=">http://srv03.ctf.ais3.org:9002/robots.txt<i class="fa fa-external-link-alt"></i></span></p>
-<p><img src="https://i.imgur.com/CBWqoJ4.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/CBWqoJ4.png" alt=""></p>
 <p>看起來是程式碼<br>
 <span class="exturl" data-url="aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xUHM5am1BNU9Tcjh4Q2cxalJKbklJbDJqeG54ZGU1NnM=">http://srv03.ctf.ais3.org:9002/files/app.py.old_20180531<i class="fa fa-external-link-alt"></i></span></p>
 <p>無法存取的 flag.txt<br>
@@ -355,31 +355,6 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
       </tags>
   </entry>
   <entry>
-    <title>Error：Fragment already added</title>
-    <url>/Error-Fragment-already-added/</url>
-    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
-<pre><code>java.lang.IllegalStateException: Fragment already added
-</code></pre>
-<a id="more"></a>
-<h2 id="原因">原因</h2>
-<p>Fragment 在一些狀況不會正常移除</p>
-<h2 id="原本程式碼">原本程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
-<h2 id="解決辦法">解決辦法</h2>
-<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="後來程式碼">後來程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Fragment</tag>
-        <tag>Error</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android 學習問題紀錄</title>
     <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
     <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
@@ -409,22 +384,22 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
 <a id="more"></a>
 <h2 id="下載-ShadowsocksX-NG">下載 ShadowsocksX-NG</h2>
 <p>GitHub 載點：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvd3NvY2tzL1NoYWRvd3NvY2tzWC1ORy9yZWxlYXNlcy8=">https://github.com/shadowsocks/ShadowsocksX-NG/releases/<i class="fa fa-external-link-alt"></i></span></p>
-<p><img src="https://imgur.com/rputoJL.png" alt=""></p>
+<p><img data-src="https://imgur.com/rputoJL.png" alt=""></p>
 <h2 id="編輯代理伺服器">編輯代理伺服器</h2>
 <p>點擊「紙飛機」選擇「Server」，然後點擊【Server Preferences…】選項：</p>
-<p><img src="https://i.imgur.com/PjwfSrC.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/PjwfSrC.png" alt=""></p>
 <p>新增 Shadowsocks 服務配置：</p>
-<p><img src="https://i.imgur.com/BQM68VU.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/BQM68VU.png" alt=""></p>
 <h2 id="更改代理模式">更改代理模式</h2>
 <p>預設模式為 <code>Proxy Auto Configure Mode</code>，這邊我們將它改為 <code>Global Mode</code>，使所有對外連線都使用 <code>Shadowsocks</code>，且無需特別設定。</p>
 <p>如要使用 <code>Proxy Auto Configure Mode</code>，會需要額外設定，這邊就不多做敘述。</p>
-<p><img src="https://i.imgur.com/FnjA0Up.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/FnjA0Up.png" alt=""></p>
 <h2 id="測試是否成功">測試是否成功</h2>
 <p>訪問 <code>orange.tw</code> 來查看自己的 IP 是否有變更。</p>
-<p><img src="https://i.imgur.com/5q9MBsg.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/5q9MBsg.png" alt=""></p>
 <h2 id="關閉-Shadowsocks">關閉 Shadowsocks</h2>
 <p>點擊【Turn Shadowsocks Off】來關閉 Shadowsocks。</p>
-<p><img src="https://imgur.com/k4WvIRT.png" alt=""></p>
+<p><img data-src="https://imgur.com/k4WvIRT.png" alt=""></p>
 ]]></content>
       <categories>
         <category>Shadowsocks</category>
@@ -433,6 +408,57 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
         <tag>MacOS</tag>
         <tag>Shadowsocks</tag>
         <tag>翻牆</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Error：Fragment already added</title>
+    <url>/Error-Fragment-already-added/</url>
+    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
+<pre><code>java.lang.IllegalStateException: Fragment already added
+</code></pre>
+<a id="more"></a>
+<h2 id="原因">原因</h2>
+<p>Fragment 在一些狀況不會正常移除</p>
+<h2 id="原本程式碼">原本程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
+<h2 id="解決辦法">解決辦法</h2>
+<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後來程式碼">後來程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Fragment</tag>
+        <tag>Error</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>getColor(int id) deprecated</title>
+    <url>/getcolor-deprecated/</url>
+    <content><![CDATA[<p>從 Android 6 開始，一個新的 getColor() 方法出現，舊的 Resource.getColor(int id) 則被廢棄。</p>
+<a id="more"></a>
+<p>新方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">context.getColor(id);</span><br></pre></td></tr></table></figure>
+<p>如果要兼容 Android 6 以下的版本，建議使用 Support Library v4 的方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ContextCompat.getColor(context, R.color.your_color);</span><br></pre></td></tr></table></figure>
+<p>此方法來自官方 JavaDoc 的描述：</p>
+<pre><code>Returns a color associated with a particular resource ID
+
+Starting in M, the returned color will be styled for the specified Context's theme.
+</code></pre>
+<p>這是 ContextCompat.getColor() 的程式碼：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getColor</span><span class="params">(Context context, @ColorRes <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">23</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> context.getColor(id);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> context.getResources().getColor(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果不想導入 Support Library v4，可以直接參考上面的寫法。</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>deprecated</tag>
       </tags>
   </entry>
   <entry>
@@ -580,10 +606,10 @@ _ 代表任意字元<br>
 :::</p>
 <h3 id="AND"><code>AND</code></h3>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line"><span class="keyword">FROM</span> movies</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">year</span> <span class="keyword">BETWEEN</span> <span class="number">1990</span> <span class="keyword">AND</span> <span class="number">1999</span></span><br><span class="line">   <span class="keyword">AND</span> genre = <span class="string">'romance'</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/G4B1Tcj.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/G4B1Tcj.png" alt=""></p>
 <h3 id="OR"><code>OR</code></h3>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> movies</span><br><span class="line"><span class="keyword">WHERE</span> genre = <span class="string">'romance'</span></span><br><span class="line">	<span class="keyword">OR</span> genre = <span class="string">'comedy'</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/qRNYsa9.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/qRNYsa9.png" alt=""></p>
 <h3 id="ORDER-BY"><code>ORDER BY</code></h3>
 <p>用來排序結果</p>
 <p>:::warning<br>
@@ -658,7 +684,7 @@ _ 代表任意字元<br>
 <blockquote>
 <p>會自動將不符合連接欄位規則的部分捨棄，如下圖</p>
 </blockquote>
-<p><img src="https://s3.amazonaws.com/codecademy-content/courses/learn-sql/multiple-tables/inner-join.gif" alt=""></p>
+<p><img data-src="https://s3.amazonaws.com/codecademy-content/courses/learn-sql/multiple-tables/inner-join.gif" alt=""></p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> newspaper</span><br><span class="line"><span class="keyword">JOIN</span> <span class="keyword">online</span></span><br><span class="line"><span class="keyword">ON</span> newspaper.id = online.id;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>SQL</category>
@@ -666,102 +692,6 @@ _ 代表任意字元<br>
       <tags>
         <tag>SQL</tag>
         <tag>筆記</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>android:gravity 和 android:layout_gravity 的差別</title>
-    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
-    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
-<a id="more"></a>
-<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
-<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>getColor(int id) deprecated</title>
-    <url>/getcolor-deprecated/</url>
-    <content><![CDATA[<p>從 Android 6 開始，一個新的 getColor() 方法出現，舊的 Resource.getColor(int id) 則被廢棄。</p>
-<a id="more"></a>
-<p>新方法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">context.getColor(id);</span><br></pre></td></tr></table></figure>
-<p>如果要兼容 Android 6 以下的版本，建議使用 Support Library v4 的方法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ContextCompat.getColor(context, R.color.your_color);</span><br></pre></td></tr></table></figure>
-<p>此方法來自官方 JavaDoc 的描述：</p>
-<pre><code>Returns a color associated with a particular resource ID
-
-Starting in M, the returned color will be styled for the specified Context's theme.
-</code></pre>
-<p>這是 ContextCompat.getColor() 的程式碼：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getColor</span><span class="params">(Context context, @ColorRes <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">23</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> context.getColor(id);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> context.getResources().getColor(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果不想導入 Support Library v4，可以直接參考上面的寫法。</p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>deprecated</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在 Centos 7 創建一個 Sudo user</title>
-    <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
-    <content><![CDATA[<ol>
-<li>以 root 身份登錄到你的伺服器。 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh root@server_ip_address</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<a id="more"></a>
-<ol start="2">
-<li>
-<p>使用 adduser 指令將新用戶添加到你的系統</p>
-<p>將 username 替換為你要創建的用戶</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adduser username</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用 passwd 指令更新 user 密碼</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">passwd username</span><br></pre></td></tr></table></figure>
-<ul>
-<li>設置 user 的密碼的顯示訊息</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Set password prompts:</span><br><span class="line">Changing password for user username.</span><br><span class="line">New password:</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>使用 usermod 指令將用戶添加到 wheel 中。</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">usermod -aG wheel username</span><br></pre></td></tr></table></figure>
-<p>默認情況下，在 CentOS 上，wheel 的成員具有 sudo 權限。</p>
-</li>
-<li>
-<p>在 user 上測試 sudo 訪問權限</p>
-<ul>
-<li>使用該 su 命令切換到新的 user 。</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su - username</span><br></pre></td></tr></table></figure>
-<ul>
-<li>作為 user ，請通過將“sudo”添加到要以超級用戶權限運行的命令來驗證是否可以使用 sudo。</li>
-</ul>
-<p>例如，您可以列出根目錄的內容，/ 通常只能由 root 用戶訪問。</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ls -la /</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一次使用 sudo 時，系統會提示你輸入 user 的密碼。輸入密碼以繼續。</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Output:</span><br><span class="line">[sudo] password for username:</span><br></pre></td></tr></table></figure>
-<p>如果您前面操作正確，則使用 sudo 來執行的指令會以 root 權限執行。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>CentOS</tag>
-        <tag>Linux</tag>
-        <tag>教學</tag>
       </tags>
   </entry>
   <entry>
@@ -798,16 +728,16 @@ Starting in M, the returned color will be styled for the specified Context's the
 <h3 id="將-Hexo-配置到-GitHub">將 Hexo 配置到 GitHub</h3>
 <p>去 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw==">GitHub<i class="fa fa-external-link-alt"></i></span> 官網登入。<br>
 新增一個倉庫(Repositories)</p>
-<p><img src="https://i.imgur.com/hC3eCNY.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/hC3eCNY.png" alt=""></p>
 <p>倉庫名稱為 <span class="exturl" data-url="aHR0cDovL3lvdXJuYW1lLmdpdGh1Yi5pbw==">yourname.github.io<i class="fa fa-external-link-alt"></i></span></p>
 <blockquote>
 <p>上面的 yourname 請替換成你 GitHub 的帳號名稱</p>
 </blockquote>
-<p><img src="https://i.imgur.com/72ZXHCJ.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/72ZXHCJ.png" alt=""></p>
 <p>看到這頁代表即可退出</p>
-<p><img src="https://i.imgur.com/tLiMyDf.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/tLiMyDf.png" alt=""></p>
 <p>再來到 blog 資料夾下找一個 _config.yml 的檔案，這是 Hexo 的全域配置文件<br>
-<img src="https://i.imgur.com/OjTrXMX.png" alt=""></p>
+<img data-src="https://i.imgur.com/OjTrXMX.png" alt=""></p>
 <p>開啟之後，拉到檔案最底部，可以看到</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type:</span><br></pre></td></tr></table></figure>
 <p>將以下資訊對應輸入</p>
@@ -845,7 +775,7 @@ Starting in M, the returned color will be styled for the specified Context's the
 <p>如果想<strong>嘗試編寫 Markdown</strong>，或是想<strong>找一個好用的Markdown 編輯器</strong>，可以嘗試使用 <span class="exturl" data-url="aHR0cHM6Ly9oYWNrbWQuaW8vcmVjZW50">HackMD<i class="fa fa-external-link-alt"></i></span>。</p>
 <h2 id="刪除文章">刪除文章</h2>
 <p>首先進入到 source / _post 資料夾中，找到 <span class="exturl" data-url="aHR0cDovL2hlbGxvd29ybGQubWQ=">helloworld.md<i class="fa fa-external-link-alt"></i></span> 文件，在本地直接執行刪除。<br>
-<img src="https://i.imgur.com/QSV6q2a.png" alt=""></p>
+<img data-src="https://i.imgur.com/QSV6q2a.png" alt=""></p>
 <p>執行以下指令</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo clean    <span class="comment"># 清除快取檔案和已產生的靜態檔案。</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo d -g     <span class="comment"># d = deploy, g = generate</span></span></span><br></pre></td></tr></table></figure>
 <p>等一段時間，就會發現那篇文章已經消失囉！</p>
@@ -902,10 +832,264 @@ Starting in M, the returned color will be styled for the specified Context's the
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>教學</tag>
         <tag>Hexo</tag>
         <tag>Next</tag>
+        <tag>教學</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>android:gravity 和 android:layout_gravity 的差別</title>
+    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
+    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
+<a id="more"></a>
+<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
+<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在 Centos 7 創建一個 Sudo user</title>
+    <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
+    <content><![CDATA[<ol>
+<li>以 root 身份登錄到你的伺服器。 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh root@server_ip_address</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<a id="more"></a>
+<ol start="2">
+<li>
+<p>使用 adduser 指令將新用戶添加到你的系統</p>
+<p>將 username 替換為你要創建的用戶</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adduser username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 passwd 指令更新 user 密碼</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">passwd username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>設置 user 的密碼的顯示訊息</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Set password prompts:</span><br><span class="line">Changing password for user username.</span><br><span class="line">New password:</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>使用 usermod 指令將用戶添加到 wheel 中。</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">usermod -aG wheel username</span><br></pre></td></tr></table></figure>
+<p>默認情況下，在 CentOS 上，wheel 的成員具有 sudo 權限。</p>
+</li>
+<li>
+<p>在 user 上測試 sudo 訪問權限</p>
+<ul>
+<li>使用該 su 命令切換到新的 user 。</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su - username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>作為 user ，請通過將“sudo”添加到要以超級用戶權限運行的命令來驗證是否可以使用 sudo。</li>
+</ul>
+<p>例如，您可以列出根目錄的內容，/ 通常只能由 root 用戶訪問。</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ls -la /</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一次使用 sudo 時，系統會提示你輸入 user 的密碼。輸入密碼以繼續。</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Output:</span><br><span class="line">[sudo] password for username:</span><br></pre></td></tr></table></figure>
+<p>如果您前面操作正確，則使用 sudo 來執行的指令會以 root 權限執行。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>教學</tag>
+        <tag>CentOS</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NotificationCompat 與 Notification 差別</title>
+    <url>/notificationcompat-vs-notification/</url>
+    <content><![CDATA[<p>Notification.Builder 是 Android 3.0 (API 11) 引入的。如要兼容低版本，可以使用 Support V4 包提供的 NotificationCompat.Builder。</p>
+<a id="more"></a>
+<pre><code>Android 3.0 以上選擇 Notification
+Android 3.0 以下選擇 NotificationCompat
+</code></pre>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Notification</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 static method  中取得 String Resource</title>
+    <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
+    <content><![CDATA[<h2 id="遇到問題">遇到問題</h2>
+<p>最近在寫一個 Singleton 的類別時，遇到需要透過 Resource id 取得 string 的需求，原本想用 context.getString(int resId) 的方式取得，但發現 Context 不適合被 static 成員或類別引用，會導致內存泄露。</p>
+<a id="more"></a>
+<pre><code>static 成員生命週期會隨著 app 開始到結束。
+如果引用到 Context、Activity，會導致 Context、Activity 也跟著無法被回收，導致內存泄露。
+</code></pre>
+<h2 id="解決辦法">解決辦法</h2>
+<p>使用 Resources.getSystem().getString(int resId) 來取得 String。</p>
+<h2 id="參考資料">參考資料</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAwODEzMTk3OQ==">https://segmentfault.com/q/1010000008131979<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMzgyMjczMi9hbmRyb2lkLWdldHN0cmluZ3Itc3RyaW5nLWluLXN0YXRpYy1tZXRob2Q=">https://stackoverflow.com/questions/3822732/android-getstringr-string-in-static-method<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Ubuntu 上安裝中文輸入法</title>
+    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
+    <content><![CDATA[<ol>
+<li>點擊「系統設定值」的按鈕<br>
+<img data-src="https://i.imgur.com/8weBEw1.jpg" alt=""></li>
+</ol>
+<a id="more"></a>
+<ol start="2">
+<li>
+<p>點擊「語言支援」<br>
+<img data-src="https://i.imgur.com/QC1VYHK.jpg" alt=""></p>
+</li>
+<li>
+<p>第一次打開，會跳出「安裝語言尚未支援完備」，這邊點擊「安裝」<br>
+<img data-src="https://i.imgur.com/ovNfLFq.jpg" alt=""></p>
+</li>
+<li>
+<p>這邊會讓你輸入你剛剛設定的密碼，並等待安裝完畢<br>
+<img data-src="https://i.imgur.com/Ja9Ovqj.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝完後重新開機<br>
+<img data-src="https://i.imgur.com/omw1N1Z.jpg" alt=""></p>
+</li>
+<li>
+<p>開機完後點右上角的鍵盤圖示，然後點選「ConfigureFcitx」<br>
+<img data-src="https://i.imgur.com/FWRbEQr.jpg" alt=""></p>
+</li>
+<li>
+<p>點選左下角的「＋」來新增輸入法<br>
+<img data-src="https://i.imgur.com/nzGCa1U.jpg" alt=""></p>
+</li>
+<li>
+<p>這邊推薦安裝「新酷音」<br>
+<img data-src="https://i.imgur.com/L5HrnOT.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝完後可以在輸入法列表裡看到你剛剛選擇的輸入法，這邊可以調整輸入法順序<br>
+<img data-src="https://i.imgur.com/vqiw8Yx.jpg" alt=""></p>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
+    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
+<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
+<a id="more"></a>
+<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
+<ol>
+<li>
+<p>開啟 Parallels Desktop Lite<br>
+<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝 Ubuntu<br>
+<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
+</li>
+<li>
+<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
+</li>
+<li>
+<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
+</li>
+<li>
+<p>勾選安裝前設定，可以社設定虛擬機配置<br>
+<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
+</li>
+<li>
+<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
+<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
+</li>
+<li>
+<p>選擇語言<br>
+<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
+</li>
+<li>
+<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
+<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
+</li>
+<li>
+<p>選擇安裝過程的語言<br>
+<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
+</li>
+<li>
+<p>建議全部勾選，也可以選擇自己想要的勾選<br>
+<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
+</li>
+<li>
+<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
+<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「繼續」開始安裝<br>
+<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇時區<br>
+<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
+<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
+</li>
+<li>
+<p>輸入使用者帳戶資訊<br>
+<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
+</li>
+<li>
+<p>等待安裝並重新開機</p>
+</li>
+</ol>
+<blockquote>
+<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
+<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
+</blockquote>
+<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
+<ol>
+<li>
+<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
+<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
+</li>
+<li>
+<p>確認螢幕設定為「縮放」<br>
+<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「系統設定值」的按鈕<br>
+<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「顯示器」<br>
+<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
+</li>
+<li>
+<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
+<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
+</li>
+</ol>
+]]></content>
   </entry>
   <entry>
     <title>LineBot+Python，輕鬆建立聊天機器人</title>
@@ -936,28 +1120,28 @@ Starting in M, the returned color will be styled for the specified Context's the
 <ol>
 <li>登入 Heroku 後，<br>
 在 <span class="exturl" data-url="aHR0cHM6Ly9kYXNoYm9hcmQuaGVyb2t1LmNvbS9hcHBz">Heroku<i class="fa fa-external-link-alt"></i></span> 頁面中，點選 New -&gt; Create New App<br>
-<img src="https://i.imgur.com/Y3njp7I.png" alt=""></li>
+<img data-src="https://i.imgur.com/Y3njp7I.png" alt=""></li>
 <li>輸入自己喜歡的 App name ，然後點擊 Create app<br>
-<img src="https://i.imgur.com/WJ85jXR.png" alt=""></li>
+<img data-src="https://i.imgur.com/WJ85jXR.png" alt=""></li>
 </ol>
 <h2 id="創建-Line-Bot-頻道">創建 Line Bot 頻道</h2>
 <ol>
 <li>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span><br>
-<img src="https://i.imgur.com/vseYQt1.png" alt=""></li>
+<img data-src="https://i.imgur.com/vseYQt1.png" alt=""></li>
 <li>創建提供者<br>
-<img src="https://i.imgur.com/0tnYFBd.png" alt=""></li>
+<img data-src="https://i.imgur.com/0tnYFBd.png" alt=""></li>
 <li>填入提供者名稱<br>
-<img src="https://i.imgur.com/2ne3H1F.png" alt=""></li>
+<img data-src="https://i.imgur.com/2ne3H1F.png" alt=""></li>
 <li>點擊 Create<br>
-<img src="https://i.imgur.com/bdESW8G.png" alt=""></li>
+<img data-src="https://i.imgur.com/bdESW8G.png" alt=""></li>
 <li>點擊 Create Channel<br>
-<img src="https://i.imgur.com/F1nAWhK.png" alt=""></li>
+<img data-src="https://i.imgur.com/F1nAWhK.png" alt=""></li>
 <li>填入 Bot 資訊<br>
-<img src="https://i.imgur.com/3wYFSvl.png" alt=""></li>
+<img data-src="https://i.imgur.com/3wYFSvl.png" alt=""></li>
 <li>同意 Line 條款，並按 Create<br>
-<img src="https://i.imgur.com/WNzl4sL.png" alt=""></li>
+<img data-src="https://i.imgur.com/WNzl4sL.png" alt=""></li>
 <li>選擇剛剛創建的 Bot<br>
-<img src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
 </ol>
 <h2 id="設定範例機器人">設定範例機器人</h2>
 <p>按照以下步驟架設一個回話機器人。</p>
@@ -967,33 +1151,33 @@ Starting in M, the returned color will be styled for the specified Context's the
 </li>
 <li>
 <p>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的機器人<br>
-<img src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
 </li>
 <li>
 <p>開啟 webhook<br>
-<img src="https://i.imgur.com/nxvFPB1.png" alt=""><br>
-<img src="https://i.imgur.com/PzEKzdq.png" alt=""></p>
+<img data-src="https://i.imgur.com/nxvFPB1.png" alt=""><br>
+<img data-src="https://i.imgur.com/PzEKzdq.png" alt=""></p>
 </li>
 <li>
 <p>關閉預設罐頭回覆訊息<br>
-<img src="https://i.imgur.com/nXPRhT4.png" alt=""></p>
+<img data-src="https://i.imgur.com/nXPRhT4.png" alt=""></p>
 </li>
 <li>
 <p>產生 <strong>Channel access token</strong><br>
-<img src="https://i.imgur.com/QyxnpZB.png" alt=""><br>
-<img src="https://i.imgur.com/quYbPx9.png" alt=""></p>
+<img data-src="https://i.imgur.com/QyxnpZB.png" alt=""><br>
+<img data-src="https://i.imgur.com/quYbPx9.png" alt=""></p>
 </li>
 <li>
 <p>取得 <strong>Channel access token</strong><br>
-<img src="https://i.imgur.com/C7OTect.png" alt=""></p>
+<img data-src="https://i.imgur.com/C7OTect.png" alt=""></p>
 </li>
 <li>
 <p>取得 <strong>Channel secret</strong><br>
-<img src="https://i.imgur.com/IwmvyzL.png" alt=""></p>
+<img data-src="https://i.imgur.com/IwmvyzL.png" alt=""></p>
 </li>
 <li>
 <p>使用編輯器開啟範例程式碼資料夾內的 <span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span>，將剛剛取得的 <strong>channel secret</strong> 和 <strong>channel access token</strong> 填入<br>
-<img src="https://i.imgur.com/Uz16joi.png" alt=""></p>
+<img data-src="https://i.imgur.com/Uz16joi.png" alt=""></p>
 </li>
 </ol>
 <h2 id="將程式推到-Heroku-上">將程式推到 Heroku 上</h2>
@@ -1033,19 +1217,19 @@ Starting in M, the returned color will be styled for the specified Context's the
 <ol>
 <li>
 <p>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的 Bot<br>
-<img src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
 </li>
 <li>
 <p>在 webhook URL 中輸入 Heroku 網址</p>
  <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&#123;HEROKU_APP_NAME&#125;.herokuapp.com/callback</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/EkDhAgb.png" alt=""><br>
+<p><img data-src="https://i.imgur.com/EkDhAgb.png" alt=""><br>
 注意：{HEROKU_APP_NAME} 是 Heroku 應用的名稱</p>
 </li>
 </ol>
 <h2 id="測試範例成果">測試範例成果</h2>
 <ol>
 <li>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的 Bot<br>
-<img src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
 <li>通過在控制台的 “Channel settings” 頁面上掃描 QR Code，將您的 Bot 添加到 LINE 的朋友中</li>
 <li>在 Line 上向您的 Bot 發送文字訊息，並確認它會學你說話</li>
 </ol>
@@ -1076,7 +1260,7 @@ Starting in M, the returned color will be styled for the specified Context's the
 </ul>
 <h3 id="app-py-主程式"><span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span> (主程式)</h3>
 <p>可透過修改程式裡的 handle_message() 方法內的程式碼來控制機器人的訊息回覆</p>
-<p><img src="https://i.imgur.com/DNeNbpV.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/DNeNbpV.png" alt=""></p>
 <p>新版範例程式碼內附註解<br>
 如想更多了解此程式，可以去研究 Git、Python3、<span class="exturl" data-url="aHR0cDovL2RvY3Muamlua2FuLm9yZy9kb2NzL2ZsYXNrLw==">Flask 套件<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXB5dGhvbg==">Line bot sdk<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="進階操作">進階操作</h2>
@@ -1133,190 +1317,6 @@ Starting in M, the returned color will be styled for the specified Context's the
         <tag>Bot</tag>
         <tag>Python</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>NotificationCompat 與 Notification 差別</title>
-    <url>/notificationcompat-vs-notification/</url>
-    <content><![CDATA[<p>Notification.Builder 是 Android 3.0 (API 11) 引入的。如要兼容低版本，可以使用 Support V4 包提供的 NotificationCompat.Builder。</p>
-<a id="more"></a>
-<pre><code>Android 3.0 以上選擇 Notification
-Android 3.0 以下選擇 NotificationCompat
-</code></pre>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Notification</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
-    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
-<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
-<a id="more"></a>
-<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
-<ol>
-<li>
-<p>開啟 Parallels Desktop Lite<br>
-<img src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝 Ubuntu<br>
-<img src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
-</li>
-<li>
-<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
-<img src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
-</li>
-<li>
-<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
-<img src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
-</li>
-<li>
-<p>勾選安裝前設定，可以社設定虛擬機配置<br>
-<img src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
-</li>
-<li>
-<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
-<img src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
-</li>
-<li>
-<p>選擇語言<br>
-<img src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
-</li>
-<li>
-<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
-<img src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
-</li>
-<li>
-<p>選擇安裝過程的語言<br>
-<img src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
-</li>
-<li>
-<p>建議全部勾選，也可以選擇自己想要的勾選<br>
-<img src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
-</li>
-<li>
-<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
-<img src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「繼續」開始安裝<br>
-<img src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇時區<br>
-<img src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
-<img src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
-</li>
-<li>
-<p>輸入使用者帳戶資訊<br>
-<img src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
-</li>
-<li>
-<p>等待安裝並重新開機</p>
-</li>
-</ol>
-<blockquote>
-<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
-<img src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
-</blockquote>
-<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
-<ol>
-<li>
-<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
-<img src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
-</li>
-<li>
-<p>確認螢幕設定為「縮放」<br>
-<img src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「系統設定值」的按鈕<br>
-<img src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「顯示器」<br>
-<img src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
-</li>
-<li>
-<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
-<img src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
-</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
-    <title>在 static method  中取得 String Resource</title>
-    <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
-    <content><![CDATA[<h2 id="遇到問題">遇到問題</h2>
-<p>最近在寫一個 Singleton 的類別時，遇到需要透過 Resource id 取得 string 的需求，原本想用 context.getString(int resId) 的方式取得，但發現 Context 不適合被 static 成員或類別引用，會導致內存泄露。</p>
-<a id="more"></a>
-<pre><code>static 成員生命週期會隨著 app 開始到結束。
-如果引用到 Context、Activity，會導致 Context、Activity 也跟著無法被回收，導致內存泄露。
-</code></pre>
-<h2 id="解決辦法">解決辦法</h2>
-<p>使用 Resources.getSystem().getString(int resId) 來取得 String。</p>
-<h2 id="參考資料">參考資料</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAwODEzMTk3OQ==">https://segmentfault.com/q/1010000008131979<i class="fa fa-external-link-alt"></i></span><br>
-<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMzgyMjczMi9hbmRyb2lkLWdldHN0cmluZ3Itc3RyaW5nLWluLXN0YXRpYy1tZXRob2Q=">https://stackoverflow.com/questions/3822732/android-getstringr-string-in-static-method<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Ubuntu 上安裝中文輸入法</title>
-    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
-    <content><![CDATA[<ol>
-<li>點擊「系統設定值」的按鈕<br>
-<img src="https://i.imgur.com/8weBEw1.jpg" alt=""></li>
-</ol>
-<a id="more"></a>
-<ol start="2">
-<li>
-<p>點擊「語言支援」<br>
-<img src="https://i.imgur.com/QC1VYHK.jpg" alt=""></p>
-</li>
-<li>
-<p>第一次打開，會跳出「安裝語言尚未支援完備」，這邊點擊「安裝」<br>
-<img src="https://i.imgur.com/ovNfLFq.jpg" alt=""></p>
-</li>
-<li>
-<p>這邊會讓你輸入你剛剛設定的密碼，並等待安裝完畢<br>
-<img src="https://i.imgur.com/Ja9Ovqj.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝完後重新開機<br>
-<img src="https://i.imgur.com/omw1N1Z.jpg" alt=""></p>
-</li>
-<li>
-<p>開機完後點右上角的鍵盤圖示，然後點選「ConfigureFcitx」<br>
-<img src="https://i.imgur.com/FWRbEQr.jpg" alt=""></p>
-</li>
-<li>
-<p>點選左下角的「＋」來新增輸入法<br>
-<img src="https://i.imgur.com/nzGCa1U.jpg" alt=""></p>
-</li>
-<li>
-<p>這邊推薦安裝「新酷音」<br>
-<img src="https://i.imgur.com/L5HrnOT.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝完後可以在輸入法列表裡看到你剛剛選擇的輸入法，這邊可以調整輸入法順序<br>
-<img src="https://i.imgur.com/vqiw8Yx.jpg" alt=""></p>
-</li>
-</ol>
-]]></content>
   </entry>
   <entry>
     <title>型態、變數與運算子 - Java</title>

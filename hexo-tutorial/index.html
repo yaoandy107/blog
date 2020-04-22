@@ -16,13 +16,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
   <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yaoandy107.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yaoandy107.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="之前使用過 Wordpress 一段時間，但發現了 Hexo 更方便，所以這邊來紀錄一下使用過程。">
@@ -329,16 +328,16 @@
 <h3 id="將-Hexo-配置到-GitHub">將 Hexo 配置到 GitHub</h3>
 <p>去 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw==">GitHub<i class="fa fa-external-link-alt"></i></span> 官網登入。<br>
 新增一個倉庫(Repositories)</p>
-<p><img src="https://i.imgur.com/hC3eCNY.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/hC3eCNY.png" alt=""></p>
 <p>倉庫名稱為 <span class="exturl" data-url="aHR0cDovL3lvdXJuYW1lLmdpdGh1Yi5pbw==">yourname.github.io<i class="fa fa-external-link-alt"></i></span></p>
 <blockquote>
 <p>上面的 yourname 請替換成你 GitHub 的帳號名稱</p>
 </blockquote>
-<p><img src="https://i.imgur.com/72ZXHCJ.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/72ZXHCJ.png" alt=""></p>
 <p>看到這頁代表即可退出</p>
-<p><img src="https://i.imgur.com/tLiMyDf.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/tLiMyDf.png" alt=""></p>
 <p>再來到 blog 資料夾下找一個 _config.yml 的檔案，這是 Hexo 的全域配置文件<br>
-<img src="https://i.imgur.com/OjTrXMX.png" alt=""></p>
+<img data-src="https://i.imgur.com/OjTrXMX.png" alt=""></p>
 <p>開啟之後，拉到檔案最底部，可以看到</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type:</span><br></pre></td></tr></table></figure>
 <p>將以下資訊對應輸入</p>
@@ -376,7 +375,7 @@
 <p>如果想<strong>嘗試編寫 Markdown</strong>，或是想<strong>找一個好用的Markdown 編輯器</strong>，可以嘗試使用 <span class="exturl" data-url="aHR0cHM6Ly9oYWNrbWQuaW8vcmVjZW50">HackMD<i class="fa fa-external-link-alt"></i></span>。</p>
 <h2 id="刪除文章">刪除文章</h2>
 <p>首先進入到 source / _post 資料夾中，找到 <span class="exturl" data-url="aHR0cDovL2hlbGxvd29ybGQubWQ=">helloworld.md<i class="fa fa-external-link-alt"></i></span> 文件，在本地直接執行刪除。<br>
-<img src="https://i.imgur.com/QSV6q2a.png" alt=""></p>
+<img data-src="https://i.imgur.com/QSV6q2a.png" alt=""></p>
 <p>執行以下指令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo clean    <span class="comment"># 清除快取檔案和已產生的靜態檔案。</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo d -g     <span class="comment"># d = deploy, g = generate</span></span></span><br></pre></td></tr></table></figure>
 <p>等一段時間，就會發現那篇文章已經消失囉！</p>
@@ -487,9 +486,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%95%99%E5%AD%B8/" rel="tag"><i class="fa fa-tag"></i> 教學</a>
               <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
               <a href="/tags/Next/" rel="tag"><i class="fa fa-tag"></i> Next</a>
+              <a href="/tags/%E6%95%99%E5%AD%B8/" rel="tag"><i class="fa fa-tag"></i> 教學</a>
           </div>
 
         
@@ -604,6 +603,23 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lhb2FuZHkxMDc=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yaoandy107"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlhb2FuZHkxMDdAZ21haWwuY29t" title="E-Mail → mailto:yaoandy107@gmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS95YW9hbmQxMDc=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;yaoand107"><i class="fab fa-twitter fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3lhb2FuZHkxMDc=" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;yaoandy107"><i class="fab fa-facebook fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9pbnN0YWdyYW0uY29tL3lhb2FuZHkxMDA3" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;yaoandy1007"><i class="fab fa-instagram fa-fw"></i></span>
+      </span>
+  </div>
 
 
 
@@ -674,9 +690,8 @@
   
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

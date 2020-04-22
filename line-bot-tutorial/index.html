@@ -16,13 +16,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
   <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yaoandy107.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yaoandy107.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="本教學由 北科程式設計研究社 所屬 喜歡這篇教學，可以到我的 Github 上面給我一顆 Star [name&#x3D;姚韋辰]  本教程介紹如何使用 Python LINE Bot SDK 在 Heroku 上架設一個簡單的回話機器人。">
@@ -339,28 +338,28 @@
 <ol>
 <li>登入 Heroku 後，<br>
 在 <span class="exturl" data-url="aHR0cHM6Ly9kYXNoYm9hcmQuaGVyb2t1LmNvbS9hcHBz">Heroku<i class="fa fa-external-link-alt"></i></span> 頁面中，點選 New -&gt; Create New App<br>
-<img src="https://i.imgur.com/Y3njp7I.png" alt=""></li>
+<img data-src="https://i.imgur.com/Y3njp7I.png" alt=""></li>
 <li>輸入自己喜歡的 App name ，然後點擊 Create app<br>
-<img src="https://i.imgur.com/WJ85jXR.png" alt=""></li>
+<img data-src="https://i.imgur.com/WJ85jXR.png" alt=""></li>
 </ol>
 <h2 id="創建-Line-Bot-頻道">創建 Line Bot 頻道</h2>
 <ol>
 <li>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span><br>
-<img src="https://i.imgur.com/vseYQt1.png" alt=""></li>
+<img data-src="https://i.imgur.com/vseYQt1.png" alt=""></li>
 <li>創建提供者<br>
-<img src="https://i.imgur.com/0tnYFBd.png" alt=""></li>
+<img data-src="https://i.imgur.com/0tnYFBd.png" alt=""></li>
 <li>填入提供者名稱<br>
-<img src="https://i.imgur.com/2ne3H1F.png" alt=""></li>
+<img data-src="https://i.imgur.com/2ne3H1F.png" alt=""></li>
 <li>點擊 Create<br>
-<img src="https://i.imgur.com/bdESW8G.png" alt=""></li>
+<img data-src="https://i.imgur.com/bdESW8G.png" alt=""></li>
 <li>點擊 Create Channel<br>
-<img src="https://i.imgur.com/F1nAWhK.png" alt=""></li>
+<img data-src="https://i.imgur.com/F1nAWhK.png" alt=""></li>
 <li>填入 Bot 資訊<br>
-<img src="https://i.imgur.com/3wYFSvl.png" alt=""></li>
+<img data-src="https://i.imgur.com/3wYFSvl.png" alt=""></li>
 <li>同意 Line 條款，並按 Create<br>
-<img src="https://i.imgur.com/WNzl4sL.png" alt=""></li>
+<img data-src="https://i.imgur.com/WNzl4sL.png" alt=""></li>
 <li>選擇剛剛創建的 Bot<br>
-<img src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
 </ol>
 <h2 id="設定範例機器人">設定範例機器人</h2>
 <p>按照以下步驟架設一個回話機器人。</p>
@@ -370,33 +369,33 @@
 </li>
 <li>
 <p>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的機器人<br>
-<img src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
 </li>
 <li>
 <p>開啟 webhook<br>
-<img src="https://i.imgur.com/nxvFPB1.png" alt=""><br>
-<img src="https://i.imgur.com/PzEKzdq.png" alt=""></p>
+<img data-src="https://i.imgur.com/nxvFPB1.png" alt=""><br>
+<img data-src="https://i.imgur.com/PzEKzdq.png" alt=""></p>
 </li>
 <li>
 <p>關閉預設罐頭回覆訊息<br>
-<img src="https://i.imgur.com/nXPRhT4.png" alt=""></p>
+<img data-src="https://i.imgur.com/nXPRhT4.png" alt=""></p>
 </li>
 <li>
 <p>產生 <strong>Channel access token</strong><br>
-<img src="https://i.imgur.com/QyxnpZB.png" alt=""><br>
-<img src="https://i.imgur.com/quYbPx9.png" alt=""></p>
+<img data-src="https://i.imgur.com/QyxnpZB.png" alt=""><br>
+<img data-src="https://i.imgur.com/quYbPx9.png" alt=""></p>
 </li>
 <li>
 <p>取得 <strong>Channel access token</strong><br>
-<img src="https://i.imgur.com/C7OTect.png" alt=""></p>
+<img data-src="https://i.imgur.com/C7OTect.png" alt=""></p>
 </li>
 <li>
 <p>取得 <strong>Channel secret</strong><br>
-<img src="https://i.imgur.com/IwmvyzL.png" alt=""></p>
+<img data-src="https://i.imgur.com/IwmvyzL.png" alt=""></p>
 </li>
 <li>
 <p>使用編輯器開啟範例程式碼資料夾內的 <span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span>，將剛剛取得的 <strong>channel secret</strong> 和 <strong>channel access token</strong> 填入<br>
-<img src="https://i.imgur.com/Uz16joi.png" alt=""></p>
+<img data-src="https://i.imgur.com/Uz16joi.png" alt=""></p>
 </li>
 </ol>
 <h2 id="將程式推到-Heroku-上">將程式推到 Heroku 上</h2>
@@ -436,19 +435,19 @@
 <ol>
 <li>
 <p>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的 Bot<br>
-<img src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
 </li>
 <li>
 <p>在 webhook URL 中輸入 Heroku 網址</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;HEROKU_APP_NAME&#125;.herokuapp.com/callback</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/EkDhAgb.png" alt=""><br>
+<p><img data-src="https://i.imgur.com/EkDhAgb.png" alt=""><br>
 注意：{HEROKU_APP_NAME} 是 Heroku 應用的名稱</p>
 </li>
 </ol>
 <h2 id="測試範例成果">測試範例成果</h2>
 <ol>
 <li>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的 Bot<br>
-<img src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
 <li>通過在控制台的 “Channel settings” 頁面上掃描 QR Code，將您的 Bot 添加到 LINE 的朋友中</li>
 <li>在 Line 上向您的 Bot 發送文字訊息，並確認它會學你說話</li>
 </ol>
@@ -479,7 +478,7 @@
 </ul>
 <h3 id="app-py-主程式"><span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span> (主程式)</h3>
 <p>可透過修改程式裡的 handle_message() 方法內的程式碼來控制機器人的訊息回覆</p>
-<p><img src="https://i.imgur.com/DNeNbpV.png" alt=""></p>
+<p><img data-src="https://i.imgur.com/DNeNbpV.png" alt=""></p>
 <p>新版範例程式碼內附註解<br>
 如想更多了解此程式，可以去研究 Git、Python3、<span class="exturl" data-url="aHR0cDovL2RvY3Muamlua2FuLm9yZy9kb2NzL2ZsYXNrLw==">Flask 套件<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXB5dGhvbg==">Line bot sdk<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="進階操作">進階操作</h2>
@@ -700,6 +699,23 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lhb2FuZHkxMDc=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yaoandy107"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnlhb2FuZHkxMDdAZ21haWwuY29t" title="E-Mail → mailto:yaoandy107@gmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS95YW9hbmQxMDc=" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;yaoand107"><i class="fab fa-twitter fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3lhb2FuZHkxMDc=" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;yaoandy107"><i class="fab fa-facebook fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9pbnN0YWdyYW0uY29tL3lhb2FuZHkxMDA3" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;yaoandy1007"><i class="fab fa-instagram fa-fw"></i></span>
+      </span>
+  </div>
 
 
 
@@ -770,9 +786,8 @@
   
   <script src="/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
