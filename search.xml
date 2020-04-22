@@ -152,25 +152,90 @@
       </tags>
   </entry>
   <entry>
-    <title>Android 學習問題紀錄</title>
-    <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
-    <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
-<h3 id="問題">問題</h3>
-<p>在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。<br>
-<a id="more"></a></p>
-<h3 id="原因">原因</h3>
-<p>OkHttp 不是執行在 UI Thread，但 Retrofit 是。</p>
-<h2 id="紀錄-2">紀錄 2</h2>
-<h3 id="問題-2">問題</h3>
-<p>在 OkHttp  的 onResponse 中使用 Toast 會噴錯。</p>
-<h3 id="原因-2">原因</h3>
-<p>OkHttp 不是執行在 UI Thread。</p>
-<h3 id="解法">解法</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解法1</span></span><br><span class="line">Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</span><br><span class="line">handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 解法2</span></span><br><span class="line">activity.runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+    <title>Android Studio 技巧整理</title>
+    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<p>最近開始研究 Android Studio，得知一些可以增加開發速度的小技巧，因此在這邊做一下記錄。</p>
+<a id="more"></a>
+<h2 id="Live-Templates">Live Templates</h2>
+<p><code>Live Templates</code>：程式碼快速補全模板</p>
+<p>這邊列出一些比較常見的 Live Templates，有興趣的人可以自行深入了解。</p>
+<ul>
+<li><code>newInstance</code> - 在 Fragment 中生成 <code>newInstance</code> 方法</li>
+<li><code>Toast</code> - 生成 <code>Toast.makeText(context, &quot;&quot;, Toast.LENGTH_SHORT).show();</code></li>
+<li><code>fbc</code> - 生成 findViewById</li>
+<li><code>const</code> - 定義一個 android style int 常數</li>
+<li><code>logd</code> - 生成 <code>Log.d(TAG, &quot;&quot;);</code></li>
+<li><code>logm</code> - Log 當前方法名稱和參數</li>
+<li><code>logr</code> - Log 當前方法結果</li>
+<li><code>logt</code> - 當前類生成 log tag</li>
+<li><code>psf</code> - public static final</li>
+<li><code>sout</code> - 印出一個字串到 System.out</li>
+<li><code>soutm</code> - 印出當前類名和方法到 System.out</li>
+<li><code>soutp</code> - 印出方法參數和返回值到 System.out</li>
+<li><code>visible</code> - 設置 view VISIBLE</li>
+<li><code>gone</code> - 設置 view GONE</li>
+<li><code>noInstance</code> - private 構造方法</li>
+</ul>
+<h2 id="Android-Studio-的自動生成">Android Studio 的自動生成</h2>
+<p>可以使用 Android Studio 自動幫你生成一些程式碼</p>
+<ul>
+<li><code>&lt;expr&gt;.null</code> 轉換成 <code>if(&lt;expr&gt; == null)</code></li>
+<li><code>&lt;expr&gt;.notnull</code> 轉換成 <code>if(&lt;expr&gt; != null)</code></li>
+<li><code>&lt;expr&gt;.var</code> 轉換成 <code>T name = &lt;expr&gt;</code></li>
+<li><code>&lt;expr&gt;.field</code> 會自動生成一個全局變數 <code>field = &lt;expr&gt;</code></li>
+<li><code>&lt;ArrayExpr&gt;.for</code> 轉換成 <code>for(T item : &lt;Arrayexpr&gt;)</code></li>
+<li><code>&lt;ArrayExpr&gt;.fori</code> 轉換成 <code>for(int i = 0; i &lt; &lt;Arrayexpr&gt;.length; i++)</code></li>
+<li><code>&lt;ArrayExpr&gt;.forr</code> 轉換成 <code>for(int i = &lt;Arrayexpr&gt;.length - 1; i &gt; 0 ; i--)</code></li>
+</ul>
+<h2 id="插件">插件</h2>
+<p>下面列出一些我正在使用的插件</p>
+<ol>
+<li>
+<p><strong>Android Drawable Importer</strong><br>
+為了適應所有 Android 螢幕的大小和密度，每個 Android 項目都會包含 drawable 資料夾。任何具備 Android 開發經驗的開發人員都知道，為了支持所有的螢幕尺寸，你必須給每個螢幕類型導入不同的 Drawalbe。Android Drawable Importer 插件能讓這項工作變得更容易。它可以減少導入縮放圖像到 Android 項目所需的工作量。 Android Drawable Importer 添加了一個在不同分辨率導入 Drawble 或縮放指定圖像到定義分辨率的選項。這個插件加速了開發人員的 Drawable 工作。</p>
+</li>
+<li>
+<p><strong>Lifecycle Sorter</strong><br>
+可以根據 Activity 或者 fragment 的生命週期對其生命週期方法位置進行先後排序，快捷鍵 Ctrl + alt + K。</p>
+</li>
+<li>
+<p><strong>.ignore</strong><br>
+我們都知道在 Git 中想要過濾掉一些不想提交的文件，可以把相應的文件添加到 .gitignore 中，而 .gitignore 這個 Android Studio 插件根據不同的語言來選擇模板，就不用自己在費事添加一些文件了，而且還有自動補全功能，過濾文件再也不要復製檔名了。我們做項目的時候，並不是所有文件都是要提交的，比如構建的 build 資料夾，本地配置文件，每個 Module 生成的 iml 文件，但是我們每次 add，commit 都會不小心把它們添加上去，而 gitignore 就是解決這種痛點的，如果你不想提交的檔案，就可以在創建項目的時候將這個檔案中添加即可，將一些通用的東西屏蔽掉。</p>
+</li>
+<li>
+<p><strong>Android Methods Count</strong><br>
+統計 Android 依賴庫中方法的總個數。 (一個 dex 只能接受的 65K 並不是指方法數超過 65K 而報的錯,而是指引用計數超過 65K)</p>
+</li>
+<li>
+<p><strong>jetbrains-wakatime</strong><br>
+紀錄在 Android Studio 上的工作時間。</p>
+</li>
+<li>
+<p><strong>Genymotion</strong><br>
+好用的 Android 模擬器，原生模擬器不堪用。</p>
+</li>
+<li>
+<p><strong>GsonFormat</strong><br>
+快速將 json 字串轉換成一個 Java Bean，免去我們根據 json 字符串手寫對應 Java Bean 的過程。</p>
+</li>
+<li>
+<p><strong>LayoutFormatter</strong><br>
+一鍵幫你將你的 XML 文件排版，並調整順序。</p>
+</li>
+</ol>
+<h2 id="快捷鍵">快捷鍵</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9yZXNvdXJjZXMuamV0YnJhaW5zLmNvbS9zdG9yYWdlL3Byb2R1Y3RzL2ludGVsbGlqLWlkZWEvZG9jcy9JbnRlbGxpSklERUFfUmVmZXJlbmNlQ2FyZC5wZGY=">完整的快捷键指南<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="參考資料">參考資料</h3>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25pc3J1bHovYW5kcm9pZC10aXBzLXRyaWNrcw==">nisrulz/android-tips-tricks<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly95ZG1tb2Nvby5naXRodWIuaW8vMjAxNi8wNi8yOC9BbmRyb2lkLVN0dWRpbyVFNiU4RiU5MiVFNCVCQiVCNiVFNiU5NSVCNCVFNyU5MCU4Ni8=">Android Studio插件整理<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
       <categories>
         <category>Android</category>
       </categories>
       <tags>
+        <tag>Android Studio</tag>
         <tag>Android</tag>
       </tags>
   </entry>
@@ -290,119 +355,6 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
       </tags>
   </entry>
   <entry>
-    <title>Error：Fragment already added</title>
-    <url>/Error-Fragment-already-added/</url>
-    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
-<pre><code>java.lang.IllegalStateException: Fragment already added
-</code></pre>
-<a id="more"></a>
-<h2 id="原因">原因</h2>
-<p>Fragment 在一些狀況不會正常移除</p>
-<h2 id="原本程式碼">原本程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
-<h2 id="解決辦法">解決辦法</h2>
-<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="後來程式碼">後來程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Fragment</tag>
-        <tag>Error</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Android Studio 技巧整理</title>
-    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
-    <content><![CDATA[<p>最近開始研究 Android Studio，得知一些可以增加開發速度的小技巧，因此在這邊做一下記錄。</p>
-<a id="more"></a>
-<h2 id="Live-Templates">Live Templates</h2>
-<p><code>Live Templates</code>：程式碼快速補全模板</p>
-<p>這邊列出一些比較常見的 Live Templates，有興趣的人可以自行深入了解。</p>
-<ul>
-<li><code>newInstance</code> - 在 Fragment 中生成 <code>newInstance</code> 方法</li>
-<li><code>Toast</code> - 生成 <code>Toast.makeText(context, &quot;&quot;, Toast.LENGTH_SHORT).show();</code></li>
-<li><code>fbc</code> - 生成 findViewById</li>
-<li><code>const</code> - 定義一個 android style int 常數</li>
-<li><code>logd</code> - 生成 <code>Log.d(TAG, &quot;&quot;);</code></li>
-<li><code>logm</code> - Log 當前方法名稱和參數</li>
-<li><code>logr</code> - Log 當前方法結果</li>
-<li><code>logt</code> - 當前類生成 log tag</li>
-<li><code>psf</code> - public static final</li>
-<li><code>sout</code> - 印出一個字串到 System.out</li>
-<li><code>soutm</code> - 印出當前類名和方法到 System.out</li>
-<li><code>soutp</code> - 印出方法參數和返回值到 System.out</li>
-<li><code>visible</code> - 設置 view VISIBLE</li>
-<li><code>gone</code> - 設置 view GONE</li>
-<li><code>noInstance</code> - private 構造方法</li>
-</ul>
-<h2 id="Android-Studio-的自動生成">Android Studio 的自動生成</h2>
-<p>可以使用 Android Studio 自動幫你生成一些程式碼</p>
-<ul>
-<li><code>&lt;expr&gt;.null</code> 轉換成 <code>if(&lt;expr&gt; == null)</code></li>
-<li><code>&lt;expr&gt;.notnull</code> 轉換成 <code>if(&lt;expr&gt; != null)</code></li>
-<li><code>&lt;expr&gt;.var</code> 轉換成 <code>T name = &lt;expr&gt;</code></li>
-<li><code>&lt;expr&gt;.field</code> 會自動生成一個全局變數 <code>field = &lt;expr&gt;</code></li>
-<li><code>&lt;ArrayExpr&gt;.for</code> 轉換成 <code>for(T item : &lt;Arrayexpr&gt;)</code></li>
-<li><code>&lt;ArrayExpr&gt;.fori</code> 轉換成 <code>for(int i = 0; i &lt; &lt;Arrayexpr&gt;.length; i++)</code></li>
-<li><code>&lt;ArrayExpr&gt;.forr</code> 轉換成 <code>for(int i = &lt;Arrayexpr&gt;.length - 1; i &gt; 0 ; i--)</code></li>
-</ul>
-<h2 id="插件">插件</h2>
-<p>下面列出一些我正在使用的插件</p>
-<ol>
-<li>
-<p><strong>Android Drawable Importer</strong><br>
-為了適應所有 Android 螢幕的大小和密度，每個 Android 項目都會包含 drawable 資料夾。任何具備 Android 開發經驗的開發人員都知道，為了支持所有的螢幕尺寸，你必須給每個螢幕類型導入不同的 Drawalbe。Android Drawable Importer 插件能讓這項工作變得更容易。它可以減少導入縮放圖像到 Android 項目所需的工作量。 Android Drawable Importer 添加了一個在不同分辨率導入 Drawble 或縮放指定圖像到定義分辨率的選項。這個插件加速了開發人員的 Drawable 工作。</p>
-</li>
-<li>
-<p><strong>Lifecycle Sorter</strong><br>
-可以根據 Activity 或者 fragment 的生命週期對其生命週期方法位置進行先後排序，快捷鍵 Ctrl + alt + K。</p>
-</li>
-<li>
-<p><strong>.ignore</strong><br>
-我們都知道在 Git 中想要過濾掉一些不想提交的文件，可以把相應的文件添加到 .gitignore 中，而 .gitignore 這個 Android Studio 插件根據不同的語言來選擇模板，就不用自己在費事添加一些文件了，而且還有自動補全功能，過濾文件再也不要復製檔名了。我們做項目的時候，並不是所有文件都是要提交的，比如構建的 build 資料夾，本地配置文件，每個 Module 生成的 iml 文件，但是我們每次 add，commit 都會不小心把它們添加上去，而 gitignore 就是解決這種痛點的，如果你不想提交的檔案，就可以在創建項目的時候將這個檔案中添加即可，將一些通用的東西屏蔽掉。</p>
-</li>
-<li>
-<p><strong>Android Methods Count</strong><br>
-統計 Android 依賴庫中方法的總個數。 (一個 dex 只能接受的 65K 並不是指方法數超過 65K 而報的錯,而是指引用計數超過 65K)</p>
-</li>
-<li>
-<p><strong>jetbrains-wakatime</strong><br>
-紀錄在 Android Studio 上的工作時間。</p>
-</li>
-<li>
-<p><strong>Genymotion</strong><br>
-好用的 Android 模擬器，原生模擬器不堪用。</p>
-</li>
-<li>
-<p><strong>GsonFormat</strong><br>
-快速將 json 字串轉換成一個 Java Bean，免去我們根據 json 字符串手寫對應 Java Bean 的過程。</p>
-</li>
-<li>
-<p><strong>LayoutFormatter</strong><br>
-一鍵幫你將你的 XML 文件排版，並調整順序。</p>
-</li>
-</ol>
-<h2 id="快捷鍵">快捷鍵</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9yZXNvdXJjZXMuamV0YnJhaW5zLmNvbS9zdG9yYWdlL3Byb2R1Y3RzL2ludGVsbGlqLWlkZWEvZG9jcy9JbnRlbGxpSklERUFfUmVmZXJlbmNlQ2FyZC5wZGY=">完整的快捷键指南<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="參考資料">參考資料</h3>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25pc3J1bHovYW5kcm9pZC10aXBzLXRyaWNrcw==">nisrulz/android-tips-tricks<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly95ZG1tb2Nvby5naXRodWIuaW8vMjAxNi8wNi8yOC9BbmRyb2lkLVN0dWRpbyVFNiU4RiU5MiVFNCVCQiVCNiVFNiU5NSVCNCVFNyU5MCU4Ni8=">Android Studio插件整理<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Android Studio</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mac 下使用 Shadowsocks 翻牆</title>
     <url>/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Shadowsocks%E7%BF%BB%E7%89%86/</url>
     <content><![CDATA[<p>這邊教大家如何使用 ShadowsocksX-NG 來進行 Shadowsocks 代理，以達到 <strong>翻牆</strong> 效果。</p>
@@ -433,6 +385,29 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
         <tag>MacOS</tag>
         <tag>Shadowsocks</tag>
         <tag>翻牆</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android 學習問題紀錄</title>
+    <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
+    <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
+<h3 id="問題">問題</h3>
+<p>在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。<br>
+<a id="more"></a></p>
+<h3 id="原因">原因</h3>
+<p>OkHttp 不是執行在 UI Thread，但 Retrofit 是。</p>
+<h2 id="紀錄-2">紀錄 2</h2>
+<h3 id="問題-2">問題</h3>
+<p>在 OkHttp  的 onResponse 中使用 Toast 會噴錯。</p>
+<h3 id="原因-2">原因</h3>
+<p>OkHttp 不是執行在 UI Thread。</p>
+<h3 id="解法">解法</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解法1</span></span><br><span class="line">Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</span><br><span class="line">handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 解法2</span></span><br><span class="line">activity.runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -669,6 +644,31 @@ _ 代表任意字元<br>
       </tags>
   </entry>
   <entry>
+    <title>Error：Fragment already added</title>
+    <url>/Error-Fragment-already-added/</url>
+    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
+<pre><code>java.lang.IllegalStateException: Fragment already added
+</code></pre>
+<a id="more"></a>
+<h2 id="原因">原因</h2>
+<p>Fragment 在一些狀況不會正常移除</p>
+<h2 id="原本程式碼">原本程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
+<h2 id="解決辦法">解決辦法</h2>
+<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後來程式碼">後來程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Fragment</tag>
+        <tag>Error</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>getColor(int id) deprecated</title>
     <url>/getcolor-deprecated/</url>
     <content><![CDATA[<p>從 Android 6 開始，一個新的 getColor() 方法出現，舊的 Resource.getColor(int id) 則被廢棄。</p>
@@ -692,21 +692,6 @@ Starting in M, the returned color will be styled for the specified Context's the
       <tags>
         <tag>Android</tag>
         <tag>deprecated</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>android:gravity 和 android:layout_gravity 的差別</title>
-    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
-    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
-<a id="more"></a>
-<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
-<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -853,6 +838,21 @@ Starting in M, the returned color will be styled for the specified Context's the
       </tags>
   </entry>
   <entry>
+    <title>android:gravity 和 android:layout_gravity 的差別</title>
+    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
+    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
+<a id="more"></a>
+<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
+<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何在 Centos 7 創建一個 Sudo user</title>
     <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
     <content><![CDATA[<ol>
@@ -923,334 +923,6 @@ Android 3.0 以下選擇 NotificationCompat
         <tag>Android</tag>
         <tag>Notification</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>LineBot+Python，輕鬆建立聊天機器人</title>
-    <url>/line-bot-tutorial/</url>
-    <content><![CDATA[<blockquote>
-<p>本教學由 <strong>北科程式設計研究社</strong> 所屬<br>
-喜歡這篇教學，可以到我的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lhb2FuZHkxMDcvbGluZS1ib3QtdHV0b3JpYWw=">Github<i class="fa fa-external-link-alt"></i></span> 上面給我一顆 Star<br>
-[name=姚韋辰]</p>
-</blockquote>
-<p>本教程介紹如何使用 Python LINE Bot SDK 在 Heroku 上架設一個簡單的回話機器人。</p>
-<a id="more"></a>
-<p>如果您想以另一種語言架設範例 bot，請參閱以下  LINE Bot SDK repositories。</p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXBocA==">PHP<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLWdv">Go<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXBlcmw=">Perl<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXJ1Ynk=">Ruby<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXB5dGhvbg==">Python<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLW5vZGVqcw==">Node.js<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="在你開始之前">在你開始之前</h2>
-<p>確保您具有以下內容：</p>
-<ul>
-<li>擁有 Line 帳號</li>
-<li>擁有 <span class="exturl" data-url="aHR0cHM6Ly93d3cuaGVyb2t1LmNvbQ==">Heroku<i class="fa fa-external-link-alt"></i></span> 帳戶（您可以免費創建一個）</li>
-</ul>
-<h2 id="建立-Heroku-專案">建立 Heroku 專案</h2>
-<ol>
-<li>登入 Heroku 後，<br>
-在 <span class="exturl" data-url="aHR0cHM6Ly9kYXNoYm9hcmQuaGVyb2t1LmNvbS9hcHBz">Heroku<i class="fa fa-external-link-alt"></i></span> 頁面中，點選 New -&gt; Create New App<br>
-<img data-src="https://i.imgur.com/Y3njp7I.png" alt=""></li>
-<li>輸入自己喜歡的 App name ，然後點擊 Create app<br>
-<img data-src="https://i.imgur.com/WJ85jXR.png" alt=""></li>
-</ol>
-<h2 id="創建-Line-Bot-頻道">創建 Line Bot 頻道</h2>
-<ol>
-<li>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span><br>
-<img data-src="https://i.imgur.com/vseYQt1.png" alt=""></li>
-<li>創建提供者<br>
-<img data-src="https://i.imgur.com/0tnYFBd.png" alt=""></li>
-<li>填入提供者名稱<br>
-<img data-src="https://i.imgur.com/2ne3H1F.png" alt=""></li>
-<li>點擊 Create<br>
-<img data-src="https://i.imgur.com/bdESW8G.png" alt=""></li>
-<li>點擊 Create Channel<br>
-<img data-src="https://i.imgur.com/F1nAWhK.png" alt=""></li>
-<li>填入 Bot 資訊<br>
-<img data-src="https://i.imgur.com/3wYFSvl.png" alt=""></li>
-<li>同意 Line 條款，並按 Create<br>
-<img data-src="https://i.imgur.com/WNzl4sL.png" alt=""></li>
-<li>選擇剛剛創建的 Bot<br>
-<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
-</ol>
-<h2 id="設定範例機器人">設定範例機器人</h2>
-<p>按照以下步驟架設一個回話機器人。</p>
-<ol>
-<li>
-<p>下載 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lhb2FuZHkxMDcvbGluZS1ib3QtdHV0b3JpYWwvYXJjaGl2ZS9tYXN0ZXIuemlw">範例程式碼<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li>
-<p>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的機器人<br>
-<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
-</li>
-<li>
-<p>開啟 webhook<br>
-<img data-src="https://i.imgur.com/nxvFPB1.png" alt=""><br>
-<img data-src="https://i.imgur.com/PzEKzdq.png" alt=""></p>
-</li>
-<li>
-<p>關閉預設罐頭回覆訊息<br>
-<img data-src="https://i.imgur.com/nXPRhT4.png" alt=""></p>
-</li>
-<li>
-<p>產生 <strong>Channel access token</strong><br>
-<img data-src="https://i.imgur.com/QyxnpZB.png" alt=""><br>
-<img data-src="https://i.imgur.com/quYbPx9.png" alt=""></p>
-</li>
-<li>
-<p>取得 <strong>Channel access token</strong><br>
-<img data-src="https://i.imgur.com/C7OTect.png" alt=""></p>
-</li>
-<li>
-<p>取得 <strong>Channel secret</strong><br>
-<img data-src="https://i.imgur.com/IwmvyzL.png" alt=""></p>
-</li>
-<li>
-<p>使用編輯器開啟範例程式碼資料夾內的 <span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span>，將剛剛取得的 <strong>channel secret</strong> 和 <strong>channel access token</strong> 填入<br>
-<img data-src="https://i.imgur.com/Uz16joi.png" alt=""></p>
-</li>
-</ol>
-<h2 id="將程式推到-Heroku-上">將程式推到 Heroku 上</h2>
-<ol>
-<li>
-<p>下載並安裝 <span class="exturl" data-url="aHR0cHM6Ly9kZXZjZW50ZXIuaGVyb2t1LmNvbS9hcnRpY2xlcy9oZXJva3UtY2xp">Heroku CLI<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li>
-<p>開啟剛剛下載的範例程式碼資料夾，在路徑上輸入 cmd</p>
-</li>
-<li>
-<p>使用終端或命令行應用程序登錄到 Heroku</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>初始化 git</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.name <span class="string">"你的名字"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.email 你的信箱</span></span><br></pre></td></tr></table></figure>
-<p>注意：<strong>你的名字</strong> 和 <strong>你的信箱</strong> 要換成各自的 <strong>名字</strong> 和 <strong>信箱</strong></p>
-</li>
-<li>
-<p>初始化 git</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>注意：僅第一次使用時要輸入</p>
-</li>
-<li>
-<p>用 git 將資料夾與 heroku 連接</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">heroku git:remote -a &#123;HEROKU_APP_NAME&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：{HEROKU_APP_NAME} 是 Heroku 應用的名稱</p>
-</li>
-<li>
-<p>輸入以下指令，將程式碼推上 Heroku，<strong>如果有跳出錯誤請重新輸入</strong></p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m "Add code"</span><br><span class="line">git push -f heroku master</span><br></pre></td></tr></table></figure>
-<p><strong>每當需要更新 Bot 時，請重新輸入上述指令</strong></p>
-</li>
-</ol>
-<h2 id="將-Heroku-與-Line-綁定">將 Heroku 與 Line 綁定</h2>
-<ol>
-<li>
-<p>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的 Bot<br>
-<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
-</li>
-<li>
-<p>在 webhook URL 中輸入 Heroku 網址</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&#123;HEROKU_APP_NAME&#125;.herokuapp.com/callback</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://i.imgur.com/EkDhAgb.png" alt=""><br>
-注意：{HEROKU_APP_NAME} 是 Heroku 應用的名稱</p>
-</li>
-</ol>
-<h2 id="測試範例成果">測試範例成果</h2>
-<ol>
-<li>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的 Bot<br>
-<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
-<li>通過在控制台的 “Channel settings” 頁面上掃描 QR Code，將您的 Bot 添加到 LINE 的朋友中</li>
-<li>在 Line 上向您的 Bot 發送文字訊息，並確認它會學你說話</li>
-</ol>
-<h2 id="錯誤尋找">錯誤尋找</h2>
-<blockquote>
-<p>當程式遇到問題時，可查看日誌以找出錯誤</p>
-</blockquote>
-<p>要查看您的 Bot 在 Heroku 的日誌，請按照以下步驟。</p>
-<ol>
-<li>
-<p>如果沒登入，請先透過 Heroku CLI 登入</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>顯示 app 日誌</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">heroku logs --tail --app &#123;HEROKU_APP_NAME&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：{HEROKU_APP_NAME} 是上述步驟2中的應用名稱。</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--tail                     # 持續打印日誌</span><br><span class="line">--app &#123;HEROKU_APP_NAME&#125;    # 指定 App</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="程式檔案解說">程式檔案解說</h2>
-<blockquote>
-<p>資料夾裡需含有兩份文件來讓你的程式能在 heroku 上運行</p>
-</blockquote>
-<ul>
-<li>Procfile：heroku 執行命令，web: {語言} {檔案}，這邊語言為 python，要自動執行的檔案為 <span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span>，因此我們改成 <strong>web: python <span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span></strong>。</li>
-<li>requirements.txt：列出所有用到的套件，heroku 會依據這份文件來安裝需要套件</li>
-</ul>
-<h3 id="app-py-主程式"><span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span> (主程式)</h3>
-<p>可透過修改程式裡的 handle_message() 方法內的程式碼來控制機器人的訊息回覆</p>
-<p><img data-src="https://i.imgur.com/DNeNbpV.png" alt=""></p>
-<p>新版範例程式碼內附註解<br>
-如想更多了解此程式，可以去研究 Git、Python3、<span class="exturl" data-url="aHR0cDovL2RvY3Muamlua2FuLm9yZy9kb2NzL2ZsYXNrLw==">Flask 套件<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXB5dGhvbg==">Line bot sdk<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="進階操作">進階操作</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXB5dGhvbiNhcGk=">官方文件<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="回覆訊息">回覆訊息</h3>
-<p>只有當有訊息傳來，才能回覆訊息</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">line_bot_api.reply_message(reply_token, 訊息物件)</span><br></pre></td></tr></table></figure>
-<h3 id="主動傳送訊息">主動傳送訊息</h3>
-<p>Bot 需要有開啟 push 功能才可以做，否則程式會出錯</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">line_bot_api.push_message(push_token, 訊息物件)</span><br></pre></td></tr></table></figure>
-<h2 id="訊息物件分類">訊息物件分類</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvZW4vZG9jcy9tZXNzYWdpbmctYXBpL21lc3NhZ2UtdHlwZXMv">官方文件<i class="fa fa-external-link-alt"></i></span></p>
-<p>修改範例程式碼中， handle_message() 方法內的程式碼，可實現多種功能</p>
-<h3 id="TextSendMessage-（文字訊息）">TextSendMessage （文字訊息）</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS9MaWVDRkFiLnBuZw==">https://i.imgur.com/LieCFAb.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = TextSendMessage(text=<span class="string">'Hello, world'</span>)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-<h3 id="ImageSendMessage（圖片訊息）">ImageSendMessage（圖片訊息）</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS9SYUg3Z3FvLnBuZw==">https://i.imgur.com/RaH7gqo.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = ImageSendMessage(</span><br><span class="line">    original_content_url=<span class="string">'https://example.com/original.jpg'</span>,</span><br><span class="line">    preview_image_url=<span class="string">'https://example.com/preview.jpg'</span></span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-<h3 id="VideoSendMessage（影片訊息）">VideoSendMessage（影片訊息）</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS9vNmN2ZjNvLnBuZw==">https://i.imgur.com/o6cvf3o.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = VideoSendMessage(</span><br><span class="line">    original_content_url=<span class="string">'https://example.com/original.mp4'</span>,</span><br><span class="line">    preview_image_url=<span class="string">'https://example.com/preview.jpg'</span></span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-<h3 id="AudioSendMessage（音訊訊息）">AudioSendMessage（音訊訊息）</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS93NXN6WmFnLnBuZw==">https://i.imgur.com/w5szZag.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = AudioSendMessage(</span><br><span class="line">    original_content_url=<span class="string">'https://example.com/original.m4a'</span>,</span><br><span class="line">    duration=<span class="number">240000</span></span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-<h3 id="LocationSendMessage（位置訊息）">LocationSendMessage（位置訊息）</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS90WEU3QXVzLnBuZw==">https://i.imgur.com/tXE7Aus.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = LocationSendMessage(</span><br><span class="line">    title=<span class="string">'my location'</span>,</span><br><span class="line">    address=<span class="string">'Tokyo'</span>,</span><br><span class="line">    latitude=<span class="number">35.65910807942215</span>,</span><br><span class="line">    longitude=<span class="number">139.70372892916203</span></span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-<h3 id="StickerSendMessage（貼圖訊息）">StickerSendMessage（貼圖訊息）</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS83eDBtZ0sxLnBuZw==">https://i.imgur.com/7x0mgK1.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = StickerSendMessage(</span><br><span class="line">    package_id=<span class="string">'1'</span>,</span><br><span class="line">    sticker_id=<span class="string">'1'</span></span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-<h3 id="ImagemapSendMessage-（組圖訊息）">ImagemapSendMessage （組圖訊息）</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS9Nb1NmMkQ2LnBuZw==">https://i.imgur.com/MoSf2D6.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = ImagemapSendMessage(</span><br><span class="line">    base_url=<span class="string">'https://example.com/base'</span>,</span><br><span class="line">    alt_text=<span class="string">'this is an imagemap'</span>,</span><br><span class="line">    base_size=BaseSize(height=<span class="number">1040</span>, width=<span class="number">1040</span>),</span><br><span class="line">    actions=[</span><br><span class="line">        URIImagemapAction(</span><br><span class="line">            link_uri=<span class="string">'https://example.com/'</span>,</span><br><span class="line">            area=ImagemapArea(</span><br><span class="line">                x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">520</span>, height=<span class="number">1040</span></span><br><span class="line">            )</span><br><span class="line">        ),</span><br><span class="line">        MessageImagemapAction(</span><br><span class="line">            text=<span class="string">'hello'</span>,</span><br><span class="line">            area=ImagemapArea(</span><br><span class="line">                x=<span class="number">520</span>, y=<span class="number">0</span>, width=<span class="number">520</span>, height=<span class="number">1040</span></span><br><span class="line">            )</span><br><span class="line">        )</span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-<h3 id="TemplateSendMessage-ButtonsTemplate-（按鈕介面訊息）">TemplateSendMessage - ButtonsTemplate （按鈕介面訊息）</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS80MWxYV2pQLnBuZw==">https://i.imgur.com/41lXWjP.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">'Buttons template'</span>,</span><br><span class="line">    template=ButtonsTemplate(</span><br><span class="line">        thumbnail_image_url=<span class="string">'https://example.com/image.jpg'</span>,</span><br><span class="line">        title=<span class="string">'Menu'</span>,</span><br><span class="line">        text=<span class="string">'Please select'</span>,</span><br><span class="line">        actions=[</span><br><span class="line">            PostbackTemplateAction(</span><br><span class="line">                label=<span class="string">'postback'</span>,</span><br><span class="line">                text=<span class="string">'postback text'</span>,</span><br><span class="line">                data=<span class="string">'action=buy&amp;itemid=1'</span></span><br><span class="line">            ),</span><br><span class="line">            MessageTemplateAction(</span><br><span class="line">                label=<span class="string">'message'</span>,</span><br><span class="line">                text=<span class="string">'message text'</span></span><br><span class="line">            ),</span><br><span class="line">            URITemplateAction(</span><br><span class="line">                label=<span class="string">'uri'</span>,</span><br><span class="line">                uri=<span class="string">'http://example.com/'</span></span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-<h3 id="TemplateSendMessage-ConfirmTemplate（確認介面訊息）">TemplateSendMessage - ConfirmTemplate（確認介面訊息）</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS9VOE5EaHJ0LnBuZw==">https://i.imgur.com/U8NDhrt.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">'Confirm template'</span>,</span><br><span class="line">    template=ConfirmTemplate(</span><br><span class="line">        text=<span class="string">'Are you sure?'</span>,</span><br><span class="line">        actions=[</span><br><span class="line">            PostbackTemplateAction(</span><br><span class="line">                label=<span class="string">'postback'</span>,</span><br><span class="line">                text=<span class="string">'postback text'</span>,</span><br><span class="line">                data=<span class="string">'action=buy&amp;itemid=1'</span></span><br><span class="line">            ),</span><br><span class="line">            MessageTemplateAction(</span><br><span class="line">                label=<span class="string">'message'</span>,</span><br><span class="line">                text=<span class="string">'message text'</span></span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-<h3 id="TemplateSendMessage-CarouselTemplate">TemplateSendMessage - CarouselTemplate</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS85ODJHbGdvLnBuZw==">https://i.imgur.com/982Glgo.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">'Carousel template'</span>,</span><br><span class="line">    template=CarouselTemplate(</span><br><span class="line">        columns=[</span><br><span class="line">            CarouselColumn(</span><br><span class="line">                thumbnail_image_url=<span class="string">'https://example.com/item1.jpg'</span>,</span><br><span class="line">                title=<span class="string">'this is menu1'</span>,</span><br><span class="line">                text=<span class="string">'description1'</span>,</span><br><span class="line">                actions=[</span><br><span class="line">                    PostbackTemplateAction(</span><br><span class="line">                        label=<span class="string">'postback1'</span>,</span><br><span class="line">                        text=<span class="string">'postback text1'</span>,</span><br><span class="line">                        data=<span class="string">'action=buy&amp;itemid=1'</span></span><br><span class="line">                    ),</span><br><span class="line">                    MessageTemplateAction(</span><br><span class="line">                        label=<span class="string">'message1'</span>,</span><br><span class="line">                        text=<span class="string">'message text1'</span></span><br><span class="line">                    ),</span><br><span class="line">                    URITemplateAction(</span><br><span class="line">                        label=<span class="string">'uri1'</span>,</span><br><span class="line">                        uri=<span class="string">'http://example.com/1'</span></span><br><span class="line">                    )</span><br><span class="line">                ]</span><br><span class="line">            ),</span><br><span class="line">            CarouselColumn(</span><br><span class="line">                thumbnail_image_url=<span class="string">'https://example.com/item2.jpg'</span>,</span><br><span class="line">                title=<span class="string">'this is menu2'</span>,</span><br><span class="line">                text=<span class="string">'description2'</span>,</span><br><span class="line">                actions=[</span><br><span class="line">                    PostbackTemplateAction(</span><br><span class="line">                        label=<span class="string">'postback2'</span>,</span><br><span class="line">                        text=<span class="string">'postback text2'</span>,</span><br><span class="line">                        data=<span class="string">'action=buy&amp;itemid=2'</span></span><br><span class="line">                    ),</span><br><span class="line">                    MessageTemplateAction(</span><br><span class="line">                        label=<span class="string">'message2'</span>,</span><br><span class="line">                        text=<span class="string">'message text2'</span></span><br><span class="line">                    ),</span><br><span class="line">                    URITemplateAction(</span><br><span class="line">                        label=<span class="string">'uri2'</span>,</span><br><span class="line">                        uri=<span class="string">'http://example.com/2'</span></span><br><span class="line">                    )</span><br><span class="line">                ]</span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-<h3 id="TemplateSendMessage-ImageCarouselTemplate">TemplateSendMessage - ImageCarouselTemplate</h3>
-<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS8yeXMxcXFjLnBuZw==">https://i.imgur.com/2ys1qqc.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">'ImageCarousel template'</span>,</span><br><span class="line">    template=ImageCarouselTemplate(</span><br><span class="line">        columns=[</span><br><span class="line">            ImageCarouselColumn(</span><br><span class="line">                image_url=<span class="string">'https://example.com/item1.jpg'</span>,</span><br><span class="line">                action=PostbackTemplateAction(</span><br><span class="line">                    label=<span class="string">'postback1'</span>,</span><br><span class="line">                    text=<span class="string">'postback text1'</span>,</span><br><span class="line">                    data=<span class="string">'action=buy&amp;itemid=1'</span></span><br><span class="line">                )</span><br><span class="line">            ),</span><br><span class="line">            ImageCarouselColumn(</span><br><span class="line">                image_url=<span class="string">'https://example.com/item2.jpg'</span>,</span><br><span class="line">                action=PostbackTemplateAction(</span><br><span class="line">                    label=<span class="string">'postback2'</span>,</span><br><span class="line">                    text=<span class="string">'postback text2'</span>,</span><br><span class="line">                    data=<span class="string">'action=buy&amp;itemid=2'</span></span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>LineBot</category>
-      </categories>
-      <tags>
-        <tag>教學</tag>
-        <tag>Line</tag>
-        <tag>Bot</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
-    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
-<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
-<a id="more"></a>
-<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
-<ol>
-<li>
-<p>開啟 Parallels Desktop Lite<br>
-<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝 Ubuntu<br>
-<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
-</li>
-<li>
-<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
-<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
-</li>
-<li>
-<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
-<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
-</li>
-<li>
-<p>勾選安裝前設定，可以社設定虛擬機配置<br>
-<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
-</li>
-<li>
-<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
-<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
-</li>
-<li>
-<p>選擇語言<br>
-<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
-</li>
-<li>
-<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
-<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
-</li>
-<li>
-<p>選擇安裝過程的語言<br>
-<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
-</li>
-<li>
-<p>建議全部勾選，也可以選擇自己想要的勾選<br>
-<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
-</li>
-<li>
-<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
-<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「繼續」開始安裝<br>
-<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇時區<br>
-<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
-<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
-</li>
-<li>
-<p>輸入使用者帳戶資訊<br>
-<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
-</li>
-<li>
-<p>等待安裝並重新開機</p>
-</li>
-</ol>
-<blockquote>
-<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
-<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
-</blockquote>
-<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
-<ol>
-<li>
-<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
-<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
-</li>
-<li>
-<p>確認螢幕設定為「縮放」<br>
-<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「系統設定值」的按鈕<br>
-<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「顯示器」<br>
-<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
-</li>
-<li>
-<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
-<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
-</li>
-</ol>
-]]></content>
   </entry>
   <entry>
     <title>在 static method  中取得 String Resource</title>
@@ -1576,6 +1248,334 @@ Android 3.0 以下選擇 NotificationCompat
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
+    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
+<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
+<a id="more"></a>
+<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
+<ol>
+<li>
+<p>開啟 Parallels Desktop Lite<br>
+<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝 Ubuntu<br>
+<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
+</li>
+<li>
+<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
+</li>
+<li>
+<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
+</li>
+<li>
+<p>勾選安裝前設定，可以社設定虛擬機配置<br>
+<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
+</li>
+<li>
+<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
+<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
+</li>
+<li>
+<p>選擇語言<br>
+<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
+</li>
+<li>
+<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
+<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
+</li>
+<li>
+<p>選擇安裝過程的語言<br>
+<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
+</li>
+<li>
+<p>建議全部勾選，也可以選擇自己想要的勾選<br>
+<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
+</li>
+<li>
+<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
+<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「繼續」開始安裝<br>
+<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇時區<br>
+<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
+<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
+</li>
+<li>
+<p>輸入使用者帳戶資訊<br>
+<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
+</li>
+<li>
+<p>等待安裝並重新開機</p>
+</li>
+</ol>
+<blockquote>
+<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
+<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
+</blockquote>
+<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
+<ol>
+<li>
+<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
+<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
+</li>
+<li>
+<p>確認螢幕設定為「縮放」<br>
+<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「系統設定值」的按鈕<br>
+<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「顯示器」<br>
+<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
+</li>
+<li>
+<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
+<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>LineBot+Python，輕鬆建立聊天機器人</title>
+    <url>/line-bot-tutorial/</url>
+    <content><![CDATA[<blockquote>
+<p>本教學由 <strong>北科程式設計研究社</strong> 所屬<br>
+喜歡這篇教學，可以到我的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lhb2FuZHkxMDcvbGluZS1ib3QtdHV0b3JpYWw=">Github<i class="fa fa-external-link-alt"></i></span> 上面給我一顆 Star<br>
+[name=姚韋辰]</p>
+</blockquote>
+<p>本教程介紹如何使用 Python LINE Bot SDK 在 Heroku 上架設一個簡單的回話機器人。</p>
+<a id="more"></a>
+<p>如果您想以另一種語言架設範例 bot，請參閱以下  LINE Bot SDK repositories。</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXBocA==">PHP<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLWdv">Go<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXBlcmw=">Perl<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXJ1Ynk=">Ruby<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXB5dGhvbg==">Python<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLW5vZGVqcw==">Node.js<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="在你開始之前">在你開始之前</h2>
+<p>確保您具有以下內容：</p>
+<ul>
+<li>擁有 Line 帳號</li>
+<li>擁有 <span class="exturl" data-url="aHR0cHM6Ly93d3cuaGVyb2t1LmNvbQ==">Heroku<i class="fa fa-external-link-alt"></i></span> 帳戶（您可以免費創建一個）</li>
+</ul>
+<h2 id="建立-Heroku-專案">建立 Heroku 專案</h2>
+<ol>
+<li>登入 Heroku 後，<br>
+在 <span class="exturl" data-url="aHR0cHM6Ly9kYXNoYm9hcmQuaGVyb2t1LmNvbS9hcHBz">Heroku<i class="fa fa-external-link-alt"></i></span> 頁面中，點選 New -&gt; Create New App<br>
+<img data-src="https://i.imgur.com/Y3njp7I.png" alt=""></li>
+<li>輸入自己喜歡的 App name ，然後點擊 Create app<br>
+<img data-src="https://i.imgur.com/WJ85jXR.png" alt=""></li>
+</ol>
+<h2 id="創建-Line-Bot-頻道">創建 Line Bot 頻道</h2>
+<ol>
+<li>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span><br>
+<img data-src="https://i.imgur.com/vseYQt1.png" alt=""></li>
+<li>創建提供者<br>
+<img data-src="https://i.imgur.com/0tnYFBd.png" alt=""></li>
+<li>填入提供者名稱<br>
+<img data-src="https://i.imgur.com/2ne3H1F.png" alt=""></li>
+<li>點擊 Create<br>
+<img data-src="https://i.imgur.com/bdESW8G.png" alt=""></li>
+<li>點擊 Create Channel<br>
+<img data-src="https://i.imgur.com/F1nAWhK.png" alt=""></li>
+<li>填入 Bot 資訊<br>
+<img data-src="https://i.imgur.com/3wYFSvl.png" alt=""></li>
+<li>同意 Line 條款，並按 Create<br>
+<img data-src="https://i.imgur.com/WNzl4sL.png" alt=""></li>
+<li>選擇剛剛創建的 Bot<br>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
+</ol>
+<h2 id="設定範例機器人">設定範例機器人</h2>
+<p>按照以下步驟架設一個回話機器人。</p>
+<ol>
+<li>
+<p>下載 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lhb2FuZHkxMDcvbGluZS1ib3QtdHV0b3JpYWwvYXJjaGl2ZS9tYXN0ZXIuemlw">範例程式碼<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li>
+<p>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的機器人<br>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
+</li>
+<li>
+<p>開啟 webhook<br>
+<img data-src="https://i.imgur.com/nxvFPB1.png" alt=""><br>
+<img data-src="https://i.imgur.com/PzEKzdq.png" alt=""></p>
+</li>
+<li>
+<p>關閉預設罐頭回覆訊息<br>
+<img data-src="https://i.imgur.com/nXPRhT4.png" alt=""></p>
+</li>
+<li>
+<p>產生 <strong>Channel access token</strong><br>
+<img data-src="https://i.imgur.com/QyxnpZB.png" alt=""><br>
+<img data-src="https://i.imgur.com/quYbPx9.png" alt=""></p>
+</li>
+<li>
+<p>取得 <strong>Channel access token</strong><br>
+<img data-src="https://i.imgur.com/C7OTect.png" alt=""></p>
+</li>
+<li>
+<p>取得 <strong>Channel secret</strong><br>
+<img data-src="https://i.imgur.com/IwmvyzL.png" alt=""></p>
+</li>
+<li>
+<p>使用編輯器開啟範例程式碼資料夾內的 <span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span>，將剛剛取得的 <strong>channel secret</strong> 和 <strong>channel access token</strong> 填入<br>
+<img data-src="https://i.imgur.com/Uz16joi.png" alt=""></p>
+</li>
+</ol>
+<h2 id="將程式推到-Heroku-上">將程式推到 Heroku 上</h2>
+<ol>
+<li>
+<p>下載並安裝 <span class="exturl" data-url="aHR0cHM6Ly9kZXZjZW50ZXIuaGVyb2t1LmNvbS9hcnRpY2xlcy9oZXJva3UtY2xp">Heroku CLI<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li>
+<p>開啟剛剛下載的範例程式碼資料夾，在路徑上輸入 cmd</p>
+</li>
+<li>
+<p>使用終端或命令行應用程序登錄到 Heroku</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>初始化 git</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.name <span class="string">"你的名字"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.email 你的信箱</span></span><br></pre></td></tr></table></figure>
+<p>注意：<strong>你的名字</strong> 和 <strong>你的信箱</strong> 要換成各自的 <strong>名字</strong> 和 <strong>信箱</strong></p>
+</li>
+<li>
+<p>初始化 git</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>注意：僅第一次使用時要輸入</p>
+</li>
+<li>
+<p>用 git 將資料夾與 heroku 連接</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">heroku git:remote -a &#123;HEROKU_APP_NAME&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：{HEROKU_APP_NAME} 是 Heroku 應用的名稱</p>
+</li>
+<li>
+<p>輸入以下指令，將程式碼推上 Heroku，<strong>如果有跳出錯誤請重新輸入</strong></p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m "Add code"</span><br><span class="line">git push -f heroku master</span><br></pre></td></tr></table></figure>
+<p><strong>每當需要更新 Bot 時，請重新輸入上述指令</strong></p>
+</li>
+</ol>
+<h2 id="將-Heroku-與-Line-綁定">將 Heroku 與 Line 綁定</h2>
+<ol>
+<li>
+<p>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的 Bot<br>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></p>
+</li>
+<li>
+<p>在 webhook URL 中輸入 Heroku 網址</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&#123;HEROKU_APP_NAME&#125;.herokuapp.com/callback</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://i.imgur.com/EkDhAgb.png" alt=""><br>
+注意：{HEROKU_APP_NAME} 是 Heroku 應用的名稱</p>
+</li>
+</ol>
+<h2 id="測試範例成果">測試範例成果</h2>
+<ol>
+<li>進入 <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvY29uc29sZS8=">Line 控制台<i class="fa fa-external-link-alt"></i></span>，選擇你剛剛創建的 Bot<br>
+<img data-src="https://i.imgur.com/6ocsOBW.png" alt=""></li>
+<li>通過在控制台的 “Channel settings” 頁面上掃描 QR Code，將您的 Bot 添加到 LINE 的朋友中</li>
+<li>在 Line 上向您的 Bot 發送文字訊息，並確認它會學你說話</li>
+</ol>
+<h2 id="錯誤尋找">錯誤尋找</h2>
+<blockquote>
+<p>當程式遇到問題時，可查看日誌以找出錯誤</p>
+</blockquote>
+<p>要查看您的 Bot 在 Heroku 的日誌，請按照以下步驟。</p>
+<ol>
+<li>
+<p>如果沒登入，請先透過 Heroku CLI 登入</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>顯示 app 日誌</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">heroku logs --tail --app &#123;HEROKU_APP_NAME&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：{HEROKU_APP_NAME} 是上述步驟2中的應用名稱。</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--tail                     # 持續打印日誌</span><br><span class="line">--app &#123;HEROKU_APP_NAME&#125;    # 指定 App</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="程式檔案解說">程式檔案解說</h2>
+<blockquote>
+<p>資料夾裡需含有兩份文件來讓你的程式能在 heroku 上運行</p>
+</blockquote>
+<ul>
+<li>Procfile：heroku 執行命令，web: {語言} {檔案}，這邊語言為 python，要自動執行的檔案為 <span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span>，因此我們改成 <strong>web: python <span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span></strong>。</li>
+<li>requirements.txt：列出所有用到的套件，heroku 會依據這份文件來安裝需要套件</li>
+</ul>
+<h3 id="app-py-主程式"><span class="exturl" data-url="aHR0cDovL2FwcC5weQ==">app.py<i class="fa fa-external-link-alt"></i></span> (主程式)</h3>
+<p>可透過修改程式裡的 handle_message() 方法內的程式碼來控制機器人的訊息回覆</p>
+<p><img data-src="https://i.imgur.com/DNeNbpV.png" alt=""></p>
+<p>新版範例程式碼內附註解<br>
+如想更多了解此程式，可以去研究 Git、Python3、<span class="exturl" data-url="aHR0cDovL2RvY3Muamlua2FuLm9yZy9kb2NzL2ZsYXNrLw==">Flask 套件<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXB5dGhvbg==">Line bot sdk<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="進階操作">進階操作</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpbmUvbGluZS1ib3Qtc2RrLXB5dGhvbiNhcGk=">官方文件<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="回覆訊息">回覆訊息</h3>
+<p>只有當有訊息傳來，才能回覆訊息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">line_bot_api.reply_message(reply_token, 訊息物件)</span><br></pre></td></tr></table></figure>
+<h3 id="主動傳送訊息">主動傳送訊息</h3>
+<p>Bot 需要有開啟 push 功能才可以做，否則程式會出錯</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">line_bot_api.push_message(push_token, 訊息物件)</span><br></pre></td></tr></table></figure>
+<h2 id="訊息物件分類">訊息物件分類</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmxpbmUubWUvZW4vZG9jcy9tZXNzYWdpbmctYXBpL21lc3NhZ2UtdHlwZXMv">官方文件<i class="fa fa-external-link-alt"></i></span></p>
+<p>修改範例程式碼中， handle_message() 方法內的程式碼，可實現多種功能</p>
+<h3 id="TextSendMessage-（文字訊息）">TextSendMessage （文字訊息）</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS9MaWVDRkFiLnBuZw==">https://i.imgur.com/LieCFAb.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = TextSendMessage(text=<span class="string">'Hello, world'</span>)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+<h3 id="ImageSendMessage（圖片訊息）">ImageSendMessage（圖片訊息）</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS9SYUg3Z3FvLnBuZw==">https://i.imgur.com/RaH7gqo.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = ImageSendMessage(</span><br><span class="line">    original_content_url=<span class="string">'https://example.com/original.jpg'</span>,</span><br><span class="line">    preview_image_url=<span class="string">'https://example.com/preview.jpg'</span></span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+<h3 id="VideoSendMessage（影片訊息）">VideoSendMessage（影片訊息）</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS9vNmN2ZjNvLnBuZw==">https://i.imgur.com/o6cvf3o.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = VideoSendMessage(</span><br><span class="line">    original_content_url=<span class="string">'https://example.com/original.mp4'</span>,</span><br><span class="line">    preview_image_url=<span class="string">'https://example.com/preview.jpg'</span></span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+<h3 id="AudioSendMessage（音訊訊息）">AudioSendMessage（音訊訊息）</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS93NXN6WmFnLnBuZw==">https://i.imgur.com/w5szZag.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = AudioSendMessage(</span><br><span class="line">    original_content_url=<span class="string">'https://example.com/original.m4a'</span>,</span><br><span class="line">    duration=<span class="number">240000</span></span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+<h3 id="LocationSendMessage（位置訊息）">LocationSendMessage（位置訊息）</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS90WEU3QXVzLnBuZw==">https://i.imgur.com/tXE7Aus.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = LocationSendMessage(</span><br><span class="line">    title=<span class="string">'my location'</span>,</span><br><span class="line">    address=<span class="string">'Tokyo'</span>,</span><br><span class="line">    latitude=<span class="number">35.65910807942215</span>,</span><br><span class="line">    longitude=<span class="number">139.70372892916203</span></span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+<h3 id="StickerSendMessage（貼圖訊息）">StickerSendMessage（貼圖訊息）</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS83eDBtZ0sxLnBuZw==">https://i.imgur.com/7x0mgK1.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = StickerSendMessage(</span><br><span class="line">    package_id=<span class="string">'1'</span>,</span><br><span class="line">    sticker_id=<span class="string">'1'</span></span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+<h3 id="ImagemapSendMessage-（組圖訊息）">ImagemapSendMessage （組圖訊息）</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS9Nb1NmMkQ2LnBuZw==">https://i.imgur.com/MoSf2D6.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = ImagemapSendMessage(</span><br><span class="line">    base_url=<span class="string">'https://example.com/base'</span>,</span><br><span class="line">    alt_text=<span class="string">'this is an imagemap'</span>,</span><br><span class="line">    base_size=BaseSize(height=<span class="number">1040</span>, width=<span class="number">1040</span>),</span><br><span class="line">    actions=[</span><br><span class="line">        URIImagemapAction(</span><br><span class="line">            link_uri=<span class="string">'https://example.com/'</span>,</span><br><span class="line">            area=ImagemapArea(</span><br><span class="line">                x=<span class="number">0</span>, y=<span class="number">0</span>, width=<span class="number">520</span>, height=<span class="number">1040</span></span><br><span class="line">            )</span><br><span class="line">        ),</span><br><span class="line">        MessageImagemapAction(</span><br><span class="line">            text=<span class="string">'hello'</span>,</span><br><span class="line">            area=ImagemapArea(</span><br><span class="line">                x=<span class="number">520</span>, y=<span class="number">0</span>, width=<span class="number">520</span>, height=<span class="number">1040</span></span><br><span class="line">            )</span><br><span class="line">        )</span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+<h3 id="TemplateSendMessage-ButtonsTemplate-（按鈕介面訊息）">TemplateSendMessage - ButtonsTemplate （按鈕介面訊息）</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS80MWxYV2pQLnBuZw==">https://i.imgur.com/41lXWjP.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">'Buttons template'</span>,</span><br><span class="line">    template=ButtonsTemplate(</span><br><span class="line">        thumbnail_image_url=<span class="string">'https://example.com/image.jpg'</span>,</span><br><span class="line">        title=<span class="string">'Menu'</span>,</span><br><span class="line">        text=<span class="string">'Please select'</span>,</span><br><span class="line">        actions=[</span><br><span class="line">            PostbackTemplateAction(</span><br><span class="line">                label=<span class="string">'postback'</span>,</span><br><span class="line">                text=<span class="string">'postback text'</span>,</span><br><span class="line">                data=<span class="string">'action=buy&amp;itemid=1'</span></span><br><span class="line">            ),</span><br><span class="line">            MessageTemplateAction(</span><br><span class="line">                label=<span class="string">'message'</span>,</span><br><span class="line">                text=<span class="string">'message text'</span></span><br><span class="line">            ),</span><br><span class="line">            URITemplateAction(</span><br><span class="line">                label=<span class="string">'uri'</span>,</span><br><span class="line">                uri=<span class="string">'http://example.com/'</span></span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+<h3 id="TemplateSendMessage-ConfirmTemplate（確認介面訊息）">TemplateSendMessage - ConfirmTemplate（確認介面訊息）</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS9VOE5EaHJ0LnBuZw==">https://i.imgur.com/U8NDhrt.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">'Confirm template'</span>,</span><br><span class="line">    template=ConfirmTemplate(</span><br><span class="line">        text=<span class="string">'Are you sure?'</span>,</span><br><span class="line">        actions=[</span><br><span class="line">            PostbackTemplateAction(</span><br><span class="line">                label=<span class="string">'postback'</span>,</span><br><span class="line">                text=<span class="string">'postback text'</span>,</span><br><span class="line">                data=<span class="string">'action=buy&amp;itemid=1'</span></span><br><span class="line">            ),</span><br><span class="line">            MessageTemplateAction(</span><br><span class="line">                label=<span class="string">'message'</span>,</span><br><span class="line">                text=<span class="string">'message text'</span></span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+<h3 id="TemplateSendMessage-CarouselTemplate">TemplateSendMessage - CarouselTemplate</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS85ODJHbGdvLnBuZw==">https://i.imgur.com/982Glgo.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">'Carousel template'</span>,</span><br><span class="line">    template=CarouselTemplate(</span><br><span class="line">        columns=[</span><br><span class="line">            CarouselColumn(</span><br><span class="line">                thumbnail_image_url=<span class="string">'https://example.com/item1.jpg'</span>,</span><br><span class="line">                title=<span class="string">'this is menu1'</span>,</span><br><span class="line">                text=<span class="string">'description1'</span>,</span><br><span class="line">                actions=[</span><br><span class="line">                    PostbackTemplateAction(</span><br><span class="line">                        label=<span class="string">'postback1'</span>,</span><br><span class="line">                        text=<span class="string">'postback text1'</span>,</span><br><span class="line">                        data=<span class="string">'action=buy&amp;itemid=1'</span></span><br><span class="line">                    ),</span><br><span class="line">                    MessageTemplateAction(</span><br><span class="line">                        label=<span class="string">'message1'</span>,</span><br><span class="line">                        text=<span class="string">'message text1'</span></span><br><span class="line">                    ),</span><br><span class="line">                    URITemplateAction(</span><br><span class="line">                        label=<span class="string">'uri1'</span>,</span><br><span class="line">                        uri=<span class="string">'http://example.com/1'</span></span><br><span class="line">                    )</span><br><span class="line">                ]</span><br><span class="line">            ),</span><br><span class="line">            CarouselColumn(</span><br><span class="line">                thumbnail_image_url=<span class="string">'https://example.com/item2.jpg'</span>,</span><br><span class="line">                title=<span class="string">'this is menu2'</span>,</span><br><span class="line">                text=<span class="string">'description2'</span>,</span><br><span class="line">                actions=[</span><br><span class="line">                    PostbackTemplateAction(</span><br><span class="line">                        label=<span class="string">'postback2'</span>,</span><br><span class="line">                        text=<span class="string">'postback text2'</span>,</span><br><span class="line">                        data=<span class="string">'action=buy&amp;itemid=2'</span></span><br><span class="line">                    ),</span><br><span class="line">                    MessageTemplateAction(</span><br><span class="line">                        label=<span class="string">'message2'</span>,</span><br><span class="line">                        text=<span class="string">'message text2'</span></span><br><span class="line">                    ),</span><br><span class="line">                    URITemplateAction(</span><br><span class="line">                        label=<span class="string">'uri2'</span>,</span><br><span class="line">                        uri=<span class="string">'http://example.com/2'</span></span><br><span class="line">                    )</span><br><span class="line">                ]</span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+<h3 id="TemplateSendMessage-ImageCarouselTemplate">TemplateSendMessage - ImageCarouselTemplate</h3>
+<p>![](<span class="exturl" data-url="aHR0cHM6Ly9pLmltZ3VyLmNvbS8yeXMxcXFjLnBuZw==">https://i.imgur.com/2ys1qqc.png<i class="fa fa-external-link-alt"></i></span> =250x)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">message = TemplateSendMessage(</span><br><span class="line">    alt_text=<span class="string">'ImageCarousel template'</span>,</span><br><span class="line">    template=ImageCarouselTemplate(</span><br><span class="line">        columns=[</span><br><span class="line">            ImageCarouselColumn(</span><br><span class="line">                image_url=<span class="string">'https://example.com/item1.jpg'</span>,</span><br><span class="line">                action=PostbackTemplateAction(</span><br><span class="line">                    label=<span class="string">'postback1'</span>,</span><br><span class="line">                    text=<span class="string">'postback text1'</span>,</span><br><span class="line">                    data=<span class="string">'action=buy&amp;itemid=1'</span></span><br><span class="line">                )</span><br><span class="line">            ),</span><br><span class="line">            ImageCarouselColumn(</span><br><span class="line">                image_url=<span class="string">'https://example.com/item2.jpg'</span>,</span><br><span class="line">                action=PostbackTemplateAction(</span><br><span class="line">                    label=<span class="string">'postback2'</span>,</span><br><span class="line">                    text=<span class="string">'postback text2'</span>,</span><br><span class="line">                    data=<span class="string">'action=buy&amp;itemid=2'</span></span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        ]</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">line_bot_api.reply_message(event.reply_token, message)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>LineBot</category>
+      </categories>
+      <tags>
+        <tag>教學</tag>
+        <tag>Line</tag>
+        <tag>Bot</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
