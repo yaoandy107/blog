@@ -152,6 +152,117 @@
       </tags>
   </entry>
   <entry>
+    <title>Android Studio 技巧整理</title>
+    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<p>最近開始研究 Android Studio，得知一些可以增加開發速度的小技巧，因此在這邊做一下記錄。</p>
+<a id="more"></a>
+<h2 id="Live-Templates">Live Templates</h2>
+<p><code>Live Templates</code>：程式碼快速補全模板</p>
+<p>這邊列出一些比較常見的 Live Templates，有興趣的人可以自行深入了解。</p>
+<ul>
+<li><code>newInstance</code> - 在 Fragment 中生成 <code>newInstance</code> 方法</li>
+<li><code>Toast</code> - 生成 <code>Toast.makeText(context, &quot;&quot;, Toast.LENGTH_SHORT).show();</code></li>
+<li><code>fbc</code> - 生成 findViewById</li>
+<li><code>const</code> - 定義一個 android style int 常數</li>
+<li><code>logd</code> - 生成 <code>Log.d(TAG, &quot;&quot;);</code></li>
+<li><code>logm</code> - Log 當前方法名稱和參數</li>
+<li><code>logr</code> - Log 當前方法結果</li>
+<li><code>logt</code> - 當前類生成 log tag</li>
+<li><code>psf</code> - public static final</li>
+<li><code>sout</code> - 印出一個字串到 System.out</li>
+<li><code>soutm</code> - 印出當前類名和方法到 System.out</li>
+<li><code>soutp</code> - 印出方法參數和返回值到 System.out</li>
+<li><code>visible</code> - 設置 view VISIBLE</li>
+<li><code>gone</code> - 設置 view GONE</li>
+<li><code>noInstance</code> - private 構造方法</li>
+</ul>
+<h2 id="Android-Studio-的自動生成">Android Studio 的自動生成</h2>
+<p>可以使用 Android Studio 自動幫你生成一些程式碼</p>
+<ul>
+<li><code>&lt;expr&gt;.null</code> 轉換成 <code>if(&lt;expr&gt; == null)</code></li>
+<li><code>&lt;expr&gt;.notnull</code> 轉換成 <code>if(&lt;expr&gt; != null)</code></li>
+<li><code>&lt;expr&gt;.var</code> 轉換成 <code>T name = &lt;expr&gt;</code></li>
+<li><code>&lt;expr&gt;.field</code> 會自動生成一個全局變數 <code>field = &lt;expr&gt;</code></li>
+<li><code>&lt;ArrayExpr&gt;.for</code> 轉換成 <code>for(T item : &lt;Arrayexpr&gt;)</code></li>
+<li><code>&lt;ArrayExpr&gt;.fori</code> 轉換成 <code>for(int i = 0; i &lt; &lt;Arrayexpr&gt;.length; i++)</code></li>
+<li><code>&lt;ArrayExpr&gt;.forr</code> 轉換成 <code>for(int i = &lt;Arrayexpr&gt;.length - 1; i &gt; 0 ; i--)</code></li>
+</ul>
+<h2 id="插件">插件</h2>
+<p>下面列出一些我正在使用的插件</p>
+<ol>
+<li>
+<p><strong>Android Drawable Importer</strong><br>
+為了適應所有 Android 螢幕的大小和密度，每個 Android 項目都會包含 drawable 資料夾。任何具備 Android 開發經驗的開發人員都知道，為了支持所有的螢幕尺寸，你必須給每個螢幕類型導入不同的 Drawalbe。Android Drawable Importer 插件能讓這項工作變得更容易。它可以減少導入縮放圖像到 Android 項目所需的工作量。 Android Drawable Importer 添加了一個在不同分辨率導入 Drawble 或縮放指定圖像到定義分辨率的選項。這個插件加速了開發人員的 Drawable 工作。</p>
+</li>
+<li>
+<p><strong>Lifecycle Sorter</strong><br>
+可以根據 Activity 或者 fragment 的生命週期對其生命週期方法位置進行先後排序，快捷鍵 Ctrl + alt + K。</p>
+</li>
+<li>
+<p><strong>.ignore</strong><br>
+我們都知道在 Git 中想要過濾掉一些不想提交的文件，可以把相應的文件添加到 .gitignore 中，而 .gitignore 這個 Android Studio 插件根據不同的語言來選擇模板，就不用自己在費事添加一些文件了，而且還有自動補全功能，過濾文件再也不要復製檔名了。我們做項目的時候，並不是所有文件都是要提交的，比如構建的 build 資料夾，本地配置文件，每個 Module 生成的 iml 文件，但是我們每次 add，commit 都會不小心把它們添加上去，而 gitignore 就是解決這種痛點的，如果你不想提交的檔案，就可以在創建項目的時候將這個檔案中添加即可，將一些通用的東西屏蔽掉。</p>
+</li>
+<li>
+<p><strong>Android Methods Count</strong><br>
+統計 Android 依賴庫中方法的總個數。 (一個 dex 只能接受的 65K 並不是指方法數超過 65K 而報的錯,而是指引用計數超過 65K)</p>
+</li>
+<li>
+<p><strong>jetbrains-wakatime</strong><br>
+紀錄在 Android Studio 上的工作時間。</p>
+</li>
+<li>
+<p><strong>Genymotion</strong><br>
+好用的 Android 模擬器，原生模擬器不堪用。</p>
+</li>
+<li>
+<p><strong>GsonFormat</strong><br>
+快速將 json 字串轉換成一個 Java Bean，免去我們根據 json 字符串手寫對應 Java Bean 的過程。</p>
+</li>
+<li>
+<p><strong>LayoutFormatter</strong><br>
+一鍵幫你將你的 XML 文件排版，並調整順序。</p>
+</li>
+</ol>
+<h2 id="快捷鍵">快捷鍵</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9yZXNvdXJjZXMuamV0YnJhaW5zLmNvbS9zdG9yYWdlL3Byb2R1Y3RzL2ludGVsbGlqLWlkZWEvZG9jcy9JbnRlbGxpSklERUFfUmVmZXJlbmNlQ2FyZC5wZGY=">完整的快捷键指南<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="參考資料">參考資料</h3>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25pc3J1bHovYW5kcm9pZC10aXBzLXRyaWNrcw==">nisrulz/android-tips-tricks<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly95ZG1tb2Nvby5naXRodWIuaW8vMjAxNi8wNi8yOC9BbmRyb2lkLVN0dWRpbyVFNiU4RiU5MiVFNCVCQiVCNiVFNiU5NSVCNCVFNyU5MCU4Ni8=">Android Studio插件整理<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android Studio</tag>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android 學習問題紀錄</title>
+    <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
+    <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
+<h3 id="問題">問題</h3>
+<p>在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。<br>
+<a id="more"></a></p>
+<h3 id="原因">原因</h3>
+<p>OkHttp 不是執行在 UI Thread，但 Retrofit 是。</p>
+<h2 id="紀錄-2">紀錄 2</h2>
+<h3 id="問題-2">問題</h3>
+<p>在 OkHttp  的 onResponse 中使用 Toast 會噴錯。</p>
+<h3 id="原因-2">原因</h3>
+<p>OkHttp 不是執行在 UI Thread。</p>
+<h3 id="解法">解法</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解法1</span></span><br><span class="line">Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</span><br><span class="line">handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 解法2</span></span><br><span class="line">activity.runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AIS3 Final CTF - hellOwOrld</title>
     <url>/AIS3-Final-CTF-hellOwOrld/</url>
     <content><![CDATA[<p>我們這隊都是第一次參加 AIS3 Final CTF，結果拿到第 18 名的成績，滿開心的ＸＤ<br>
@@ -267,114 +378,61 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
       </tags>
   </entry>
   <entry>
-    <title>Android Studio 技巧整理</title>
-    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
-    <content><![CDATA[<p>最近開始研究 Android Studio，得知一些可以增加開發速度的小技巧，因此在這邊做一下記錄。</p>
+    <title>Error：Fragment already added</title>
+    <url>/Error-Fragment-already-added/</url>
+    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
+<pre><code>java.lang.IllegalStateException: Fragment already added
+</code></pre>
 <a id="more"></a>
-<h2 id="Live-Templates">Live Templates</h2>
-<p><code>Live Templates</code>：程式碼快速補全模板</p>
-<p>這邊列出一些比較常見的 Live Templates，有興趣的人可以自行深入了解。</p>
-<ul>
-<li><code>newInstance</code> - 在 Fragment 中生成 <code>newInstance</code> 方法</li>
-<li><code>Toast</code> - 生成 <code>Toast.makeText(context, &quot;&quot;, Toast.LENGTH_SHORT).show();</code></li>
-<li><code>fbc</code> - 生成 findViewById</li>
-<li><code>const</code> - 定義一個 android style int 常數</li>
-<li><code>logd</code> - 生成 <code>Log.d(TAG, &quot;&quot;);</code></li>
-<li><code>logm</code> - Log 當前方法名稱和參數</li>
-<li><code>logr</code> - Log 當前方法結果</li>
-<li><code>logt</code> - 當前類生成 log tag</li>
-<li><code>psf</code> - public static final</li>
-<li><code>sout</code> - 印出一個字串到 System.out</li>
-<li><code>soutm</code> - 印出當前類名和方法到 System.out</li>
-<li><code>soutp</code> - 印出方法參數和返回值到 System.out</li>
-<li><code>visible</code> - 設置 view VISIBLE</li>
-<li><code>gone</code> - 設置 view GONE</li>
-<li><code>noInstance</code> - private 構造方法</li>
-</ul>
-<h2 id="Android-Studio-的自動生成">Android Studio 的自動生成</h2>
-<p>可以使用 Android Studio 自動幫你生成一些程式碼</p>
-<ul>
-<li><code>&lt;expr&gt;.null</code> 轉換成 <code>if(&lt;expr&gt; == null)</code></li>
-<li><code>&lt;expr&gt;.notnull</code> 轉換成 <code>if(&lt;expr&gt; != null)</code></li>
-<li><code>&lt;expr&gt;.var</code> 轉換成 <code>T name = &lt;expr&gt;</code></li>
-<li><code>&lt;expr&gt;.field</code> 會自動生成一個全局變數 <code>field = &lt;expr&gt;</code></li>
-<li><code>&lt;ArrayExpr&gt;.for</code> 轉換成 <code>for(T item : &lt;Arrayexpr&gt;)</code></li>
-<li><code>&lt;ArrayExpr&gt;.fori</code> 轉換成 <code>for(int i = 0; i &lt; &lt;Arrayexpr&gt;.length; i++)</code></li>
-<li><code>&lt;ArrayExpr&gt;.forr</code> 轉換成 <code>for(int i = &lt;Arrayexpr&gt;.length - 1; i &gt; 0 ; i--)</code></li>
-</ul>
-<h2 id="插件">插件</h2>
-<p>下面列出一些我正在使用的插件</p>
-<ol>
-<li>
-<p><strong>Android Drawable Importer</strong><br>
-為了適應所有 Android 螢幕的大小和密度，每個 Android 項目都會包含 drawable 資料夾。任何具備 Android 開發經驗的開發人員都知道，為了支持所有的螢幕尺寸，你必須給每個螢幕類型導入不同的 Drawalbe。Android Drawable Importer 插件能讓這項工作變得更容易。它可以減少導入縮放圖像到 Android 項目所需的工作量。 Android Drawable Importer 添加了一個在不同分辨率導入 Drawble 或縮放指定圖像到定義分辨率的選項。這個插件加速了開發人員的 Drawable 工作。</p>
-</li>
-<li>
-<p><strong>Lifecycle Sorter</strong><br>
-可以根據 Activity 或者 fragment 的生命週期對其生命週期方法位置進行先後排序，快捷鍵 Ctrl + alt + K。</p>
-</li>
-<li>
-<p><strong>.ignore</strong><br>
-我們都知道在 Git 中想要過濾掉一些不想提交的文件，可以把相應的文件添加到 .gitignore 中，而 .gitignore 這個 Android Studio 插件根據不同的語言來選擇模板，就不用自己在費事添加一些文件了，而且還有自動補全功能，過濾文件再也不要復製檔名了。我們做項目的時候，並不是所有文件都是要提交的，比如構建的 build 資料夾，本地配置文件，每個 Module 生成的 iml 文件，但是我們每次 add，commit 都會不小心把它們添加上去，而 gitignore 就是解決這種痛點的，如果你不想提交的檔案，就可以在創建項目的時候將這個檔案中添加即可，將一些通用的東西屏蔽掉。</p>
-</li>
-<li>
-<p><strong>Android Methods Count</strong><br>
-統計 Android 依賴庫中方法的總個數。 (一個 dex 只能接受的 65K 並不是指方法數超過 65K 而報的錯,而是指引用計數超過 65K)</p>
-</li>
-<li>
-<p><strong>jetbrains-wakatime</strong><br>
-紀錄在 Android Studio 上的工作時間。</p>
-</li>
-<li>
-<p><strong>Genymotion</strong><br>
-好用的 Android 模擬器，原生模擬器不堪用。</p>
-</li>
-<li>
-<p><strong>GsonFormat</strong><br>
-快速將 json 字串轉換成一個 Java Bean，免去我們根據 json 字符串手寫對應 Java Bean 的過程。</p>
-</li>
-<li>
-<p><strong>LayoutFormatter</strong><br>
-一鍵幫你將你的 XML 文件排版，並調整順序。</p>
-</li>
-</ol>
-<h2 id="快捷鍵">快捷鍵</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9yZXNvdXJjZXMuamV0YnJhaW5zLmNvbS9zdG9yYWdlL3Byb2R1Y3RzL2ludGVsbGlqLWlkZWEvZG9jcy9JbnRlbGxpSklERUFfUmVmZXJlbmNlQ2FyZC5wZGY=">完整的快捷键指南<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="參考資料">參考資料</h3>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25pc3J1bHovYW5kcm9pZC10aXBzLXRyaWNrcw==">nisrulz/android-tips-tricks<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly95ZG1tb2Nvby5naXRodWIuaW8vMjAxNi8wNi8yOC9BbmRyb2lkLVN0dWRpbyVFNiU4RiU5MiVFNCVCQiVCNiVFNiU5NSVCNCVFNyU5MCU4Ni8=">Android Studio插件整理<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
+<h2 id="原因">原因</h2>
+<p>Fragment 在一些狀況不會正常移除</p>
+<h2 id="原本程式碼">原本程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
+<h2 id="解決辦法">解決辦法</h2>
+<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後來程式碼">後來程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android Studio</tag>
         <tag>Android</tag>
+        <tag>Fragment</tag>
+        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
-    <title>Android 學習問題紀錄</title>
-    <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
-    <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
-<h3 id="問題">問題</h3>
-<p>在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。<br>
-<a id="more"></a></p>
-<h3 id="原因">原因</h3>
-<p>OkHttp 不是執行在 UI Thread，但 Retrofit 是。</p>
-<h2 id="紀錄-2">紀錄 2</h2>
-<h3 id="問題-2">問題</h3>
-<p>在 OkHttp  的 onResponse 中使用 Toast 會噴錯。</p>
-<h3 id="原因-2">原因</h3>
-<p>OkHttp 不是執行在 UI Thread。</p>
-<h3 id="解法">解法</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解法1</span></span><br><span class="line">Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</span><br><span class="line">handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 解法2</span></span><br><span class="line">activity.runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+    <title>Mac 下使用 Shadowsocks 翻牆</title>
+    <url>/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Shadowsocks%E7%BF%BB%E7%89%86/</url>
+    <content><![CDATA[<p>這邊教大家如何使用 ShadowsocksX-NG 來進行 Shadowsocks 代理，以達到 <strong>翻牆</strong> 效果。</p>
+<a id="more"></a>
+<h2 id="下載-ShadowsocksX-NG">下載 ShadowsocksX-NG</h2>
+<p>GitHub 載點：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvd3NvY2tzL1NoYWRvd3NvY2tzWC1ORy9yZWxlYXNlcy8=">https://github.com/shadowsocks/ShadowsocksX-NG/releases/<i class="fa fa-external-link-alt"></i></span></p>
+<p><img data-src="https://imgur.com/rputoJL.png" alt=""></p>
+<h2 id="編輯代理伺服器">編輯代理伺服器</h2>
+<p>點擊「紙飛機」選擇「Server」，然後點擊【Server Preferences…】選項：</p>
+<p><img data-src="https://i.imgur.com/PjwfSrC.png" alt=""></p>
+<p>新增 Shadowsocks 服務配置：</p>
+<p><img data-src="https://i.imgur.com/BQM68VU.png" alt=""></p>
+<h2 id="更改代理模式">更改代理模式</h2>
+<p>預設模式為 <code>Proxy Auto Configure Mode</code>，這邊我們將它改為 <code>Global Mode</code>，使所有對外連線都使用 <code>Shadowsocks</code>，且無需特別設定。</p>
+<p>如要使用 <code>Proxy Auto Configure Mode</code>，會需要額外設定，這邊就不多做敘述。</p>
+<p><img data-src="https://i.imgur.com/FnjA0Up.png" alt=""></p>
+<h2 id="測試是否成功">測試是否成功</h2>
+<p>訪問 <code>orange.tw</code> 來查看自己的 IP 是否有變更。</p>
+<p><img data-src="https://i.imgur.com/5q9MBsg.png" alt=""></p>
+<h2 id="關閉-Shadowsocks">關閉 Shadowsocks</h2>
+<p>點擊【Turn Shadowsocks Off】來關閉 Shadowsocks。</p>
+<p><img data-src="https://imgur.com/k4WvIRT.png" alt=""></p>
+]]></content>
       <categories>
-        <category>Android</category>
+        <category>Shadowsocks</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>MacOS</tag>
+        <tag>Shadowsocks</tag>
+        <tag>翻牆</tag>
       </tags>
   </entry>
   <entry>
@@ -611,21 +669,6 @@ _ 代表任意字元<br>
       </tags>
   </entry>
   <entry>
-    <title>android:gravity 和 android:layout_gravity 的差別</title>
-    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
-    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
-<a id="more"></a>
-<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
-<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>getColor(int id) deprecated</title>
     <url>/getcolor-deprecated/</url>
     <content><![CDATA[<p>從 Android 6 開始，一個新的 getColor() 方法出現，舊的 Resource.getColor(int id) 則被廢棄。</p>
@@ -649,6 +692,21 @@ Starting in M, the returned color will be styled for the specified Context's the
       <tags>
         <tag>Android</tag>
         <tag>deprecated</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android:gravity 和 android:layout_gravity 的差別</title>
+    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
+    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
+<a id="more"></a>
+<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
+<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -793,6 +851,179 @@ Starting in M, the returned color will be styled for the specified Context's the
         <tag>Next</tag>
         <tag>教學</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>如何在 Centos 7 創建一個 Sudo user</title>
+    <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
+    <content><![CDATA[<ol>
+<li>以 root 身份登錄到你的伺服器。 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh root@server_ip_address</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<a id="more"></a>
+<ol start="2">
+<li>
+<p>使用 adduser 指令將新用戶添加到你的系統</p>
+<p>將 username 替換為你要創建的用戶</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adduser username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 passwd 指令更新 user 密碼</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">passwd username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>設置 user 的密碼的顯示訊息</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Set password prompts:</span><br><span class="line">Changing password for user username.</span><br><span class="line">New password:</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>使用 usermod 指令將用戶添加到 wheel 中。</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">usermod -aG wheel username</span><br></pre></td></tr></table></figure>
+<p>默認情況下，在 CentOS 上，wheel 的成員具有 sudo 權限。</p>
+</li>
+<li>
+<p>在 user 上測試 sudo 訪問權限</p>
+<ul>
+<li>使用該 su 命令切換到新的 user 。</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su - username</span><br></pre></td></tr></table></figure>
+<ul>
+<li>作為 user ，請通過將“sudo”添加到要以超級用戶權限運行的命令來驗證是否可以使用 sudo。</li>
+</ul>
+<p>例如，您可以列出根目錄的內容，/ 通常只能由 root 用戶訪問。</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ls -la /</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一次使用 sudo 時，系統會提示你輸入 user 的密碼。輸入密碼以繼續。</li>
+</ul>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Output:</span><br><span class="line">[sudo] password for username:</span><br></pre></td></tr></table></figure>
+<p>如果您前面操作正確，則使用 sudo 來執行的指令會以 root 權限執行。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>教學</tag>
+        <tag>CentOS</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NotificationCompat 與 Notification 差別</title>
+    <url>/notificationcompat-vs-notification/</url>
+    <content><![CDATA[<p>Notification.Builder 是 Android 3.0 (API 11) 引入的。如要兼容低版本，可以使用 Support V4 包提供的 NotificationCompat.Builder。</p>
+<a id="more"></a>
+<pre><code>Android 3.0 以上選擇 Notification
+Android 3.0 以下選擇 NotificationCompat
+</code></pre>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Notification</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
+    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
+<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
+<a id="more"></a>
+<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
+<ol>
+<li>
+<p>開啟 Parallels Desktop Lite<br>
+<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝 Ubuntu<br>
+<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
+</li>
+<li>
+<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
+</li>
+<li>
+<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
+<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
+</li>
+<li>
+<p>勾選安裝前設定，可以社設定虛擬機配置<br>
+<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
+</li>
+<li>
+<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
+<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
+</li>
+<li>
+<p>選擇語言<br>
+<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
+</li>
+<li>
+<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
+<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
+</li>
+<li>
+<p>選擇安裝過程的語言<br>
+<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
+</li>
+<li>
+<p>建議全部勾選，也可以選擇自己想要的勾選<br>
+<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
+</li>
+<li>
+<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
+<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「繼續」開始安裝<br>
+<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇時區<br>
+<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
+</li>
+<li>
+<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
+<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
+</li>
+<li>
+<p>輸入使用者帳戶資訊<br>
+<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
+</li>
+<li>
+<p>等待安裝並重新開機</p>
+</li>
+</ol>
+<blockquote>
+<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
+<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
+</blockquote>
+<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
+<ol>
+<li>
+<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
+<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
+</li>
+<li>
+<p>確認螢幕設定為「縮放」<br>
+<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「系統設定值」的按鈕<br>
+<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
+</li>
+<li>
+<p>點擊「顯示器」<br>
+<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
+</li>
+<li>
+<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
+<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
+</li>
+</ol>
+]]></content>
   </entry>
   <entry>
     <title>LineBot+Python，輕鬆建立聊天機器人</title>
@@ -1022,177 +1253,26 @@ Starting in M, the returned color will be styled for the specified Context's the
       </tags>
   </entry>
   <entry>
-    <title>NotificationCompat 與 Notification 差別</title>
-    <url>/notificationcompat-vs-notification/</url>
-    <content><![CDATA[<p>Notification.Builder 是 Android 3.0 (API 11) 引入的。如要兼容低版本，可以使用 Support V4 包提供的 NotificationCompat.Builder。</p>
+    <title>在 static method  中取得 String Resource</title>
+    <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
+    <content><![CDATA[<h2 id="遇到問題">遇到問題</h2>
+<p>最近在寫一個 Singleton 的類別時，遇到需要透過 Resource id 取得 string 的需求，原本想用 context.getString(int resId) 的方式取得，但發現 Context 不適合被 static 成員或類別引用，會導致內存泄露。</p>
 <a id="more"></a>
-<pre><code>Android 3.0 以上選擇 Notification
-Android 3.0 以下選擇 NotificationCompat
+<pre><code>static 成員生命週期會隨著 app 開始到結束。
+如果引用到 Context、Activity，會導致 Context、Activity 也跟著無法被回收，導致內存泄露。
 </code></pre>
+<h2 id="解決辦法">解決辦法</h2>
+<p>使用 Resources.getSystem().getString(int resId) 來取得 String。</p>
+<h2 id="參考資料">參考資料</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAwODEzMTk3OQ==">https://segmentfault.com/q/1010000008131979<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMzgyMjczMi9hbmRyb2lkLWdldHN0cmluZ3Itc3RyaW5nLWluLXN0YXRpYy1tZXRob2Q=">https://stackoverflow.com/questions/3822732/android-getstringr-string-in-static-method<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
         <category>Android</category>
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>Notification</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>如何在 Centos 7 創建一個 Sudo user</title>
-    <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
-    <content><![CDATA[<ol>
-<li>以 root 身份登錄到你的伺服器。 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh root@server_ip_address</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<a id="more"></a>
-<ol start="2">
-<li>
-<p>使用 adduser 指令將新用戶添加到你的系統</p>
-<p>將 username 替換為你要創建的用戶</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adduser username</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用 passwd 指令更新 user 密碼</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">passwd username</span><br></pre></td></tr></table></figure>
-<ul>
-<li>設置 user 的密碼的顯示訊息</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Set password prompts:</span><br><span class="line">Changing password for user username.</span><br><span class="line">New password:</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>使用 usermod 指令將用戶添加到 wheel 中。</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">usermod -aG wheel username</span><br></pre></td></tr></table></figure>
-<p>默認情況下，在 CentOS 上，wheel 的成員具有 sudo 權限。</p>
-</li>
-<li>
-<p>在 user 上測試 sudo 訪問權限</p>
-<ul>
-<li>使用該 su 命令切換到新的 user 。</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">su - username</span><br></pre></td></tr></table></figure>
-<ul>
-<li>作為 user ，請通過將“sudo”添加到要以超級用戶權限運行的命令來驗證是否可以使用 sudo。</li>
-</ul>
-<p>例如，您可以列出根目錄的內容，/ 通常只能由 root 用戶訪問。</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ls -la /</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一次使用 sudo 時，系統會提示你輸入 user 的密碼。輸入密碼以繼續。</li>
-</ul>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Output:</span><br><span class="line">[sudo] password for username:</span><br></pre></td></tr></table></figure>
-<p>如果您前面操作正確，則使用 sudo 來執行的指令會以 root 權限執行。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>教學</tag>
-        <tag>CentOS</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
-    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="安裝-Parallels-Desktop-Lite">安裝 Parallels Desktop Lite</h2>
-<p>到 <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL3R3L2FwcC9wYXJhbGxlbHMtZGVza3RvcC1saXRlL2lkMTA4NTExNDcwOQ==">Mac App Store<i class="fa fa-external-link-alt"></i></span> 上面可以找到</p>
-<a id="more"></a>
-<h2 id="安裝-Ubuntu-16-04">安裝 Ubuntu 16.04</h2>
-<ol>
-<li>
-<p>開啟 Parallels Desktop Lite<br>
-<img data-src="https://i.imgur.com/FZgYScy.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝 Ubuntu<br>
-<img data-src="https://i.imgur.com/NP5rFfy.png" alt=""></p>
-</li>
-<li>
-<p>選取你下載的 Ubuntu 映像檔，並點擊<strong>繼續</strong><br>
-<img data-src="https://i.imgur.com/A6Gl0Si.png" alt=""></p>
-</li>
-<li>
-<p>取消勾選『快速安裝』，並點擊<strong>繼續</strong><br>
-<img data-src="https://i.imgur.com/OvO4OMw.png" alt=""></p>
-</li>
-<li>
-<p>勾選安裝前設定，可以社設定虛擬機配置<br>
-<img data-src="https://i.imgur.com/DUoG0ug.png" alt=""></p>
-</li>
-<li>
-<p>點擊配置已設定虛擬機，然後點擊<strong>繼續</strong>來開始安裝<br>
-<img data-src="https://i.imgur.com/ET2tcHM.png" alt=""></p>
-</li>
-<li>
-<p>選擇語言<br>
-<img data-src="https://i.imgur.com/oQNjwG8.png" alt=""></p>
-</li>
-<li>
-<p>選擇「安裝 Ubuntu」（如果想先試用，但不安裝，可以點第一項）<br>
-<img data-src="https://i.imgur.com/0Fs3tId.png" alt=""></p>
-</li>
-<li>
-<p>選擇安裝過程的語言<br>
-<img data-src="https://i.imgur.com/on5qjbI.jpg" alt=""></p>
-</li>
-<li>
-<p>建議全部勾選，也可以選擇自己想要的勾選<br>
-<img data-src="https://i.imgur.com/xMeVUEq.jpg" alt=""></p>
-</li>
-<li>
-<p>如果是在虛擬機中安裝，不需分隔磁碟，直接選第一個，然後按「立即安裝」<br>
-<img data-src="https://i.imgur.com/18mN5pS.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「繼續」開始安裝<br>
-<img data-src="https://i.imgur.com/2fEiSDD.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇時區<br>
-<img data-src="https://i.imgur.com/vMKPjPe.jpg" alt=""></p>
-</li>
-<li>
-<p>選擇鍵盤排列方試（台灣鍵盤為美式鍵盤）<br>
-<img data-src="https://i.imgur.com/S8Ey4nw.jpg" alt=""></p>
-</li>
-<li>
-<p>輸入使用者帳戶資訊<br>
-<img data-src="https://i.imgur.com/HyVXVes.jpg" alt=""></p>
-</li>
-<li>
-<p>等待安裝並重新開機</p>
-</li>
-</ol>
-<blockquote>
-<p>註：如果重新開機失敗，可以點選下圖的重新啟動<br>
-<img data-src="https://i.imgur.com/UD95Mls.jpg" alt=""></p>
-</blockquote>
-<h2 id="Parellels-解析度調整">Parellels 解析度調整</h2>
-<ol>
-<li>
-<p>重新開機後，點擊 Parallels 上方的操作選單，並點擊安裝 Parallels Tools，依照指示完成安裝。<br>
-<img data-src="https://i.imgur.com/GSC8SsF.jpg" alt=""></p>
-</li>
-<li>
-<p>確認螢幕設定為「縮放」<br>
-<img data-src="https://i.imgur.com/7YMXx9t.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「系統設定值」的按鈕<br>
-<img data-src="https://i.imgur.com/Cd293Gd.jpg" alt=""></p>
-</li>
-<li>
-<p>點擊「顯示器」<br>
-<img data-src="https://i.imgur.com/vuFY6F5.jpg" alt=""></p>
-</li>
-<li>
-<p>在這裡可以調整螢幕的解析度（Macbook 建議調成 1440x900）<br>
-<img data-src="https://i.imgur.com/S9YBeTE.jpg" alt=""></p>
-</li>
-</ol>
-]]></content>
   </entry>
   <entry>
     <title>在 Ubuntu 上安裝中文輸入法</title>
@@ -1237,28 +1317,6 @@ Android 3.0 以下選擇 NotificationCompat
 </li>
 </ol>
 ]]></content>
-  </entry>
-  <entry>
-    <title>在 static method  中取得 String Resource</title>
-    <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
-    <content><![CDATA[<h2 id="遇到問題">遇到問題</h2>
-<p>最近在寫一個 Singleton 的類別時，遇到需要透過 Resource id 取得 string 的需求，原本想用 context.getString(int resId) 的方式取得，但發現 Context 不適合被 static 成員或類別引用，會導致內存泄露。</p>
-<a id="more"></a>
-<pre><code>static 成員生命週期會隨著 app 開始到結束。
-如果引用到 Context、Activity，會導致 Context、Activity 也跟著無法被回收，導致內存泄露。
-</code></pre>
-<h2 id="解決辦法">解決辦法</h2>
-<p>使用 Resources.getSystem().getString(int resId) 來取得 String。</p>
-<h2 id="參考資料">參考資料</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAwODEzMTk3OQ==">https://segmentfault.com/q/1010000008131979<i class="fa fa-external-link-alt"></i></span><br>
-<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMzgyMjczMi9hbmRyb2lkLWdldHN0cmluZ3Itc3RyaW5nLWluLXN0YXRpYy1tZXRob2Q=">https://stackoverflow.com/questions/3822732/android-getstringr-string-in-static-method<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
   </entry>
   <entry>
     <title>型態、變數與運算子 - Java</title>
@@ -1579,64 +1637,6 @@ Android 3.0 以下選擇 NotificationCompat
       </categories>
       <tags>
         <tag>Android Studio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mac 下使用 Shadowsocks 翻牆</title>
-    <url>/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Shadowsocks%E7%BF%BB%E7%89%86/</url>
-    <content><![CDATA[<p>這邊教大家如何使用 ShadowsocksX-NG 來進行 Shadowsocks 代理，以達到 <strong>翻牆</strong> 效果。</p>
-<a id="more"></a>
-<h2 id="下載-ShadowsocksX-NG">下載 ShadowsocksX-NG</h2>
-<p>GitHub 載點：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvd3NvY2tzL1NoYWRvd3NvY2tzWC1ORy9yZWxlYXNlcy8=">https://github.com/shadowsocks/ShadowsocksX-NG/releases/<i class="fa fa-external-link-alt"></i></span></p>
-<p><img data-src="https://imgur.com/rputoJL.png" alt=""></p>
-<h2 id="編輯代理伺服器">編輯代理伺服器</h2>
-<p>點擊「紙飛機」選擇「Server」，然後點擊【Server Preferences…】選項：</p>
-<p><img data-src="https://i.imgur.com/PjwfSrC.png" alt=""></p>
-<p>新增 Shadowsocks 服務配置：</p>
-<p><img data-src="https://i.imgur.com/BQM68VU.png" alt=""></p>
-<h2 id="更改代理模式">更改代理模式</h2>
-<p>預設模式為 <code>Proxy Auto Configure Mode</code>，這邊我們將它改為 <code>Global Mode</code>，使所有對外連線都使用 <code>Shadowsocks</code>，且無需特別設定。</p>
-<p>如要使用 <code>Proxy Auto Configure Mode</code>，會需要額外設定，這邊就不多做敘述。</p>
-<p><img data-src="https://i.imgur.com/FnjA0Up.png" alt=""></p>
-<h2 id="測試是否成功">測試是否成功</h2>
-<p>訪問 <code>orange.tw</code> 來查看自己的 IP 是否有變更。</p>
-<p><img data-src="https://i.imgur.com/5q9MBsg.png" alt=""></p>
-<h2 id="關閉-Shadowsocks">關閉 Shadowsocks</h2>
-<p>點擊【Turn Shadowsocks Off】來關閉 Shadowsocks。</p>
-<p><img data-src="https://imgur.com/k4WvIRT.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>Shadowsocks</category>
-      </categories>
-      <tags>
-        <tag>MacOS</tag>
-        <tag>Shadowsocks</tag>
-        <tag>翻牆</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Error：Fragment already added</title>
-    <url>/Error-Fragment-already-added/</url>
-    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
-<pre><code>java.lang.IllegalStateException: Fragment already added
-</code></pre>
-<a id="more"></a>
-<h2 id="原因">原因</h2>
-<p>Fragment 在一些狀況不會正常移除</p>
-<h2 id="原本程式碼">原本程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
-<h2 id="解決辦法">解決辦法</h2>
-<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="後來程式碼">後來程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Fragment</tag>
-        <tag>Error</tag>
       </tags>
   </entry>
 </search>

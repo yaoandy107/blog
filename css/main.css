@@ -1240,7 +1240,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #6cf2fe;
+  background: #ff22e2;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2858,6 +2858,6 @@ body {
 }
 @media only screen and (max-width: 567px) {
   .post-block {
-    padding: 18px;
+    padding: 18px !important;
   }
 }
