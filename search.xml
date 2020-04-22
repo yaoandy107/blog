@@ -152,94 +152,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Android Studio 技巧整理</title>
-    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
-    <content><![CDATA[<p>最近開始研究 Android Studio，得知一些可以增加開發速度的小技巧，因此在這邊做一下記錄。</p>
-<a id="more"></a>
-<h2 id="Live-Templates">Live Templates</h2>
-<p><code>Live Templates</code>：程式碼快速補全模板</p>
-<p>這邊列出一些比較常見的 Live Templates，有興趣的人可以自行深入了解。</p>
-<ul>
-<li><code>newInstance</code> - 在 Fragment 中生成 <code>newInstance</code> 方法</li>
-<li><code>Toast</code> - 生成 <code>Toast.makeText(context, &quot;&quot;, Toast.LENGTH_SHORT).show();</code></li>
-<li><code>fbc</code> - 生成 findViewById</li>
-<li><code>const</code> - 定義一個 android style int 常數</li>
-<li><code>logd</code> - 生成 <code>Log.d(TAG, &quot;&quot;);</code></li>
-<li><code>logm</code> - Log 當前方法名稱和參數</li>
-<li><code>logr</code> - Log 當前方法結果</li>
-<li><code>logt</code> - 當前類生成 log tag</li>
-<li><code>psf</code> - public static final</li>
-<li><code>sout</code> - 印出一個字串到 System.out</li>
-<li><code>soutm</code> - 印出當前類名和方法到 System.out</li>
-<li><code>soutp</code> - 印出方法參數和返回值到 System.out</li>
-<li><code>visible</code> - 設置 view VISIBLE</li>
-<li><code>gone</code> - 設置 view GONE</li>
-<li><code>noInstance</code> - private 構造方法</li>
-</ul>
-<h2 id="Android-Studio-的自動生成">Android Studio 的自動生成</h2>
-<p>可以使用 Android Studio 自動幫你生成一些程式碼</p>
-<ul>
-<li><code>&lt;expr&gt;.null</code> 轉換成 <code>if(&lt;expr&gt; == null)</code></li>
-<li><code>&lt;expr&gt;.notnull</code> 轉換成 <code>if(&lt;expr&gt; != null)</code></li>
-<li><code>&lt;expr&gt;.var</code> 轉換成 <code>T name = &lt;expr&gt;</code></li>
-<li><code>&lt;expr&gt;.field</code> 會自動生成一個全局變數 <code>field = &lt;expr&gt;</code></li>
-<li><code>&lt;ArrayExpr&gt;.for</code> 轉換成 <code>for(T item : &lt;Arrayexpr&gt;)</code></li>
-<li><code>&lt;ArrayExpr&gt;.fori</code> 轉換成 <code>for(int i = 0; i &lt; &lt;Arrayexpr&gt;.length; i++)</code></li>
-<li><code>&lt;ArrayExpr&gt;.forr</code> 轉換成 <code>for(int i = &lt;Arrayexpr&gt;.length - 1; i &gt; 0 ; i--)</code></li>
-</ul>
-<h2 id="插件">插件</h2>
-<p>下面列出一些我正在使用的插件</p>
-<ol>
-<li>
-<p><strong>Android Drawable Importer</strong><br>
-為了適應所有 Android 螢幕的大小和密度，每個 Android 項目都會包含 drawable 資料夾。任何具備 Android 開發經驗的開發人員都知道，為了支持所有的螢幕尺寸，你必須給每個螢幕類型導入不同的 Drawalbe。Android Drawable Importer 插件能讓這項工作變得更容易。它可以減少導入縮放圖像到 Android 項目所需的工作量。 Android Drawable Importer 添加了一個在不同分辨率導入 Drawble 或縮放指定圖像到定義分辨率的選項。這個插件加速了開發人員的 Drawable 工作。</p>
-</li>
-<li>
-<p><strong>Lifecycle Sorter</strong><br>
-可以根據 Activity 或者 fragment 的生命週期對其生命週期方法位置進行先後排序，快捷鍵 Ctrl + alt + K。</p>
-</li>
-<li>
-<p><strong>.ignore</strong><br>
-我們都知道在 Git 中想要過濾掉一些不想提交的文件，可以把相應的文件添加到 .gitignore 中，而 .gitignore 這個 Android Studio 插件根據不同的語言來選擇模板，就不用自己在費事添加一些文件了，而且還有自動補全功能，過濾文件再也不要復製檔名了。我們做項目的時候，並不是所有文件都是要提交的，比如構建的 build 資料夾，本地配置文件，每個 Module 生成的 iml 文件，但是我們每次 add，commit 都會不小心把它們添加上去，而 gitignore 就是解決這種痛點的，如果你不想提交的檔案，就可以在創建項目的時候將這個檔案中添加即可，將一些通用的東西屏蔽掉。</p>
-</li>
-<li>
-<p><strong>Android Methods Count</strong><br>
-統計 Android 依賴庫中方法的總個數。 (一個 dex 只能接受的 65K 並不是指方法數超過 65K 而報的錯,而是指引用計數超過 65K)</p>
-</li>
-<li>
-<p><strong>jetbrains-wakatime</strong><br>
-紀錄在 Android Studio 上的工作時間。</p>
-</li>
-<li>
-<p><strong>Genymotion</strong><br>
-好用的 Android 模擬器，原生模擬器不堪用。</p>
-</li>
-<li>
-<p><strong>GsonFormat</strong><br>
-快速將 json 字串轉換成一個 Java Bean，免去我們根據 json 字符串手寫對應 Java Bean 的過程。</p>
-</li>
-<li>
-<p><strong>LayoutFormatter</strong><br>
-一鍵幫你將你的 XML 文件排版，並調整順序。</p>
-</li>
-</ol>
-<h2 id="快捷鍵">快捷鍵</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9yZXNvdXJjZXMuamV0YnJhaW5zLmNvbS9zdG9yYWdlL3Byb2R1Y3RzL2ludGVsbGlqLWlkZWEvZG9jcy9JbnRlbGxpSklERUFfUmVmZXJlbmNlQ2FyZC5wZGY=">完整的快捷键指南<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="參考資料">參考資料</h3>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25pc3J1bHovYW5kcm9pZC10aXBzLXRyaWNrcw==">nisrulz/android-tips-tricks<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly95ZG1tb2Nvby5naXRodWIuaW8vMjAxNi8wNi8yOC9BbmRyb2lkLVN0dWRpbyVFNiU4RiU5MiVFNCVCQiVCNiVFNiU5NSVCNCVFNyU5MCU4Ni8=">Android Studio插件整理<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android Studio</tag>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AIS3 Final CTF - hellOwOrld</title>
     <url>/AIS3-Final-CTF-hellOwOrld/</url>
     <content><![CDATA[<p>我們這隊都是第一次參加 AIS3 Final CTF，結果拿到第 18 名的成績，滿開心的ＸＤ<br>
@@ -355,6 +267,54 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
       </tags>
   </entry>
   <entry>
+    <title>Android 學習問題紀錄</title>
+    <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
+    <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
+<h3 id="問題">問題</h3>
+<p>在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。<br>
+<a id="more"></a></p>
+<h3 id="原因">原因</h3>
+<p>OkHttp 不是執行在 UI Thread，但 Retrofit 是。</p>
+<h2 id="紀錄-2">紀錄 2</h2>
+<h3 id="問題-2">問題</h3>
+<p>在 OkHttp  的 onResponse 中使用 Toast 會噴錯。</p>
+<h3 id="原因-2">原因</h3>
+<p>OkHttp 不是執行在 UI Thread。</p>
+<h3 id="解法">解法</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解法1</span></span><br><span class="line">Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</span><br><span class="line">handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 解法2</span></span><br><span class="line">activity.runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Error：Fragment already added</title>
+    <url>/Error-Fragment-already-added/</url>
+    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
+<pre><code>java.lang.IllegalStateException: Fragment already added
+</code></pre>
+<a id="more"></a>
+<h2 id="原因">原因</h2>
+<p>Fragment 在一些狀況不會正常移除</p>
+<h2 id="原本程式碼">原本程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
+<h2 id="解決辦法">解決辦法</h2>
+<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="後來程式碼">後來程式碼</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Fragment</tag>
+        <tag>Error</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Mac 下使用 Shadowsocks 翻牆</title>
     <url>/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8Shadowsocks%E7%BF%BB%E7%89%86/</url>
     <content><![CDATA[<p>這邊教大家如何使用 ShadowsocksX-NG 來進行 Shadowsocks 代理，以達到 <strong>翻牆</strong> 效果。</p>
@@ -388,21 +348,122 @@ Unfortunately, he lost the password. Could you please help him to find it out?<b
       </tags>
   </entry>
   <entry>
-    <title>Android 學習問題紀錄</title>
-    <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
-    <content><![CDATA[<h2 id="紀錄-1">紀錄 1</h2>
-<h3 id="問題">問題</h3>
-<p>在 OkHttp 的 onResponse 中使用 Toast 會噴錯，但 Retrofit 不會。<br>
-<a id="more"></a></p>
-<h3 id="原因">原因</h3>
-<p>OkHttp 不是執行在 UI Thread，但 Retrofit 是。</p>
-<h2 id="紀錄-2">紀錄 2</h2>
-<h3 id="問題-2">問題</h3>
-<p>在 OkHttp  的 onResponse 中使用 Toast 會噴錯。</p>
-<h3 id="原因-2">原因</h3>
-<p>OkHttp 不是執行在 UI Thread。</p>
-<h3 id="解法">解法</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 解法1</span></span><br><span class="line">Handler handler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</span><br><span class="line">handler.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 解法2</span></span><br><span class="line">activity.runOnUiThread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+    <title>Flutter: const vs final</title>
+    <url>/Flutter-const-vs-final/</url>
+    <content><![CDATA[<h2 id="Const">Const</h2>
+<ul>
+<li>需要在創建時就給定值，且會再編譯時期決定好，因此如果是執行時期才知道的值是不能用 const 的。</li>
+<li>const 裡的值也得要是 const，不能是在執行階段才知道或是可改變的值，因此下面的範例會失敗：<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">arr[<span class="number">1</span>] = <span class="number">11</span> <span class="comment">// 執行失敗</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Final">Final</h2>
+<ul>
+<li>給定值之後就不能再更改，但可以在建構子之中再給。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Flutter</category>
+      </categories>
+      <tags>
+        <tag>Flutter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android Studio 技巧整理</title>
+    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<p>最近開始研究 Android Studio，得知一些可以增加開發速度的小技巧，因此在這邊做一下記錄。</p>
+<a id="more"></a>
+<h2 id="Live-Templates">Live Templates</h2>
+<p><code>Live Templates</code>：程式碼快速補全模板</p>
+<p>這邊列出一些比較常見的 Live Templates，有興趣的人可以自行深入了解。</p>
+<ul>
+<li><code>newInstance</code> - 在 Fragment 中生成 <code>newInstance</code> 方法</li>
+<li><code>Toast</code> - 生成 <code>Toast.makeText(context, &quot;&quot;, Toast.LENGTH_SHORT).show();</code></li>
+<li><code>fbc</code> - 生成 findViewById</li>
+<li><code>const</code> - 定義一個 android style int 常數</li>
+<li><code>logd</code> - 生成 <code>Log.d(TAG, &quot;&quot;);</code></li>
+<li><code>logm</code> - Log 當前方法名稱和參數</li>
+<li><code>logr</code> - Log 當前方法結果</li>
+<li><code>logt</code> - 當前類生成 log tag</li>
+<li><code>psf</code> - public static final</li>
+<li><code>sout</code> - 印出一個字串到 System.out</li>
+<li><code>soutm</code> - 印出當前類名和方法到 System.out</li>
+<li><code>soutp</code> - 印出方法參數和返回值到 System.out</li>
+<li><code>visible</code> - 設置 view VISIBLE</li>
+<li><code>gone</code> - 設置 view GONE</li>
+<li><code>noInstance</code> - private 構造方法</li>
+</ul>
+<h2 id="Android-Studio-的自動生成">Android Studio 的自動生成</h2>
+<p>可以使用 Android Studio 自動幫你生成一些程式碼</p>
+<ul>
+<li><code>&lt;expr&gt;.null</code> 轉換成 <code>if(&lt;expr&gt; == null)</code></li>
+<li><code>&lt;expr&gt;.notnull</code> 轉換成 <code>if(&lt;expr&gt; != null)</code></li>
+<li><code>&lt;expr&gt;.var</code> 轉換成 <code>T name = &lt;expr&gt;</code></li>
+<li><code>&lt;expr&gt;.field</code> 會自動生成一個全局變數 <code>field = &lt;expr&gt;</code></li>
+<li><code>&lt;ArrayExpr&gt;.for</code> 轉換成 <code>for(T item : &lt;Arrayexpr&gt;)</code></li>
+<li><code>&lt;ArrayExpr&gt;.fori</code> 轉換成 <code>for(int i = 0; i &lt; &lt;Arrayexpr&gt;.length; i++)</code></li>
+<li><code>&lt;ArrayExpr&gt;.forr</code> 轉換成 <code>for(int i = &lt;Arrayexpr&gt;.length - 1; i &gt; 0 ; i--)</code></li>
+</ul>
+<h2 id="插件">插件</h2>
+<p>下面列出一些我正在使用的插件</p>
+<ol>
+<li>
+<p><strong>Android Drawable Importer</strong><br>
+為了適應所有 Android 螢幕的大小和密度，每個 Android 項目都會包含 drawable 資料夾。任何具備 Android 開發經驗的開發人員都知道，為了支持所有的螢幕尺寸，你必須給每個螢幕類型導入不同的 Drawalbe。Android Drawable Importer 插件能讓這項工作變得更容易。它可以減少導入縮放圖像到 Android 項目所需的工作量。 Android Drawable Importer 添加了一個在不同分辨率導入 Drawble 或縮放指定圖像到定義分辨率的選項。這個插件加速了開發人員的 Drawable 工作。</p>
+</li>
+<li>
+<p><strong>Lifecycle Sorter</strong><br>
+可以根據 Activity 或者 fragment 的生命週期對其生命週期方法位置進行先後排序，快捷鍵 Ctrl + alt + K。</p>
+</li>
+<li>
+<p><strong>.ignore</strong><br>
+我們都知道在 Git 中想要過濾掉一些不想提交的文件，可以把相應的文件添加到 .gitignore 中，而 .gitignore 這個 Android Studio 插件根據不同的語言來選擇模板，就不用自己在費事添加一些文件了，而且還有自動補全功能，過濾文件再也不要復製檔名了。我們做項目的時候，並不是所有文件都是要提交的，比如構建的 build 資料夾，本地配置文件，每個 Module 生成的 iml 文件，但是我們每次 add，commit 都會不小心把它們添加上去，而 gitignore 就是解決這種痛點的，如果你不想提交的檔案，就可以在創建項目的時候將這個檔案中添加即可，將一些通用的東西屏蔽掉。</p>
+</li>
+<li>
+<p><strong>Android Methods Count</strong><br>
+統計 Android 依賴庫中方法的總個數。 (一個 dex 只能接受的 65K 並不是指方法數超過 65K 而報的錯,而是指引用計數超過 65K)</p>
+</li>
+<li>
+<p><strong>jetbrains-wakatime</strong><br>
+紀錄在 Android Studio 上的工作時間。</p>
+</li>
+<li>
+<p><strong>Genymotion</strong><br>
+好用的 Android 模擬器，原生模擬器不堪用。</p>
+</li>
+<li>
+<p><strong>GsonFormat</strong><br>
+快速將 json 字串轉換成一個 Java Bean，免去我們根據 json 字符串手寫對應 Java Bean 的過程。</p>
+</li>
+<li>
+<p><strong>LayoutFormatter</strong><br>
+一鍵幫你將你的 XML 文件排版，並調整順序。</p>
+</li>
+</ol>
+<h2 id="快捷鍵">快捷鍵</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9yZXNvdXJjZXMuamV0YnJhaW5zLmNvbS9zdG9yYWdlL3Byb2R1Y3RzL2ludGVsbGlqLWlkZWEvZG9jcy9JbnRlbGxpSklERUFfUmVmZXJlbmNlQ2FyZC5wZGY=">完整的快捷键指南<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="參考資料">參考資料</h3>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25pc3J1bHovYW5kcm9pZC10aXBzLXRyaWNrcw==">nisrulz/android-tips-tricks<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly95ZG1tb2Nvby5naXRodWIuaW8vMjAxNi8wNi8yOC9BbmRyb2lkLVN0dWRpbyVFNiU4RiU5MiVFNCVCQiVCNiVFNiU5NSVCNCVFNyU5MCU4Ni8=">Android Studio插件整理<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Android Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android:gravity 和 android:layout_gravity 的差別</title>
+    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
+    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
+<a id="more"></a>
+<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
+<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
+]]></content>
       <categories>
         <category>Android</category>
       </categories>
@@ -644,31 +705,6 @@ _ 代表任意字元<br>
       </tags>
   </entry>
   <entry>
-    <title>Error：Fragment already added</title>
-    <url>/Error-Fragment-already-added/</url>
-    <content><![CDATA[<h2 id="遇到狀況">遇到狀況</h2>
-<pre><code>java.lang.IllegalStateException: Fragment already added
-</code></pre>
-<a id="more"></a>
-<h2 id="原因">原因</h2>
-<p>Fragment 在一些狀況不會正常移除</p>
-<h2 id="原本程式碼">原本程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>
-<h2 id="解決辦法">解決辦法</h2>
-<p>因為replace有時會出現問題，因此在使用之前先確認Fragment是否被Added。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(mFragment.isAdded())</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">return</span>; <span class="comment">//or return false/true, based on where you are calling from</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="後來程式碼">後來程式碼</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FragmentTransaction transaction = getFragmentManager().beginTransaction();</span><br><span class="line"><span class="keyword">if</span> (newFragment.isAdded()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">transaction.replace(R.id.fragment_container, newFragment);</span><br><span class="line">transaction.addToBackStack(<span class="keyword">null</span>);</span><br><span class="line">transaction.commit();</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Fragment</tag>
-        <tag>Error</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>getColor(int id) deprecated</title>
     <url>/getcolor-deprecated/</url>
     <content><![CDATA[<p>從 Android 6 開始，一個新的 getColor() 方法出現，舊的 Resource.getColor(int id) 則被廢棄。</p>
@@ -758,8 +794,8 @@ Starting in M, the returned color will be styled for the specified Context's the
 <p><strong>yaml 檔裡，&quot;:&quot;後一定要有一個空格</strong><br>
 下面是 hexo 的預設配置，可以自修改。</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">/標題(會顯示在網頁標題與頁首)/</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">/子標題(顯示在頁首)/</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">/內容描述(給搜尋引擎看的)/</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">/作者(顯示在頁尾)/</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">/網站預設語言(台灣:zh-tw)/</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">/時區(預設使用你電腦的時區)/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">/網站的網域位址/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/網站根目錄/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">/文章目錄(預設使用</span> <span class="string">YYYY\MM\DD\文章名稱)/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">/網站的佈景主題/</span></span><br><span class="line">       <span class="string">(可以到"https://hexo.io/themes/"下載喜歡的佈景放置到</span> <span class="string">theme</span> <span class="string">目錄裡)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">/發佈型態/</span> <span class="string">例如(git、heroku、rsync、openshift、ftpsync)</span></span><br><span class="line">    <span class="attr">repository:</span> <span class="string">/部署位置/</span> <span class="string">例如(git@github.com:帳號/REPO名.git)</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">/分支/</span> <span class="string">例如(master、gh-pages)</span></span><br><span class="line">    <span class="attr">message:</span> <span class="string">/部署訊息/</span></span><br></pre></td></tr></table></figure>
-<h2 id="使用-Next-主題">使用 Next 主題</h2>
-<p>本站使用主題為 Next.Pisces 主題。<br>
+<h2 id="使用-NexT-主題">使用 NexT 主題</h2>
+<p>本站使用主題為 NexT.Pisces 主題。<br>
 如何使用，可以參考 <span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20vZ2V0dGluZy1zdGFydGVkLmh0bWw=">官方教學文件<i class="fa fa-external-link-alt"></i></span>，上面寫的很詳細，而且是中文的教學！</p>
 <h2 id="發布文章">發布文章</h2>
 <p>創建文章</p>
@@ -808,48 +844,34 @@ Starting in M, the returned color will be styled for the specified Context's the
 <p>執行以下指令，將原生 Markdown 改為 Markdown-it</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm un hexo-renderer-marked --save    <span class="comment"># 刪除原生 Markdown</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm i hexo-renderer-markdown-it --save    <span class="comment"># 安裝 Markdown-it</span></span></span><br></pre></td></tr></table></figure>
 <h2 id="新增標籤頁">新增標籤頁</h2>
-<p>可以參考 Next 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20vdGhlbWUtc2V0dGluZ3MuaHRtbCN0YWdzLXBhZ2U=">添加「标签」页面<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>可以參考 NexT 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20vdGhlbWUtc2V0dGluZ3MuaHRtbCN0YWdzLXBhZ2U=">添加「标签」页面<i class="fa fa-external-link-alt"></i></span>。</p>
 <h2 id="新增分類頁">新增分類頁</h2>
-<p>可以參考 Next 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20vdGhlbWUtc2V0dGluZ3MuaHRtbCNjYXRlZ29yaWVzLXBhZ2U=">添加「分类」页面<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>可以參考 NexT 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20vdGhlbWUtc2V0dGluZ3MuaHRtbCNjYXRlZ29yaWVzLXBhZ2U=">添加「分类」页面<i class="fa fa-external-link-alt"></i></span>。</p>
 <h2 id="新增關於頁">新增關於頁</h2>
-<p>可以參考 Next 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3d3dy41aXNqeXguY29tL2NvZGluZy8yMDE3MDQvaGV4b25leHRhYm91dC5odG1s">Hexo about页面怎么写 Next关于页面怎么设置<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>可以參考 NexT 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3d3dy41aXNqeXguY29tL2NvZGluZy8yMDE3MDQvaGV4b25leHRhYm91dC5odG1s">Hexo about页面怎么写 Next关于页面怎么设置<i class="fa fa-external-link-alt"></i></span>。</p>
 <h2 id="性能優化">性能優化</h2>
-<p>可以參考這兩篇，分別用不同的方法將靜態資源進行壓縮</p>
+<p>性能優化最主要的就是壓縮網頁大小，一開始有試過使用大多數人推的 <code>hexo-neat</code>，但結果一直失敗QwQ<br>
+因此決定改用 gulp 來做壓縮。</p>
 <ol>
 <li><span class="exturl" data-url="aHR0cDovL3dhYmVyeWFuZy5jb20vMjAxNy8wMy8xMi9IZXhvJUU1JThEJTlBJUU1JUFFJUEyLU5leHQlRTYlODAlQTclRTglODMlQkQlRTQlQkMlOTglRTUlOEMlOTYlRTQlQjklOEIlRTglQjclQUYv">Hexo博客-Next性能优化之路<i class="fa fa-external-link-alt"></i></span></li>
 <li><span class="exturl" data-url="aHR0cDovL2J1bGVzaGl0Lnh5ei8yMDE3LzAyLzE3L2hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTUlOEElQTAlRTklODAlOUYlRTQlQjklOEIlRTklQTElQjUlRTklOUQlQTIlRTUlOEUlOEIlRTclQkMlQTkv">hexo博客加速之页面压缩<i class="fa fa-external-link-alt"></i></span></li>
 </ol>
 <h2 id="文章編輯後台">文章編輯後台</h2>
-<p>如果覺得編輯完無法立即看到結果，或是結果和本地編輯器有差，可以試著使用看看 hexo-admin，<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpbnB6ei5jb20vMjAxNi8xMi8zMS9oZXhvLWFkbWluLWJhY2tlbmQtbWFuYWdlbWVudC8=">hexo-admin 博客后端管理工具<i class="fa fa-external-link-alt"></i></span></p>
-<p>使用文章編輯後台一個禮拜後的結論：<strong>難用，不建議使用！</strong><br>
+<p>先下結論：<strong>難用，不建議使用！</strong><br>
 建議可以在自己熟悉的 markdown 編輯器編輯就好。</p>
+<p>如果覺得編輯完無法立即看到結果，或是結果和本地編輯器有差，可以試著使用看看 hexo-admin，<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpbnB6ei5jb20vMjAxNi8xMi8zMS9oZXhvLWFkbWluLWJhY2tlbmQtbWFuYWdlbWVudC8=">hexo-admin 博客后端管理工具<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="參考資料">參考資料</h2>
 <p><span class="exturl" data-url="aHR0cHM6Ly9za3lsYWtlLnR3LzIwMTcvMDkvMjkvaGV4by1idWlsZHVwLyNyYW5nLW5leC10LXpodS10aS1kZS1saXN0LWJ1LXpoaS15b3UteXVhbi14aW5n">Hexo部落格建立筆記 | SkyLake’s Blog<i class="fa fa-external-link-alt"></i></span><br>
 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLXR3L2luZGV4Lmh0bWw=">Hexo 官方網站<i class="fa fa-external-link-alt"></i></span><br>
-<span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20v">Next 官方網站<i class="fa fa-external-link-alt"></i></span></p>
+<span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20v">NexT 官方網站<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>Next</tag>
+        <tag>NexT</tag>
         <tag>教學</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>android:gravity 和 android:layout_gravity 的差別</title>
-    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
-    <content><![CDATA[<p>在 Android 介面設計中，常會用到  android:gravity 和 android:layout_gravity 兩種屬性，但卻容易被搞混，因此這邊做簡單的介紹，讓大家釐清差別。</p>
-<a id="more"></a>
-<p><code>android:gravity</code> 是作用在 view 裡的內容．比如一個 button 上面的 text。你可以設置該 text 在 view 裡是靠左、靠右等位置。</p>
-<p><code>android:layout_gravity</code> 是用來設置該 view 相對於父 view 的位置。比如一個 button 在 LinearLayout 裡，你想讓該 button 在 LinearLayout 裡是靠左、靠右等位置。</p>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -944,310 +966,6 @@ Android 3.0 以下選擇 NotificationCompat
       </categories>
       <tags>
         <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Ubuntu 上安裝中文輸入法</title>
-    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
-    <content><![CDATA[<ol>
-<li>點擊「系統設定值」的按鈕<br>
-<img data-src="https://i.imgur.com/8weBEw1.jpg" alt=""></li>
-</ol>
-<a id="more"></a>
-<ol start="2">
-<li>
-<p>點擊「語言支援」<br>
-<img data-src="https://i.imgur.com/QC1VYHK.jpg" alt=""></p>
-</li>
-<li>
-<p>第一次打開，會跳出「安裝語言尚未支援完備」，這邊點擊「安裝」<br>
-<img data-src="https://i.imgur.com/ovNfLFq.jpg" alt=""></p>
-</li>
-<li>
-<p>這邊會讓你輸入你剛剛設定的密碼，並等待安裝完畢<br>
-<img data-src="https://i.imgur.com/Ja9Ovqj.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝完後重新開機<br>
-<img data-src="https://i.imgur.com/omw1N1Z.jpg" alt=""></p>
-</li>
-<li>
-<p>開機完後點右上角的鍵盤圖示，然後點選「ConfigureFcitx」<br>
-<img data-src="https://i.imgur.com/FWRbEQr.jpg" alt=""></p>
-</li>
-<li>
-<p>點選左下角的「＋」來新增輸入法<br>
-<img data-src="https://i.imgur.com/nzGCa1U.jpg" alt=""></p>
-</li>
-<li>
-<p>這邊推薦安裝「新酷音」<br>
-<img data-src="https://i.imgur.com/L5HrnOT.jpg" alt=""></p>
-</li>
-<li>
-<p>安裝完後可以在輸入法列表裡看到你剛剛選擇的輸入法，這邊可以調整輸入法順序<br>
-<img data-src="https://i.imgur.com/vqiw8Yx.jpg" alt=""></p>
-</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
-    <title>型態、變數與運算子 - Java</title>
-    <url>/%E5%9E%8B%E6%85%8B%E3%80%81%E8%AE%8A%E6%95%B8%E8%88%87%E9%81%8B%E7%AE%97%E5%AD%90-Java/</url>
-    <content><![CDATA[<h2 id="資料型態">資料型態</h2>
-<h3 id="何謂資料型態？">何謂資料型態？</h3>
-<p>程式儲存資料的型態</p>
-<a id="more"></a>
-<h3 id="認識資料型態">認識資料型態</h3>
-<p>常常聽到別人提到 Java 是物件導向語言，不過 Java 本身並不是純綷的物件導向語言，像是就型態系統而言，Java 就並非每個值都是物件，而是混合了兩個型態系統：<strong>基本型態（Primitive type）<strong>與</strong>物件型態（Object type）</strong>。</p>
-<h3 id="基本型態（Primitive-type）">基本型態（Primitive type）</h3>
-<p>在 Java 語言中有八種<strong>基本型態( Primitive Type )</strong>，可分作四個大類</p>
-<ul>
-<li>整數型態：byte、short、int、long</li>
-<li>浮點數型態：float、double</li>
-<li>字元型態：char</li>
-<li>邏輯型態：boolean</li>
-</ul>
-<h3 id="整數型態">整數型態</h3>
-<p>用於儲存整數</p>
-<table>
-<thead>
-<tr>
-<th>型態</th>
-<th>長度</th>
-<th>範圍</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>byte</td>
-<td>8 bits</td>
-<td>−2^7^到2^7^−1</td>
-</tr>
-<tr>
-<td>short</td>
-<td>16 bits</td>
-<td>−2^15^到2^15^−1</td>
-</tr>
-<tr>
-<td>int</td>
-<td>32 bits</td>
-<td>−2^31^到2^31^−1</td>
-</tr>
-<tr>
-<td>long</td>
-<td>64 bits</td>
-<td>−2^63^到2^63^−1</td>
-</tr>
-</tbody>
-</table>
-<h3 id="浮點數型態">浮點數型態</h3>
-<p>用於儲存小數，<code>double</code>浮點數使用的記憶體空間比<code>float</code>浮點數來得多，可表示的精確度也比較大。想要了解確切的範圍，可以自行Google</p>
-<table>
-<thead>
-<tr>
-<th>型態</th>
-<th>長度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>float</td>
-<td>32 bits</td>
-</tr>
-<tr>
-<td>double</td>
-<td>64 bits</td>
-</tr>
-</tbody>
-</table>
-<h3 id="字元型態">字元型態</h3>
-<p><code>char</code>型態用來儲存<code>'A'</code>、<code>'B'</code>、<code>'林'</code>等字元符號。每個字元型態佔兩個位元組，中文字元與英文字元在Java中同樣都是用兩個位元組儲存。</p>
-<h3 id="布林型態">布林型態</h3>
-<p><code>boolean</code>型態可儲存<code>true</code>與<code>false</code>，分別代表邏輯的「真」與「假」。</p>
-<h2 id="變數">變數</h2>
-<p>不懂變數概念的可以參考這篇，<span class="exturl" data-url="aHR0cHM6Ly9vcGVuaG9tZS5jYy9Hb3NzaXAvSmF2YS9WYXJpYWJsZS5odG1s">https://openhome.cc/Gossip/Java/Variable.html<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="變數命名規則">變數命名規則</h3>
-<p>類別以英文大寫字母開頭，若有多個英文單字組成，採取大寫駝峰型 (upper camel case)</p>
-<ul>
-<li>SampleItem</li>
-<li>MyData</li>
-<li>MySimpleThread</li>
-<li>MainActivity</li>
-</ul>
-<p>方法或變數（包括參數、屬性等）以英文小寫字母開頭，若有多個英文單字組成，採取小寫駝峰型 (lower camel case)</p>
-<ul>
-<li>setUpNetworking</li>
-<li>getView</li>
-<li>myActivity</li>
-</ul>
-<h2 id="運算子">運算子</h2>
-<h3 id="單元運算子">單元運算子</h3>
-<table>
-<thead>
-<tr>
-<th>運算子</th>
-<th>功能</th>
-<th>範例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>+</td>
-<td>正</td>
-<td>+a</td>
-</tr>
-<tr>
-<td>-</td>
-<td>負</td>
-<td>-a</td>
-</tr>
-<tr>
-<td>++</td>
-<td>遞增</td>
-<td>++a, a++</td>
-</tr>
-<tr>
-<td>--</td>
-<td>遞減</td>
-<td>--a, a--</td>
-</tr>
-<tr>
-<td>!</td>
-<td>反轉</td>
-<td>!a</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">boolean</span> a = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">boolean</span> b = !a;    <span class="comment">// b 會等於 false</span></span><br><span class="line"><span class="keyword">boolean</span> c = !b;    <span class="comment">// c 會等於 true</span></span><br></pre></td></tr></table></figure>
-<h3 id="一般運算子">一般運算子</h3>
-<p>下面為一般運算子，皆須結合兩個運算元，可用在<code>整數</code>及<code>浮點數</code>，計算結果為整數或浮點數</p>
-<table>
-<thead>
-<tr>
-<th>運算子</th>
-<th>功能</th>
-<th>範例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>+</td>
-<td>加</td>
-<td>a + b</td>
-</tr>
-<tr>
-<td>-</td>
-<td>減</td>
-<td>a - b</td>
-</tr>
-<tr>
-<td>*</td>
-<td>乘</td>
-<td>a * b</td>
-</tr>
-<tr>
-<td>/</td>
-<td>除</td>
-<td>a / b</td>
-</tr>
-<tr>
-<td>%</td>
-<td>取餘數</td>
-<td>a % b</td>
-</tr>
-</tbody>
-</table>
-<h3 id="關係運算子">關係運算子</h3>
-<p>下面為關係運算子，計算結果不是<code>true</code>就是<code>false</code></p>
-<table>
-<thead>
-<tr>
-<th>運算子</th>
-<th>功能</th>
-<th>範例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>==</td>
-<td>相等</td>
-<td>a == b</td>
-</tr>
-<tr>
-<td>!=</td>
-<td>不相等</td>
-<td>a != b</td>
-</tr>
-<tr>
-<td>&gt;</td>
-<td>大於</td>
-<td>a &gt; b</td>
-</tr>
-<tr>
-<td>&gt;=</td>
-<td>大於等於</td>
-<td>a &gt;= b</td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td>小於</td>
-<td>a &lt; b</td>
-</tr>
-<tr>
-<td>&lt;=</td>
-<td>小於等於</td>
-<td>a &lt;= b</td>
-</tr>
-</tbody>
-</table>
-<h3 id="指派運算子">指派運算子</h3>
-<table>
-<thead>
-<tr>
-<th>運算子</th>
-<th>功能</th>
-<th>範例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>=</td>
-<td>指派</td>
-<td>a = b</td>
-</tr>
-<tr>
-<td>+=</td>
-<td>相加同時指派</td>
-<td>a += b</td>
-</tr>
-<tr>
-<td>-=</td>
-<td>相減同時指派</td>
-<td>a -= b</td>
-</tr>
-<tr>
-<td>*=</td>
-<td>相乘同時指派</td>
-<td>a *= b</td>
-</tr>
-<tr>
-<td>/=</td>
-<td>相除同時指派</td>
-<td>a /= b</td>
-</tr>
-<tr>
-<td>%=</td>
-<td>取餘數同時指派</td>
-<td>a %= b</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -1576,6 +1294,310 @@ Android 3.0 以下選擇 NotificationCompat
         <tag>Line</tag>
         <tag>Bot</tag>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Ubuntu 上安裝中文輸入法</title>
+    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
+    <content><![CDATA[<ol>
+<li>點擊「系統設定值」的按鈕<br>
+<img data-src="https://i.imgur.com/8weBEw1.jpg" alt=""></li>
+</ol>
+<a id="more"></a>
+<ol start="2">
+<li>
+<p>點擊「語言支援」<br>
+<img data-src="https://i.imgur.com/QC1VYHK.jpg" alt=""></p>
+</li>
+<li>
+<p>第一次打開，會跳出「安裝語言尚未支援完備」，這邊點擊「安裝」<br>
+<img data-src="https://i.imgur.com/ovNfLFq.jpg" alt=""></p>
+</li>
+<li>
+<p>這邊會讓你輸入你剛剛設定的密碼，並等待安裝完畢<br>
+<img data-src="https://i.imgur.com/Ja9Ovqj.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝完後重新開機<br>
+<img data-src="https://i.imgur.com/omw1N1Z.jpg" alt=""></p>
+</li>
+<li>
+<p>開機完後點右上角的鍵盤圖示，然後點選「ConfigureFcitx」<br>
+<img data-src="https://i.imgur.com/FWRbEQr.jpg" alt=""></p>
+</li>
+<li>
+<p>點選左下角的「＋」來新增輸入法<br>
+<img data-src="https://i.imgur.com/nzGCa1U.jpg" alt=""></p>
+</li>
+<li>
+<p>這邊推薦安裝「新酷音」<br>
+<img data-src="https://i.imgur.com/L5HrnOT.jpg" alt=""></p>
+</li>
+<li>
+<p>安裝完後可以在輸入法列表裡看到你剛剛選擇的輸入法，這邊可以調整輸入法順序<br>
+<img data-src="https://i.imgur.com/vqiw8Yx.jpg" alt=""></p>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>型態、變數與運算子 - Java</title>
+    <url>/%E5%9E%8B%E6%85%8B%E3%80%81%E8%AE%8A%E6%95%B8%E8%88%87%E9%81%8B%E7%AE%97%E5%AD%90-Java/</url>
+    <content><![CDATA[<h2 id="資料型態">資料型態</h2>
+<h3 id="何謂資料型態？">何謂資料型態？</h3>
+<p>程式儲存資料的型態</p>
+<a id="more"></a>
+<h3 id="認識資料型態">認識資料型態</h3>
+<p>常常聽到別人提到 Java 是物件導向語言，不過 Java 本身並不是純綷的物件導向語言，像是就型態系統而言，Java 就並非每個值都是物件，而是混合了兩個型態系統：<strong>基本型態（Primitive type）<strong>與</strong>物件型態（Object type）</strong>。</p>
+<h3 id="基本型態（Primitive-type）">基本型態（Primitive type）</h3>
+<p>在 Java 語言中有八種<strong>基本型態( Primitive Type )</strong>，可分作四個大類</p>
+<ul>
+<li>整數型態：byte、short、int、long</li>
+<li>浮點數型態：float、double</li>
+<li>字元型態：char</li>
+<li>邏輯型態：boolean</li>
+</ul>
+<h3 id="整數型態">整數型態</h3>
+<p>用於儲存整數</p>
+<table>
+<thead>
+<tr>
+<th>型態</th>
+<th>長度</th>
+<th>範圍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>8 bits</td>
+<td>−2^7^到2^7^−1</td>
+</tr>
+<tr>
+<td>short</td>
+<td>16 bits</td>
+<td>−2^15^到2^15^−1</td>
+</tr>
+<tr>
+<td>int</td>
+<td>32 bits</td>
+<td>−2^31^到2^31^−1</td>
+</tr>
+<tr>
+<td>long</td>
+<td>64 bits</td>
+<td>−2^63^到2^63^−1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="浮點數型態">浮點數型態</h3>
+<p>用於儲存小數，<code>double</code>浮點數使用的記憶體空間比<code>float</code>浮點數來得多，可表示的精確度也比較大。想要了解確切的範圍，可以自行Google</p>
+<table>
+<thead>
+<tr>
+<th>型態</th>
+<th>長度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float</td>
+<td>32 bits</td>
+</tr>
+<tr>
+<td>double</td>
+<td>64 bits</td>
+</tr>
+</tbody>
+</table>
+<h3 id="字元型態">字元型態</h3>
+<p><code>char</code>型態用來儲存<code>'A'</code>、<code>'B'</code>、<code>'林'</code>等字元符號。每個字元型態佔兩個位元組，中文字元與英文字元在Java中同樣都是用兩個位元組儲存。</p>
+<h3 id="布林型態">布林型態</h3>
+<p><code>boolean</code>型態可儲存<code>true</code>與<code>false</code>，分別代表邏輯的「真」與「假」。</p>
+<h2 id="變數">變數</h2>
+<p>不懂變數概念的可以參考這篇，<span class="exturl" data-url="aHR0cHM6Ly9vcGVuaG9tZS5jYy9Hb3NzaXAvSmF2YS9WYXJpYWJsZS5odG1s">https://openhome.cc/Gossip/Java/Variable.html<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="變數命名規則">變數命名規則</h3>
+<p>類別以英文大寫字母開頭，若有多個英文單字組成，採取大寫駝峰型 (upper camel case)</p>
+<ul>
+<li>SampleItem</li>
+<li>MyData</li>
+<li>MySimpleThread</li>
+<li>MainActivity</li>
+</ul>
+<p>方法或變數（包括參數、屬性等）以英文小寫字母開頭，若有多個英文單字組成，採取小寫駝峰型 (lower camel case)</p>
+<ul>
+<li>setUpNetworking</li>
+<li>getView</li>
+<li>myActivity</li>
+</ul>
+<h2 id="運算子">運算子</h2>
+<h3 id="單元運算子">單元運算子</h3>
+<table>
+<thead>
+<tr>
+<th>運算子</th>
+<th>功能</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>正</td>
+<td>+a</td>
+</tr>
+<tr>
+<td>-</td>
+<td>負</td>
+<td>-a</td>
+</tr>
+<tr>
+<td>++</td>
+<td>遞增</td>
+<td>++a, a++</td>
+</tr>
+<tr>
+<td>--</td>
+<td>遞減</td>
+<td>--a, a--</td>
+</tr>
+<tr>
+<td>!</td>
+<td>反轉</td>
+<td>!a</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">boolean</span> a = <span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">boolean</span> b = !a;    <span class="comment">// b 會等於 false</span></span><br><span class="line"><span class="keyword">boolean</span> c = !b;    <span class="comment">// c 會等於 true</span></span><br></pre></td></tr></table></figure>
+<h3 id="一般運算子">一般運算子</h3>
+<p>下面為一般運算子，皆須結合兩個運算元，可用在<code>整數</code>及<code>浮點數</code>，計算結果為整數或浮點數</p>
+<table>
+<thead>
+<tr>
+<th>運算子</th>
+<th>功能</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>加</td>
+<td>a + b</td>
+</tr>
+<tr>
+<td>-</td>
+<td>減</td>
+<td>a - b</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘</td>
+<td>a * b</td>
+</tr>
+<tr>
+<td>/</td>
+<td>除</td>
+<td>a / b</td>
+</tr>
+<tr>
+<td>%</td>
+<td>取餘數</td>
+<td>a % b</td>
+</tr>
+</tbody>
+</table>
+<h3 id="關係運算子">關係運算子</h3>
+<p>下面為關係運算子，計算結果不是<code>true</code>就是<code>false</code></p>
+<table>
+<thead>
+<tr>
+<th>運算子</th>
+<th>功能</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>相等</td>
+<td>a == b</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>不相等</td>
+<td>a != b</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大於</td>
+<td>a &gt; b</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大於等於</td>
+<td>a &gt;= b</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小於</td>
+<td>a &lt; b</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小於等於</td>
+<td>a &lt;= b</td>
+</tr>
+</tbody>
+</table>
+<h3 id="指派運算子">指派運算子</h3>
+<table>
+<thead>
+<tr>
+<th>運算子</th>
+<th>功能</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>指派</td>
+<td>a = b</td>
+</tr>
+<tr>
+<td>+=</td>
+<td>相加同時指派</td>
+<td>a += b</td>
+</tr>
+<tr>
+<td>-=</td>
+<td>相減同時指派</td>
+<td>a -= b</td>
+</tr>
+<tr>
+<td>*=</td>
+<td>相乘同時指派</td>
+<td>a *= b</td>
+</tr>
+<tr>
+<td>/=</td>
+<td>相除同時指派</td>
+<td>a /= b</td>
+</tr>
+<tr>
+<td>%=</td>
+<td>取餘數同時指派</td>
+<td>a %= b</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>

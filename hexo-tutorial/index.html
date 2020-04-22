@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://i.imgur.com/OjTrXMX.png">
 <meta property="og:image" content="https://i.imgur.com/QSV6q2a.png">
 <meta property="article:published_time" content="2017-12-19T08:43:39.000Z">
-<meta property="article:modified_time" content="2019-06-10T09:05:49.000Z">
+<meta property="article:modified_time" content="2020-04-22T17:13:12.021Z">
 <meta property="article:author" content="黑楓">
 <meta property="article:tag" content="部落格">
 <meta property="article:tag" content="hexo">
@@ -253,7 +253,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2019-06-10 17:05:49" itemprop="dateModified" datetime="2019-06-10T17:05:49+08:00">2019-06-10</time>
+                <time title="修改時間：2020-04-23 01:13:12" itemprop="dateModified" datetime="2020-04-23T01:13:12+08:00">2020-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -358,8 +358,8 @@
 <p><strong>yaml 檔裡，&quot;:&quot;後一定要有一個空格</strong><br>
 下面是 hexo 的預設配置，可以自修改。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">/標題(會顯示在網頁標題與頁首)/</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">/子標題(顯示在頁首)/</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">/內容描述(給搜尋引擎看的)/</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">/作者(顯示在頁尾)/</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">/網站預設語言(台灣:zh-tw)/</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">/時區(預設使用你電腦的時區)/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">/網站的網域位址/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/網站根目錄/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">/文章目錄(預設使用</span> <span class="string">YYYY\MM\DD\文章名稱)/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">/網站的佈景主題/</span></span><br><span class="line">       <span class="string">(可以到"https://hexo.io/themes/"下載喜歡的佈景放置到</span> <span class="string">theme</span> <span class="string">目錄裡)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">/發佈型態/</span> <span class="string">例如(git、heroku、rsync、openshift、ftpsync)</span></span><br><span class="line">    <span class="attr">repository:</span> <span class="string">/部署位置/</span> <span class="string">例如(git@github.com:帳號/REPO名.git)</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">/分支/</span> <span class="string">例如(master、gh-pages)</span></span><br><span class="line">    <span class="attr">message:</span> <span class="string">/部署訊息/</span></span><br></pre></td></tr></table></figure>
-<h2 id="使用-Next-主題">使用 Next 主題</h2>
-<p>本站使用主題為 Next.Pisces 主題。<br>
+<h2 id="使用-NexT-主題">使用 NexT 主題</h2>
+<p>本站使用主題為 NexT.Pisces 主題。<br>
 如何使用，可以參考 <span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20vZ2V0dGluZy1zdGFydGVkLmh0bWw=">官方教學文件<i class="fa fa-external-link-alt"></i></span>，上面寫的很詳細，而且是中文的教學！</p>
 <h2 id="發布文章">發布文章</h2>
 <p>創建文章</p>
@@ -408,25 +408,26 @@
 <p>執行以下指令，將原生 Markdown 改為 Markdown-it</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm un hexo-renderer-marked --save    <span class="comment"># 刪除原生 Markdown</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm i hexo-renderer-markdown-it --save    <span class="comment"># 安裝 Markdown-it</span></span></span><br></pre></td></tr></table></figure>
 <h2 id="新增標籤頁">新增標籤頁</h2>
-<p>可以參考 Next 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20vdGhlbWUtc2V0dGluZ3MuaHRtbCN0YWdzLXBhZ2U=">添加「标签」页面<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>可以參考 NexT 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20vdGhlbWUtc2V0dGluZ3MuaHRtbCN0YWdzLXBhZ2U=">添加「标签」页面<i class="fa fa-external-link-alt"></i></span>。</p>
 <h2 id="新增分類頁">新增分類頁</h2>
-<p>可以參考 Next 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20vdGhlbWUtc2V0dGluZ3MuaHRtbCNjYXRlZ29yaWVzLXBhZ2U=">添加「分类」页面<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>可以參考 NexT 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20vdGhlbWUtc2V0dGluZ3MuaHRtbCNjYXRlZ29yaWVzLXBhZ2U=">添加「分类」页面<i class="fa fa-external-link-alt"></i></span>。</p>
 <h2 id="新增關於頁">新增關於頁</h2>
-<p>可以參考 Next 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3d3dy41aXNqeXguY29tL2NvZGluZy8yMDE3MDQvaGV4b25leHRhYm91dC5odG1s">Hexo about页面怎么写 Next关于页面怎么设置<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>可以參考 NexT 官網的這篇教學 <span class="exturl" data-url="aHR0cDovL3d3dy41aXNqeXguY29tL2NvZGluZy8yMDE3MDQvaGV4b25leHRhYm91dC5odG1s">Hexo about页面怎么写 Next关于页面怎么设置<i class="fa fa-external-link-alt"></i></span>。</p>
 <h2 id="性能優化">性能優化</h2>
-<p>可以參考這兩篇，分別用不同的方法將靜態資源進行壓縮</p>
+<p>性能優化最主要的就是壓縮網頁大小，一開始有試過使用大多數人推的 <code>hexo-neat</code>，但結果一直失敗QwQ<br>
+因此決定改用 gulp 來做壓縮。</p>
 <ol>
 <li><span class="exturl" data-url="aHR0cDovL3dhYmVyeWFuZy5jb20vMjAxNy8wMy8xMi9IZXhvJUU1JThEJTlBJUU1JUFFJUEyLU5leHQlRTYlODAlQTclRTglODMlQkQlRTQlQkMlOTglRTUlOEMlOTYlRTQlQjklOEIlRTglQjclQUYv">Hexo博客-Next性能优化之路<i class="fa fa-external-link-alt"></i></span></li>
 <li><span class="exturl" data-url="aHR0cDovL2J1bGVzaGl0Lnh5ei8yMDE3LzAyLzE3L2hleG8lRTUlOEQlOUElRTUlQUUlQTIlRTUlOEElQTAlRTklODAlOUYlRTQlQjklOEIlRTklQTElQjUlRTklOUQlQTIlRTUlOEUlOEIlRTclQkMlQTkv">hexo博客加速之页面压缩<i class="fa fa-external-link-alt"></i></span></li>
 </ol>
 <h2 id="文章編輯後台">文章編輯後台</h2>
-<p>如果覺得編輯完無法立即看到結果，或是結果和本地編輯器有差，可以試著使用看看 hexo-admin，<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpbnB6ei5jb20vMjAxNi8xMi8zMS9oZXhvLWFkbWluLWJhY2tlbmQtbWFuYWdlbWVudC8=">hexo-admin 博客后端管理工具<i class="fa fa-external-link-alt"></i></span></p>
-<p>使用文章編輯後台一個禮拜後的結論：<strong>難用，不建議使用！</strong><br>
+<p>先下結論：<strong>難用，不建議使用！</strong><br>
 建議可以在自己熟悉的 markdown 編輯器編輯就好。</p>
+<p>如果覺得編輯完無法立即看到結果，或是結果和本地編輯器有差，可以試著使用看看 hexo-admin，<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmtpbnB6ei5jb20vMjAxNi8xMi8zMS9oZXhvLWFkbWluLWJhY2tlbmQtbWFuYWdlbWVudC8=">hexo-admin 博客后端管理工具<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="參考資料">參考資料</h2>
 <p><span class="exturl" data-url="aHR0cHM6Ly9za3lsYWtlLnR3LzIwMTcvMDkvMjkvaGV4by1idWlsZHVwLyNyYW5nLW5leC10LXpodS10aS1kZS1saXN0LWJ1LXpoaS15b3UteXVhbi14aW5n">Hexo部落格建立筆記 | SkyLake’s Blog<i class="fa fa-external-link-alt"></i></span><br>
 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLXR3L2luZGV4Lmh0bWw=">Hexo 官方網站<i class="fa fa-external-link-alt"></i></span><br>
-<span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20v">Next 官方網站<i class="fa fa-external-link-alt"></i></span></p>
+<span class="exturl" data-url="aHR0cDovL3RoZW1lLW5leHQuaWlzc25hbi5jb20v">NexT 官方網站<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
 
@@ -442,7 +443,7 @@
           
           <div class="post-tags">
               <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
-              <a href="/tags/Next/" rel="tag"><i class="fa fa-tag"></i> Next</a>
+              <a href="/tags/NexT/" rel="tag"><i class="fa fa-tag"></i> NexT</a>
               <a href="/tags/%E6%95%99%E5%AD%B8/" rel="tag"><i class="fa fa-tag"></i> 教學</a>
           </div>
 
@@ -524,7 +525,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-優點"><span class="nav-number">1.</span> <span class="nav-text">Hexo 優點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#開始之前"><span class="nav-number">2.</span> <span class="nav-text">開始之前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建制步驟"><span class="nav-number">3.</span> <span class="nav-text">建制步驟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-Node-js"><span class="nav-number">3.1.</span> <span class="nav-text">安裝 Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-Hexo-Git"><span class="nav-number">3.2.</span> <span class="nav-text">安裝 Hexo Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-Hexo"><span class="nav-number">3.3.</span> <span class="nav-text">安裝 Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#將-Hexo-配置到-GitHub"><span class="nav-number">3.4.</span> <span class="nav-text">將 Hexo 配置到 GitHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-配置檔介紹"><span class="nav-number">4.</span> <span class="nav-text">Hexo 配置檔介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Next-主題"><span class="nav-number">5.</span> <span class="nav-text">使用 Next 主題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#發布文章"><span class="nav-number">6.</span> <span class="nav-text">發布文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#刪除文章"><span class="nav-number">7.</span> <span class="nav-text">刪除文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用第三方擴充服務"><span class="nav-number">8.</span> <span class="nav-text">使用第三方擴充服務</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客製化設定"><span class="nav-number">9.</span> <span class="nav-text">客製化設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登錄搜尋引擎"><span class="nav-number">10.</span> <span class="nav-text">登錄搜尋引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SEO-優化"><span class="nav-number">11.</span> <span class="nav-text">SEO 優化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#強化-Markdown-renderer"><span class="nav-number">12.</span> <span class="nav-text">強化 Markdown renderer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增標籤頁"><span class="nav-number">13.</span> <span class="nav-text">新增標籤頁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增分類頁"><span class="nav-number">14.</span> <span class="nav-text">新增分類頁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增關於頁"><span class="nav-number">15.</span> <span class="nav-text">新增關於頁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能優化"><span class="nav-number">16.</span> <span class="nav-text">性能優化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章編輯後台"><span class="nav-number">17.</span> <span class="nav-text">文章編輯後台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">18.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-優點"><span class="nav-number">1.</span> <span class="nav-text">Hexo 優點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#開始之前"><span class="nav-number">2.</span> <span class="nav-text">開始之前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建制步驟"><span class="nav-number">3.</span> <span class="nav-text">建制步驟</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-Node-js"><span class="nav-number">3.1.</span> <span class="nav-text">安裝 Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-Hexo-Git"><span class="nav-number">3.2.</span> <span class="nav-text">安裝 Hexo Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安裝-Hexo"><span class="nav-number">3.3.</span> <span class="nav-text">安裝 Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#將-Hexo-配置到-GitHub"><span class="nav-number">3.4.</span> <span class="nav-text">將 Hexo 配置到 GitHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-配置檔介紹"><span class="nav-number">4.</span> <span class="nav-text">Hexo 配置檔介紹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-NexT-主題"><span class="nav-number">5.</span> <span class="nav-text">使用 NexT 主題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#發布文章"><span class="nav-number">6.</span> <span class="nav-text">發布文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#刪除文章"><span class="nav-number">7.</span> <span class="nav-text">刪除文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用第三方擴充服務"><span class="nav-number">8.</span> <span class="nav-text">使用第三方擴充服務</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客製化設定"><span class="nav-number">9.</span> <span class="nav-text">客製化設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登錄搜尋引擎"><span class="nav-number">10.</span> <span class="nav-text">登錄搜尋引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SEO-優化"><span class="nav-number">11.</span> <span class="nav-text">SEO 優化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#強化-Markdown-renderer"><span class="nav-number">12.</span> <span class="nav-text">強化 Markdown renderer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增標籤頁"><span class="nav-number">13.</span> <span class="nav-text">新增標籤頁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增分類頁"><span class="nav-number">14.</span> <span class="nav-text">新增分類頁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增關於頁"><span class="nav-number">15.</span> <span class="nav-text">新增關於頁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能優化"><span class="nav-number">16.</span> <span class="nav-text">性能優化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章編輯後台"><span class="nav-number">17.</span> <span class="nav-text">文章編輯後台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">18.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -540,20 +541,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
