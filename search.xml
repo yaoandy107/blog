@@ -49,17 +49,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Flutter: const vs final</title>
-    <url>/Flutter-const-vs-final/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Flutter</category>
-      </categories>
-      <tags>
-        <tag>Flutter</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Error：Fragment already added</title>
     <url>/Error-Fragment-already-added/</url>
     <content><![CDATA[]]></content>
@@ -95,6 +84,17 @@
       <tags>
         <tag>SQL</tag>
         <tag>筆記</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flutter: const vs final</title>
+    <url>/Flutter-const-vs-final/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Flutter</category>
+      </categories>
+      <tags>
+        <tag>Flutter</tag>
       </tags>
   </entry>
   <entry>
@@ -134,20 +134,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LineBot+Python，輕鬆建立聊天機器人</title>
-    <url>/line-bot-tutorial/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>LineBot</category>
-      </categories>
-      <tags>
-        <tag>教學</tag>
-        <tag>Line</tag>
-        <tag>Bot</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo+GitHub，新手也可以快速建立部落格</title>
     <url>/hexo-tutorial/</url>
     <content><![CDATA[]]></content>
@@ -173,11 +159,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在 Ubuntu 上安裝中文輸入法</title>
-    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>在 static method  中取得 String Resource</title>
     <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
     <content><![CDATA[]]></content>
@@ -187,6 +168,25 @@
       <tags>
         <tag>Android</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>LineBot+Python，輕鬆建立聊天機器人</title>
+    <url>/line-bot-tutorial/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>LineBot</category>
+      </categories>
+      <tags>
+        <tag>教學</tag>
+        <tag>Line</tag>
+        <tag>Bot</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Ubuntu 上安裝中文輸入法</title>
+    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
