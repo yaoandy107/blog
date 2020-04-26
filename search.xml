@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AIS3 2018 write-up</title>
+    <url>/AIS3-2018-write-up/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>AIS3</tag>
+        <tag>Security</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AIS3 Final CTF - hellOwOrld</title>
+    <url>/AIS3-Final-CTF-hellOwOrld/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>AIS3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android Studio 技巧整理</title>
+    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android Studio</tag>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android 學習問題紀錄</title>
     <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
     <content><![CDATA[]]></content>
@@ -12,27 +49,16 @@
       </tags>
   </entry>
   <entry>
-    <title>Android Studio 技巧整理</title>
-    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
+    <title>[Android] Error：Fragment already added</title>
+    <url>/Error-Fragment-already-added/</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>Android</category>
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>Android Studio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AIS3 Final CTF - hellOwOrld</title>
-    <url>/AIS3-Final-CTF-hellOwOrld/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>AIS3</tag>
-        <tag>CTF</tag>
+        <tag>Fragment</tag>
+        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
@@ -60,17 +86,6 @@
       </tags>
   </entry>
   <entry>
-    <title>android:gravity 和 android:layout_gravity 的差別</title>
-    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SQL 語法筆記</title>
     <url>/SQL-tutorial/</url>
     <content><![CDATA[]]></content>
@@ -83,16 +98,14 @@
       </tags>
   </entry>
   <entry>
-    <title>AIS3 2018 write-up</title>
-    <url>/AIS3-2018-write-up/</url>
+    <title>android:gravity 和 android:layout_gravity 的差別</title>
+    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
     <content><![CDATA[]]></content>
       <categories>
-        <category>CTF</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>AIS3</tag>
-        <tag>CTF</tag>
-        <tag>Security</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -108,15 +121,16 @@
       </tags>
   </entry>
   <entry>
-    <title>Android: getColor(int id) deprecated</title>
-    <url>/android-getcolor-deprecated/</url>
+    <title>Hexo+GitHub，新手也可以快速建立部落格</title>
+    <url>/hexo-tutorial/</url>
     <content><![CDATA[]]></content>
       <categories>
-        <category>Android</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Android</tag>
-        <tag>deprecated</tag>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
+        <tag>教學</tag>
       </tags>
   </entry>
   <entry>
@@ -127,9 +141,21 @@
         <category>Linux</category>
       </categories>
       <tags>
+        <tag>教學</tag>
         <tag>CentOS</tag>
         <tag>Linux</tag>
-        <tag>教學</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android: getColor(int id) deprecated</title>
+    <url>/android-getcolor-deprecated/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>deprecated</tag>
       </tags>
   </entry>
   <entry>
@@ -144,19 +170,6 @@
         <tag>Line</tag>
         <tag>Bot</tag>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo+GitHub，新手也可以快速建立部落格</title>
-    <url>/hexo-tutorial/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>教學</tag>
-        <tag>Hexo</tag>
-        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -181,6 +194,17 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
+    <title>型態、變數與運算子 - Java</title>
+    <url>/%E5%9E%8B%E6%85%8B%E3%80%81%E8%AE%8A%E6%95%B8%E8%88%87%E9%81%8B%E7%AE%97%E5%AD%90-Java/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>條件式與迴圈 - Java</title>
     <url>/%E6%A2%9D%E4%BB%B6%E5%BC%8F%E8%88%87%E8%BF%B4%E5%9C%88-Java/</url>
     <content><![CDATA[]]></content>
@@ -200,30 +224,6 @@
       </categories>
       <tags>
         <tag>Android Studio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>型態、變數與運算子 - Java</title>
-    <url>/%E5%9E%8B%E6%85%8B%E3%80%81%E8%AE%8A%E6%95%B8%E8%88%87%E9%81%8B%E7%AE%97%E5%AD%90-Java/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Android] Error：Fragment already added</title>
-    <url>/Error-Fragment-already-added/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Fragment</tag>
-        <tag>Error</tag>
       </tags>
   </entry>
 </search>
