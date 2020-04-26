@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blackmaple.me/android-notificationcompat-vs-notification/</loc>
+    <lastmod>2020-04-26</lastmod>
+  </url>  <url>
+    <loc>https://blackmaple.me/android-getcolor-deprecated/</loc>
+    <lastmod>2020-04-26</lastmod>
+  </url>  <url>
     <loc>https://blackmaple.me/line-bot-tutorial/</loc>
     <lastmod>2020-04-23</lastmod>
   </url>  <url>
@@ -40,13 +46,7 @@
     <loc>https://blackmaple.me/%E8%A7%A3%E6%B1%BAAndroid-Studio%E5%8D%A1%E9%A0%93%E7%9A%84%E5%95%8F%E9%A1%8C/</loc>
     <lastmod>2018-01-22</lastmod>
   </url>  <url>
-    <loc>https://blackmaple.me/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</loc>
-    <lastmod>2018-01-22</lastmod>
-  </url>  <url>
     <loc>https://blackmaple.me/how-to-create-a-sudo-user-on-centos-quickstart/</loc>
-    <lastmod>2018-01-22</lastmod>
-  </url>  <url>
-    <loc>https://blackmaple.me/getcolor-deprecated/</loc>
     <lastmod>2018-01-22</lastmod>
   </url>  <url>
     <loc>https://blackmaple.me/Error-Fragment-already-added/</loc>
@@ -56,9 +56,6 @@
     <lastmod>2018-01-22</lastmod>
   </url>  <url>
     <loc>https://blackmaple.me/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</loc>
-    <lastmod>2018-01-22</lastmod>
-  </url>  <url>
-    <loc>https://blackmaple.me/notificationcompat-vs-notification/</loc>
     <lastmod>2018-01-22</lastmod>
   </url>
 </urlset>
