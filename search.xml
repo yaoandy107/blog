@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AIS3 2018 write-up</title>
+    <url>/AIS3-2018-write-up/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>AIS3</tag>
+        <tag>Security</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AIS3 Final CTF - hellOwOrld</title>
+    <url>/AIS3-Final-CTF-hellOwOrld/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>AIS3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android Studio 技巧整理</title>
+    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android Studio</tag>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android 學習問題紀錄</title>
     <url>/Android-%E5%AD%B8%E7%BF%92%E5%95%8F%E9%A1%8C%E7%B4%80%E9%8C%84/</url>
     <content><![CDATA[]]></content>
@@ -49,18 +86,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Android: getColor(int id) deprecated</title>
-    <url>/android-getcolor-deprecated/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>deprecated</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SQL 語法筆記</title>
     <url>/SQL-tutorial/</url>
     <content><![CDATA[]]></content>
@@ -73,28 +98,26 @@
       </tags>
   </entry>
   <entry>
-    <title>Android Studio 技巧整理</title>
-    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
+    <title>Android: getColor(int id) deprecated</title>
+    <url>/android-getcolor-deprecated/</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>Android</category>
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>Android Studio</tag>
+        <tag>deprecated</tag>
       </tags>
   </entry>
   <entry>
-    <title>AIS3 2018 write-up</title>
-    <url>/AIS3-2018-write-up/</url>
+    <title>android:gravity 和 android:layout_gravity 的差別</title>
+    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
     <content><![CDATA[]]></content>
       <categories>
-        <category>CTF</category>
+        <category>Android</category>
       </categories>
       <tags>
-        <tag>CTF</tag>
-        <tag>AIS3</tag>
-        <tag>Security</tag>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -110,23 +133,6 @@
       </tags>
   </entry>
   <entry>
-    <title>AIS3 Final CTF - hellOwOrld</title>
-    <url>/AIS3-Final-CTF-hellOwOrld/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>AIS3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
-    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>Hexo+GitHub，新手也可以快速建立部落格</title>
     <url>/hexo-tutorial/</url>
     <content><![CDATA[]]></content>
@@ -137,6 +143,19 @@
         <tag>Hexo</tag>
         <tag>NexT</tag>
         <tag>教學</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在 Centos 7 創建一個 Sudo user</title>
+    <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>教學</tag>
+        <tag>CentOS</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -154,14 +173,35 @@
       </tags>
   </entry>
   <entry>
-    <title>android:gravity 和 android:layout_gravity 的差別</title>
-    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
+    <title>[Android] 在 static method  中取得 String Resource</title>
+    <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>Android</category>
       </categories>
       <tags>
         <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
+    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>在 Ubuntu 上安裝中文輸入法</title>
+    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>型態、變數與運算子 - Java</title>
+    <url>/%E5%9E%8B%E6%85%8B%E3%80%81%E8%AE%8A%E6%95%B8%E8%88%87%E9%81%8B%E7%AE%97%E5%AD%90-Java/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -176,19 +216,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何在 Centos 7 創建一個 Sudo user</title>
-    <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>教學</tag>
-        <tag>CentOS</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解決 Android Studio 卡頓的問題</title>
     <url>/%E8%A7%A3%E6%B1%BAAndroid-Studio%E5%8D%A1%E9%A0%93%E7%9A%84%E5%95%8F%E9%A1%8C/</url>
     <content><![CDATA[]]></content>
@@ -198,21 +225,5 @@
       <tags>
         <tag>Android Studio</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>型態、變數與運算子 - Java</title>
-    <url>/%E5%9E%8B%E6%85%8B%E3%80%81%E8%AE%8A%E6%95%B8%E8%88%87%E9%81%8B%E7%AE%97%E5%AD%90-Java/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Ubuntu 上安裝中文輸入法</title>
-    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>

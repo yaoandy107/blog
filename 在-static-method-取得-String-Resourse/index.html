@@ -24,17 +24,22 @@
     var CONFIG = {"hostname":"blackmaple.me","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="記錄學習的點點滴滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BlackMaple&#39;s Blog">
-<meta property="og:url" content="https://blackmaple.me/categories/Hexo/">
+  <meta name="description" content="遇到問題 最近在寫一個 Singleton 的類別時，遇到需要透過 Resource id 取得 string 的需求，原本想用 context.getString(int resId) 的方式取得，但發現 Context 不適合被 static 成員或類別引用，會導致內存泄露。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Android] 在 static method  中取得 String Resource">
+<meta property="og:url" content="https://blackmaple.me/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/">
 <meta property="og:site_name" content="BlackMaple&#39;s Blog">
-<meta property="og:description" content="記錄學習的點點滴滴">
+<meta property="og:description" content="遇到問題 最近在寫一個 Singleton 的類別時，遇到需要透過 Resource id 取得 string 的需求，原本想用 context.getString(int resId) 的方式取得，但發現 Context 不適合被 static 成員或類別引用，會導致內存泄露。">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2017-12-21T11:29:30.000Z">
+<meta property="article:modified_time" content="2020-04-26T03:24:28.065Z">
 <meta property="article:author" content="黑楓">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content="static">
+<meta property="article:tag" content="string resource">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://blackmaple.me/categories/Hexo/">
+<link rel="canonical" href="https://blackmaple.me/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/">
 
 
 <script id="page-configurations">
@@ -42,12 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>分類: Hexo | BlackMaple's Blog</title>
+  <title>[Android] 在 static method  中取得 String Resource | BlackMaple's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111459214-1"></script>
     <script data-pjax>
@@ -201,57 +206,140 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://blackmaple.me/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="黑楓">
+      <meta itemprop="description" content="記錄學習的點點滴滴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BlackMaple's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [Android] 在 static method  中取得 String Resource
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2017-12-21 19:29:30" itemprop="dateCreated datePublished" datetime="2017-12-21T19:29:30+08:00">2017-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-04-26 11:24:28" itemprop="dateModified" datetime="2020-04-26T11:24:28+08:00">2020-04-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Hexo
-          <small>分類</small>
-        </h2>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="在-static-method-取得-String-Resourse/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2017</span>
+        <h2 id="遇到問題">遇到問題</h2>
+<p>最近在寫一個 Singleton 的類別時，遇到需要透過 Resource id 取得 string 的需求，原本想用 context.getString(int resId) 的方式取得，但發現 Context 不適合被 static 成員或類別引用，會導致內存泄露。</p>
+<a id="more"></a>
+<pre><code>static 成員生命週期會隨著 app 開始到結束。
+如果引用到 Context、Activity，會導致 Context、Activity 也跟著無法被回收，導致內存泄露。
+</code></pre>
+<h2 id="解決辦法">解決辦法</h2>
+<p>使用 Resources.getSystem().getString(int resId) 來取得 String。</p>
+<h2 id="參考資料">參考資料</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAwODEzMTk3OQ==">https://segmentfault.com/q/1010000008131979<i class="fa fa-external-link-alt"></i></span><br>
+<span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMzgyMjczMi9hbmRyb2lkLWdldHN0cmluZ3Itc3RyaW5nLWluLXN0YXRpYy1tZXRob2Q=">https://stackoverflow.com/questions/3822732/android-getstringr-string-in-static-method<i class="fa fa-external-link-alt"></i></span></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    <script>
+  document.write(
+    "<iframe scrolling='no' frameborder='0' sandbox='allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-storage-access-by-user-activation' style='height: 212px; width: 100%;' src='https://button.like.co/in/embed/yaoandy107/button?referrer=" +
+    encodeURIComponent(location.href.split("?")[0].split("#")[0]) + "'></iframe>");
+</script>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2017-12-19T16:43:39+08:00"
-              content="2017-12-19">
-          12-19
-        </time>
-      </div>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/hexo-tutorial/" itemprop="url">
-            <span itemprop="name">Hexo+GitHub，新手也可以快速建立部落格</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/android-getcolor-deprecated/" rel="prev" title="Android: getColor(int id) deprecated">
+      <i class="fa fa-chevron-left"></i> Android: getColor(int id) deprecated
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/how-to-create-a-sudo-user-on-centos-quickstart/" rel="next" title="如何在 Centos 7 創建一個 Sudo user">
+      如何在 Centos 7 創建一個 Sudo user <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -298,6 +386,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到問題"><span class="nav-number">1.</span> <span class="nav-text">遇到問題</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解決辦法"><span class="nav-number">2.</span> <span class="nav-text">解決辦法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">3.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -502,6 +591,26 @@ window.addEventListener('pjax:success', () => {
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blackmaple.me/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/";
+    this.page.identifier = "在-static-method-取得-String-Resourse/";
+    this.page.title = "[Android] 在 static method  中取得 String Resource";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://yaoandy107.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
 </script>
 
     </div>
