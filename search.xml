@@ -49,17 +49,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Flutter: const vs final</title>
-    <url>/Flutter-const-vs-final/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Flutter</category>
-      </categories>
-      <tags>
-        <tag>Flutter</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[Android] Error：Fragment already added</title>
     <url>/Error-Fragment-already-added/</url>
     <content><![CDATA[]]></content>
@@ -70,6 +59,17 @@
         <tag>Android</tag>
         <tag>Fragment</tag>
         <tag>Error</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flutter: const vs final</title>
+    <url>/Flutter-const-vs-final/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Flutter</category>
+      </categories>
+      <tags>
+        <tag>Flutter</tag>
       </tags>
   </entry>
   <entry>
@@ -145,6 +145,18 @@
       </tags>
   </entry>
   <entry>
+    <title>Android: NotificationCompat 與 Notification 差別</title>
+    <url>/android-notificationcompat-vs-notification/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Notification</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo+GitHub，新手也可以快速建立部落格</title>
     <url>/hexo-tutorial/</url>
     <content><![CDATA[]]></content>
@@ -155,18 +167,6 @@
         <tag>教學</tag>
         <tag>Hexo</tag>
         <tag>NexT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Android: NotificationCompat 與 Notification 差別</title>
-    <url>/android-notificationcompat-vs-notification/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Notification</tag>
       </tags>
   </entry>
   <entry>
@@ -189,11 +189,6 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>在 Ubuntu 上安裝中文輸入法</title>
-    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>[Android] 在 static method  中取得 String Resource</title>
     <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
     <content><![CDATA[]]></content>
@@ -205,19 +200,13 @@
       </tags>
   </entry>
   <entry>
-    <title>型態、變數與運算子 - Java</title>
-    <url>/%E5%9E%8B%E6%85%8B%E3%80%81%E8%AE%8A%E6%95%B8%E8%88%87%E9%81%8B%E7%AE%97%E5%AD%90-Java/</url>
+    <title>在 Ubuntu 上安裝中文輸入法</title>
+    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
     <content><![CDATA[]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
   </entry>
   <entry>
-    <title>條件式與迴圈 - Java</title>
-    <url>/%E6%A2%9D%E4%BB%B6%E5%BC%8F%E8%88%87%E8%BF%B4%E5%9C%88-Java/</url>
+    <title>型態、變數與運算子 - Java</title>
+    <url>/%E5%9E%8B%E6%85%8B%E3%80%81%E8%AE%8A%E6%95%B8%E8%88%87%E9%81%8B%E7%AE%97%E5%AD%90-Java/</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>Java</category>
@@ -235,6 +224,17 @@
       </categories>
       <tags>
         <tag>Android Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>條件式與迴圈 - Java</title>
+    <url>/%E6%A2%9D%E4%BB%B6%E5%BC%8F%E8%88%87%E8%BF%B4%E5%9C%88-Java/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
 </search>
