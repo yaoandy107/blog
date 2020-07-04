@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>AIS3 Final CTF - hellOwOrld</title>
-    <url>/AIS3-Final-CTF-hellOwOrld/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>AIS3</tag>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AIS3 2018 write-up</title>
     <url>/AIS3-2018-write-up/</url>
     <content><![CDATA[]]></content>
@@ -20,21 +8,9 @@
         <category>CTF</category>
       </categories>
       <tags>
-        <tag>AIS3</tag>
         <tag>CTF</tag>
+        <tag>AIS3</tag>
         <tag>Security</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Android Studio 技巧整理</title>
-    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android Studio</tag>
-        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -49,6 +25,30 @@
       </tags>
   </entry>
   <entry>
+    <title>Android Studio 技巧整理</title>
+    <url>/Android-Studio%E6%8A%80%E5%B7%A7%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Android Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AIS3 Final CTF - hellOwOrld</title>
+    <url>/AIS3-Final-CTF-hellOwOrld/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>AIS3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Flutter: const vs final</title>
     <url>/Flutter-const-vs-final/</url>
     <content><![CDATA[]]></content>
@@ -57,30 +57,6 @@
       </categories>
       <tags>
         <tag>Flutter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Android] Error：Fragment already added</title>
-    <url>/Error-Fragment-already-added/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-        <tag>Fragment</tag>
-        <tag>Error</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTTP/3 改用 UDP？ HTTP 的過去、現在和未來</title>
-    <url>/HTTP-3-%E6%94%B9%E6%88%90%E5%9F%BA%E6%96%BC-UDP%EF%BC%9FHTTP-%E7%9A%84%E9%81%8E%E5%8E%BB%E3%80%81%E7%8F%BE%E5%9C%A8%E5%92%8C%E6%9C%AA%E4%BE%86/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>HTTP</category>
-      </categories>
-      <tags>
-        <tag>HTTP</tag>
       </tags>
   </entry>
   <entry>
@@ -109,6 +85,30 @@
       </tags>
   </entry>
   <entry>
+    <title>HTTP/3 改用 UDP？ HTTP 的過去、現在和未來</title>
+    <url>/HTTP-3-%E6%94%B9%E6%88%90%E5%9F%BA%E6%96%BC-UDP%EF%BC%9FHTTP-%E7%9A%84%E9%81%8E%E5%8E%BB%E3%80%81%E7%8F%BE%E5%9C%A8%E5%92%8C%E6%9C%AA%E4%BE%86/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>HTTP</category>
+      </categories>
+      <tags>
+        <tag>HTTP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[Android] Error：Fragment already added</title>
+    <url>/Error-Fragment-already-added/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>Fragment</tag>
+        <tag>Error</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android: getColor(int id) deprecated</title>
     <url>/android-getcolor-deprecated/</url>
     <content><![CDATA[]]></content>
@@ -118,6 +118,17 @@
       <tags>
         <tag>Android</tag>
         <tag>deprecated</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android:gravity 和 android:layout_gravity 的差別</title>
+    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
@@ -133,30 +144,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo+GitHub，新手也可以快速建立部落格</title>
-    <url>/hexo-tutorial/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>NexT</tag>
-        <tag>教學</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>android:gravity 和 android:layout_gravity 的差別</title>
-    <url>/android-gravity%E5%92%8Candroid-layout-Gravity%E7%9A%84%E5%B7%AE%E5%88%A5/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何在 Centos 7 創建一個 Sudo user</title>
     <url>/how-to-create-a-sudo-user-on-centos-quickstart/</url>
     <content><![CDATA[]]></content>
@@ -164,32 +151,28 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>教學</tag>
         <tag>CentOS</tag>
         <tag>Linux</tag>
+        <tag>教學</tag>
       </tags>
   </entry>
   <entry>
-    <title>商業智慧筆記（一）- 大數據時代的商業智慧簡介</title>
-    <url>/%E5%95%86%E6%A5%AD%E6%99%BA%E6%85%A7%E7%AD%86%E8%A8%98%EF%BC%88%E4%B8%80%EF%BC%89-%E5%A4%A7%E6%95%B8%E6%93%9A%E6%99%82%E4%BB%A3%E7%9A%84%E5%95%86%E6%A5%AD%E6%99%BA%E6%85%A7%E7%B0%A1%E4%BB%8B/</url>
+    <title>Hexo+GitHub，新手也可以快速建立部落格</title>
+    <url>/hexo-tutorial/</url>
     <content><![CDATA[]]></content>
       <categories>
-        <category>商業智慧</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>商業智慧</tag>
+        <tag>教學</tag>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
-    <title>[Android] 在 static method  中取得 String Resource</title>
-    <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
+    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
+    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
     <content><![CDATA[]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
   </entry>
   <entry>
     <title>LineBot+Python，輕鬆建立聊天機器人</title>
@@ -206,20 +189,15 @@
       </tags>
   </entry>
   <entry>
-    <title>在 Ubuntu 上安裝中文輸入法</title>
-    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
+    <title>商業智慧筆記（一）- 大數據時代的商業智慧簡介</title>
+    <url>/%E5%95%86%E6%A5%AD%E6%99%BA%E6%85%A7%E7%AD%86%E8%A8%98%EF%BC%88%E4%B8%80%EF%BC%89-%E5%A4%A7%E6%95%B8%E6%93%9A%E6%99%82%E4%BB%A3%E7%9A%84%E5%95%86%E6%A5%AD%E6%99%BA%E6%85%A7%E7%B0%A1%E4%BB%8B/</url>
     <content><![CDATA[]]></content>
       <categories>
-        <category>Linux</category>
+        <category>商業智慧</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
+        <tag>商業智慧</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>使用 Parallels Desktop Lite 安裝 Ubuntu 16.04（macOS）</title>
-    <url>/%E4%BD%BF%E7%94%A8-Parallels-Desktop-Lite-%E5%AE%89%E8%A3%9D-Ubuntu-16-04%EF%BC%88macOS%EF%BC%89/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>型態、變數與運算子 - Java</title>
@@ -233,14 +211,24 @@
       </tags>
   </entry>
   <entry>
-    <title>如何在 Ubuntu 20.04 創建 Sudo user？</title>
-    <url>/%E5%A6%82%E4%BD%95%E5%9C%A8-Ubuntu-20-04-%E5%89%B5%E5%BB%BA-Sudo-user%EF%BC%9F/</url>
+    <title>[Android] 在 static method  中取得 String Resource</title>
+    <url>/%E5%9C%A8-static-method-%E5%8F%96%E5%BE%97-String-Resourse/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Ubuntu 上安裝中文輸入法</title>
+    <url>/%E5%9C%A8Ubuntu%E4%B8%8A%E5%AE%89%E8%A3%9D%E4%B8%AD%E6%96%87%E8%BC%B8%E5%85%A5%E6%B3%95/</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Ubuntu</tag>
       </tags>
   </entry>
@@ -264,6 +252,18 @@
       </categories>
       <tags>
         <tag>Android Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在 Ubuntu 20.04 創建 Sudo user？</title>
+    <url>/%E5%A6%82%E4%BD%95%E5%9C%A8-Ubuntu-20-04-%E5%89%B5%E5%BB%BA-Sudo-user%EF%BC%9F/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
 </search>
